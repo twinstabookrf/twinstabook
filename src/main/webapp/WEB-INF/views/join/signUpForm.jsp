@@ -2,16 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
-<%@ include file="header.jsp"%>
+<%@ include file="../header.jsp"%>
 <html>
 <head>
 <title>Twinstabook - 트위터와 인스타그램과 페이스북으로부터</title>
-<link href="resources/css/font.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-	.fixed-width {width: 612px;}
-	.img-circle {width: 50px;	height: 50px;	border-radius: 70%;	overflow: hidden;}
-	.img-circle img{width: 100%;height:100%;object-fit: cover;}
-</style>
+<link href="resources/css/signUpForm.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="register">
