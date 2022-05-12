@@ -9,25 +9,24 @@
 <link href="resources/css/loginForm.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<main method="post">
+<main>
+<form method="post" action="login.html">
 	<div><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
 	<div class="logo">Twinstabook</div>
-	<article>
-	    <div class="form-group">
-	      <input type="text" class="form-control" id="member_id" name="member_id" placeholder="사용자 아이디">
-	    </div>
-	    <div class="form-group">
-	      <input type="password" class="form-control" id="password" name="pwd" placeholder="비밀번호">
-	    </div>
-	    <button type="submit" class="login-btn" onclick="location.href='main.html'">로그인</button>
-	    <div class="signUp">
-	    	계정이 없으신가요? <button type="submit" id="button" class="btn btn-primary" onclick="location.href='signUpForm.html'">회원가입</button>
-		</div>
-	</article>
-	<footer>
+	<div class="form-group">
+		<input type="text" class="form-control" id="member_id" name="member_id" placeholder="사용자 아이디">
+	</div>
+	<div class="form-group">
+	    <input type="password" class="form-control" id="password" name="pwd" placeholder="비밀번호">
+	</div>
+	    <button type="submit" class="login-btn" >로그인</button>
+</form>
+	<div class="signUp">
+	    	계정이 없으신가요? <button  id="button" class="btn btn-primary" onclick="location.href='signUpForm.html'">회원가입</button>
+	</div>
+	<div class="footer">
 		<a href="pwdHint.html">비밀번호를 잊으셨나요?</a>
-	</footer>
-</main>
-        
+	</div>
+   </main>    
  </body>
 </html>

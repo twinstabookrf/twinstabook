@@ -6,7 +6,13 @@ email varchar2(32) not null,							-- 이메일
 profile_pic varchar2(32),								-- 프로필사진
 reg_date date not null,									-- 가입일
 id_drop char(2)  default 'n' not null					-- 삭제여부
+
 );
+select * from member;
+ 
+alter table member ADD ask number(5) not null;    		--이거 사용 !
+alter table member ADD answer varchar2(50) not null;	--이거 사용 !
+
 
 
 create table post(

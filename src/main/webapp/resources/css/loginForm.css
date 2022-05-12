@@ -6,7 +6,7 @@
     
 }
 
-main {
+form {
 	margin-top: 10px;
 }
 
@@ -58,13 +58,14 @@ input:focus {
     background-color: #3849ea;
     color: white;
     font-size: 17px;
+    text-align:center;
 }
 
 .login-btn:hover {
     cursor: pointer;
 }
 
-footer {
+#footer {
 	margin-top : 5px;
     color: black;
 }

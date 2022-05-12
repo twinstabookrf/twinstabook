@@ -12,5 +12,7 @@ public class Member {
 	private String profile_pic;
 	private Date reg_date;
 	private String id_drop;
+	private int ask;
+	private String answer;
 	
 }
