@@ -6,32 +6,39 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="resource/css/postWriteForm.css" rel="stylesheet" type="text/css">
-<link href="resource/css/font.css" rel="stylesheet" type="text/css">
+<link href="resources/css/postWriteForm.css" rel="stylesheet" type="text/css">
+<link href="resources/css/font.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+	function chk() {
+		/* var file = document.getElementsById('file');
+		var content = document.getElementsById('content'); */
+		if (frm.file.value == "" && frm.content.value == "") {
+			alert("파일을 첨부하거나 내용을 입력해 주세요 ! :)");
+			return false;
+		}
+	}
+</script>
 </head>
 <body>
 	<!-- topNavbar -->
 	<%@include file="../public/topNavbar.jsp" %>
 	
 	<div class="container" align="center">
-		<form action="insert.html" method="post" enctype="multipart/form-data">
+		<form action="postWrite.html" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
+			<input type="hidden" name="origin_member_id" value="${member_id }">
+			<input type="hidden" name="member_id" value="${member_id }">
 				<table id="table" class="table table-hover">
 				<caption>게시물 만들기</caption>
 					<%-- <tr>
 						<td colspan="2">${member.profile_pic}${member.member_id}</td>
 					</tr> --%>
 					<tr>
-						<th>제목</th>
-						<td><input class="form-control" type="text" name="title" maxlength="16" 
-							placeholder="제목을 입력하세요." required="required" autofocus="autofocus"></td>
-					</tr>
-					<tr>
 						<th>파일</th>
-						<td><input class="form-control" type="file" name="fileName" multiple="multiple">
+						<td><input class="form-control" id="file" type="file" name="file" multiple="multiple"></td>
 					</tr>
 					<tr>
 						<th>내용<br><br><sup>(<span id="nowByte">0</span>/2000bytes)</sup></th>
-						<td><textarea  class="form-control" rows="5" cols="55" name="content" required="required" maxlength="1000"
+						<td><textarea  class="form-control" id="content" rows="5" cols="55" name="content" maxlength="1000"
 							placeholder="내용을 입력하세요." onkeyup="fn_checkByte(this)"></textarea></td>
 					</tr>
 					<tr>
