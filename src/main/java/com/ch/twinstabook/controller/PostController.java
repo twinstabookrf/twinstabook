@@ -29,7 +29,14 @@ public class PostController {
 	private MediaService ms;
 	
 	@RequestMapping("main")
-	public String main() {
+	public String main(Model model) {
+		model.addAttribute("writer" , "manho");
+		model.addAttribute("email" , "cookieValentain@twinstabook.com");
+		model.addAttribute("replyWrier" , "cookie");
+		model.addAttribute("replyContent" , "잘 봤습니다");
+		model.addAttribute("firstLike" , "manomano");
+		model.addAttribute("likes" , 99);
+		
 		return "main";
 	}
 	@RequestMapping("postWriteForm")
