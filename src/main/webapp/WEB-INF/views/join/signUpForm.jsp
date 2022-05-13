@@ -12,7 +12,6 @@
 </head>
 <body>
 	<main>
-<<<<<<< HEAD
 		<div><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
 		<div class="img"><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
 		<div class="logo">Twinstabook</div> 
