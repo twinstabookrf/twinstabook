@@ -12,7 +12,7 @@
 <main>
 <form method="post" action="login.html">
 	<div><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
-	<div class="logo">Twinstabook</div>
+	<div class="logo">Twinstabook</div> 
 	<div class="form-group">
 		<input type="text" class="form-control" id="member_id" name="member_id" placeholder="사용자 아이디">
 	</div>

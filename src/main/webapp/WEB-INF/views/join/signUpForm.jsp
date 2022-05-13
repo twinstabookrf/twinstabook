@@ -14,7 +14,7 @@
 		<form class="login" method="post" action="">
 			<div class="login-form">
 				<input type="text" id="id" name="member_id" placeholder="사용자 아이디">
-			</div>
+			</div> 
 			<div class="login-form">
 				<input type="password" id="password" name="pwd" placeholder="비밀번호">
 			</div>

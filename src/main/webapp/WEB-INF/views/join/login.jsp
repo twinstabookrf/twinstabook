@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
- <h2>로그인 체크 만들어</h2>
+ <h2>로그인 체크 만들어 </h2>
 </body>
 </html>
