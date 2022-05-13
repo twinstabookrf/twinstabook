@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -30,6 +29,10 @@ public class PostController {
 	
 	@RequestMapping("main")
 	public String main(Model model) {
+		Post post = new Post();
+		List<Post> list = ps.postList(post);
+		model.addAttribute("list",list);
+		
 		model.addAttribute("writer" , "manho");
 		model.addAttribute("email" , "cookieValentain@twinstabook.com");
 		model.addAttribute("replyWrier" , "cookie");
@@ -54,9 +57,7 @@ public class PostController {
 			result = ps.insertPost(post);		// 게시글 작성
 			model.addAttribute("result", result);
 		}
-		
-		UUID uuid = UUID.randomUUID();	// 랜덤하게 아이디 생성
-		String fileName1 = post.getFile().getOriginalFilename();
+
 		if(post.getFile() != null) {
 			// 파일 여러개를 한번에 받기
 			List<MultipartFile> list = mhr.getFiles("file");
@@ -66,7 +67,7 @@ public class PostController {
 			String real = session.getServletContext().getRealPath("resources/upload");
 			for(MultipartFile mf : list) {
 				Media md = new Media();
-				String fileName = uuid+fileName1.substring(fileName1.lastIndexOf("."));
+				String fileName = mf.getOriginalFilename();
 				md.setFileName(fileName);
 				md.setPostno(maxpostno);
 				media.add(md);

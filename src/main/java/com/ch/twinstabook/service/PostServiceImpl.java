@@ -1,5 +1,7 @@
 package com.ch.twinstabook.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +23,12 @@ public class PostServiceImpl implements PostService{
 	public int getPostno() {
 		return pd.getPostno();
 	}
+	
+	@Override
+	public List<Post> postList(Post post) {
+		return pd.postList(post);
+	}
+
+
 
 }

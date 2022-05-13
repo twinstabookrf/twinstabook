@@ -13,7 +13,7 @@ select * from member;
 alter table member ADD ask number(5) not null;    		--이거 사용 !
 alter table member ADD answer varchar2(50) not null;	--이거 사용 !
 
-
+delete from post;
 create sequence seq_post;
 create table post(
 postno number(9)  primary key,							-- 게시글번호
@@ -28,6 +28,7 @@ rts	number(9)	not null,							-- rt횟수
 CONSTRAINT fk_member_id foreign key(member_id) references member(member_id),
 CONSTRAINT fk_origin_member_id foreign key(origin_member_id) references member(member_id)
 );
+select*from post;
 
 
 create table reply(
@@ -67,6 +68,7 @@ CONSTRAINT fk_fwee_m_id foreign key(fwee_m_id) references member(member_id),
 CONSTRAINT fk_fwer_m_id foreign key(fwer_m_id) references member(member_id)
 );
 
+delete from media;
 create sequence seq_media;
 create table media(
 mediano number(9) primary key,               -- 미디어번호
@@ -74,6 +76,7 @@ postno number(9) not null,                     -- 게시물번호
 fileName varchar2(32) not null,                  -- 파일명
 CONSTRAINT fk_postno4 foreign key(postno) references post(postno)
 );
+select*from media;
 
 create table tag(
 postno number(9) unique not null,						-- 게시물번호
