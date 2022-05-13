@@ -5,7 +5,7 @@
 	<typeAliases>
 		<typeAlias alias="post" type="com.ch.twinstabook.model.Post" />
 		<typeAlias alias="media" type="com.ch.twinstabook.model.Media" />
-		<typeAlias alias="media" type="com.ch.twinstabook.model.Member" />
+		<typeAlias alias="member" type="com.ch.twinstabook.model.Member" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="post.xml" />
