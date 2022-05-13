@@ -38,7 +38,6 @@
 				<input type="text" id="pwdHint" name="pwdHint" placeholder="비밀번호 힌트 답변">
 			</div>
 			<button type="submit" class="btn btn-primary" onclick="location.href=loginForm.html">가입하기</button>
-			
 		
 		</form>
 	</main>
