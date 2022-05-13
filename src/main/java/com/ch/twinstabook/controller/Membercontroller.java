@@ -30,5 +30,8 @@ public class Membercontroller {
 	public String pwdHint() {
 		return "join/pwdHint";
 	}
+	public String main() {
+		return "main";
+	}
 	
 }
