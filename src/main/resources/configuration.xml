@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="post" type="com.ch.Twinstabook.model.Post" />
+		<typeAlias alias="post" type="com.ch.twinstabook.model.Post" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="post.xml" />
