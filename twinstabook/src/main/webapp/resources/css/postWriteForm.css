@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+/* 수직 가운데 정렬 : parent의 height - child의 height / 2한 값을 top으로 주기 */
+.container { width: 40%; height: 40%; position: relative; top: 30%; }
+
+caption {caption-side: top; text-align: center; color: #4793d7;}
+
+#table th { width: 20%; text-align: center; vertical-align: middle; background-color: #4793d7; color: white;}
+
+sup {color: white; font-size: 0.7em;}
+
+h3 {color: #4793d7;}
