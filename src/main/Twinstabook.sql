@@ -14,12 +14,11 @@ alter table member ADD ask number(5) not null;    		--이거 사용 !
 alter table member ADD answer varchar2(50) not null;	--이거 사용 !
 
 
-
+create sequence seq_post;
 create table post(
 postno number(9)  primary key,							-- 게시글번호
 origin_member_id varchar2(32) not null,					-- 원작자 아이디
 member_id varchar2(32) not null ,						-- 작성자 아이디
-title varchar2(32) not null,							-- 제목
 content	varchar2(2048),							-- 내용
 crt_date date not null,								-- 작성일
 mdf_date date,									-- 수정일
@@ -68,9 +67,11 @@ CONSTRAINT fk_fwee_m_id foreign key(fwee_m_id) references member(member_id),
 CONSTRAINT fk_fwer_m_id foreign key(fwer_m_id) references member(member_id)
 );
 
+create sequence seq_media;
 create table media(
-postno number(9) unique not null,						-- 게시물번호
-fileName varchar2(32) primary key,						-- 파일명
+mediano number(9) primary key,               -- 미디어번호
+postno number(9) not null,                     -- 게시물번호
+fileName varchar2(32) not null,                  -- 파일명
 CONSTRAINT fk_postno4 foreign key(postno) references post(postno)
 );
 
@@ -79,7 +80,3 @@ postno number(9) unique not null,						-- 게시물번호
 tagName varchar2(32) primary key,						-- 태그명
 CONSTRAINT fk_postno4 foreign key(postno) references post(postno)
 );
-
-
-
-
