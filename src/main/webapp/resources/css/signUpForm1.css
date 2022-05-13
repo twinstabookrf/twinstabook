@@ -1,0 +1,44 @@
+@charset "EUC-KR";
+* {
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+ form.login{
+ 	margin-bottom:2px;
+ }
+
+.img{
+	margin-top:-62px;
+}
+
+ main {
+    height: 700px;
+    width: 450px;
+    padding: 100px 0;
+    border: #EFEFEF solid 2px;
+    margin: 100px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    margin-bottom: 40px;
+    font-size: 50px;
+    font-family: 'Lobster', cursive;
+}
+
+  input , select {
+    height: 45px;
+    width: 300px;
+    margin-bottom: 10px;
+    background-color:#FAFAFA;
+    border: #EFEFEF 1px solid;
+    border-radius: 6px;
+    padding-left: 10px;
+}
+
+.button{
+	font-weight:bolder;
+}

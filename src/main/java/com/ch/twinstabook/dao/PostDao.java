@@ -9,4 +9,5 @@ public interface PostDao {
 	int getPostno();
 
 
+
 }
