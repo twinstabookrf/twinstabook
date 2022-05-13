@@ -11,6 +11,5 @@
 		<mapper resource="post.xml" />
 		<mapper resource="media.xml" />
 		<mapper resource="member.xml" />
-		
 	</mappers>
 </configuration>
