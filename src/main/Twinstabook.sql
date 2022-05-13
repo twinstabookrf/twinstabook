@@ -70,7 +70,7 @@ CONSTRAINT fk_fwer_m_id foreign key(fwer_m_id) references member(member_id)
 
 delete from media;
 create sequence seq_media;
-create table media(
+create table media( 
 mediano number(9) primary key,               -- 미디어번호
 postno number(9) not null,                     -- 게시물번호
 fileName varchar2(32) not null,                  -- 파일명
