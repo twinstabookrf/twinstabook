@@ -12,8 +12,8 @@
 </head>
 <body>
 	<main>
+	<form>
 		<div><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
-		<div class="img"><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
 		<div class="logo">Twinstabook</div> 
 			<div class="sign-form">
 				<input type="text" id="id" name="member_id" placeholder="사용자 아이디">
@@ -29,10 +29,6 @@
 			</div>
 			<div class="sign-form">
 				<select name="pwdHint">
-					<option value="" selected>비밀번호힌트</option>
-					<option valte="1">제1호 보물</option>
-					<option valte="2">졸업한 초등학교</option>
-					<option valte="3">자신의 첫 직장</option>						
 					<option value="" selected>비밀번호 힌트</option>
 					<option value="1">제1호 보물</option>
 					<option value="2">졸업한 초등학교</option>
