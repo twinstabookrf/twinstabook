@@ -4,6 +4,10 @@
     box-sizing: border-box;
     
 }
+form{
+	margin-top:-65px;
+    
+}
  form.login{
  	margin-bottom:2px;
  }

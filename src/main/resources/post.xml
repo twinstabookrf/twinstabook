@@ -8,6 +8,9 @@
 	<select id="getPostno" resultType="integer">
 		select seq_post.nextval from dual
 	</select>
+	<select id="postList" parameterType="post" resultType="post">
+		select i.* from (select p.*, m.mediano, m.fileName from post p, media m where p.postno = m.postno) i order by mediano
+	</select>
 	<insert id="insertPost" parameterType="post">
 		insert into post values(#{postno}, 'test', 'test', #{content},
 			sysdate, null, 0, 0, 0)

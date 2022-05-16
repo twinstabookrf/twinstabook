@@ -1,5 +1,7 @@
 package com.ch.twinstabook.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,5 +22,11 @@ public class PostDaoImpl implements PostDao{
 	public int getPostno() {
 		return sst.selectOne("postns.getPostno");
 	}
+
+	@Override
+	public List<Post> postList(Post post) {
+		return sst.selectList("postns.postList", post);
+	}
+
 
 }

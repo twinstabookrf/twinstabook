@@ -18,4 +18,6 @@ public class Post {
 	private int rts;								// RT횟수
 	// 업로드용(input의 name과 fileName이 일치 해야함)
 	private MultipartFile file;
+	//	파일명
+	private String fileName;
 }
