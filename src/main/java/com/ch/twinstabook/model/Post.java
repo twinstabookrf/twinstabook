@@ -6,6 +6,7 @@ import java.util.List;
 import lombok.Data;
 @Data
 public class Post {
+	// DB
 	private int postno;
 	private String origin_member_id;
 	private String member_id;
@@ -16,8 +17,12 @@ public class Post {
 	private int likes;
 	private int rts;
 	
-	private String firstLike;
+	
+	// DB에 없는 데이터
 	private String writer;
+	private String profile_pic;
 	private String originWriter;
+	private String firstLike;
 	private List<Reply> replyList;
+	private List<Media> mediaList;
 }

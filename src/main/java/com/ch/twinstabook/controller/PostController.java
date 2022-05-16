@@ -1,12 +1,6 @@
 package com.ch.twinstabook.controller;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ch.twinstabook.model.Member;
 import com.ch.twinstabook.model.Post;
 import com.ch.twinstabook.model.Reply;
+import com.ch.twinstabook.service.MedaiService;
 import com.ch.twinstabook.service.MemberService;
 import com.ch.twinstabook.service.PostService;
 import com.ch.twinstabook.service.ReplyService;
@@ -30,11 +25,20 @@ public class PostController {
 	private ReplyService rs;
 	@Autowired
 	private MemberService ms;
+	@Autowired
+	private MedaiService mds;
 	@RequestMapping("main")
 	public String main(Model model, HttpServletRequest request) {
 		// fee에 보여줄 post 추출
 		List<Post> postList = ps.list(1, 10);
 		for(Post post : postList) {
+			// post에 작성자(원작자, 게시자) 이름 추가
+			Member postWriter = ms.select(post.getMember_id());
+			Member postOrigin = ms.select(post.getOrigin_member_id());
+			post.setWriter(postWriter.getName());
+			post.setOriginWriter(postOrigin.getName());
+			// 작성자 프로필 사진
+			post.setProfile_pic(postWriter.getProfile_pic());
 			// 최초 좋아요
 			String firstLike = rs.firstLike(post.getPostno());
 			post.setFirstLike(firstLike);
@@ -47,11 +51,9 @@ public class PostController {
 			}
 			// post에 댓글 리스트 추가
 			post.setReplyList(replyList);
-			// post에 작성자(원작자, 게시자) 이름 추가
-			Member postWriter = ms.select(post.getMember_id());
-			Member postOrigin = ms.select(post.getOrigin_member_id());
-			post.setWriter(postWriter.getName());
-			post.setOriginWriter(postOrigin.getName());
+			// post에 사진/동영상 리스트 추가
+			post.setMediaList(mds.list(post.getPostno()));
+			System.out.println(post.getMediaList());			
 		}
 		// 세션 더미
 		Member member = ms.select("manho");

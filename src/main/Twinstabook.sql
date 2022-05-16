@@ -91,11 +91,14 @@ CONSTRAINT fk_fwer_m_id foreign key(fwer_m_id) references member(member_id)
 drop table media;
 
 create table media(
-mediano number(9) primary key,					-- 임시키
-postno number(9) unique not null,						-- 게시물번호
-fileName varchar2(32) primary key,						-- 파일명
+mediano number(9) primary key,							-- 임시키
+postno number(9) ,										-- 게시물번호
+fileName varchar2(32),									-- 파일명
 CONSTRAINT fk_postno4 foreign key(postno) references post(postno)
 );
+create sequence seq_media;
+
+
 
 drop table tag;
 
