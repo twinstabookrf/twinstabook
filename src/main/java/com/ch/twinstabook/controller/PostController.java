@@ -3,6 +3,7 @@ package com.ch.twinstabook.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class PostController {
 	@RequestMapping("postWrite")
 	public String postWrite(Post post, Model model, MultipartHttpServletRequest mhr, HttpSession session) throws IOException {
 		int result = 0;
-		// member는 화면에서 입력한 데이터, member2는 읽은 데이터 아이디로 입력한 데이터가 있으면 중복입력
+		
 		int maxpostno = ps.getPostno();
 		post.setPostno(maxpostno);
 		
@@ -80,5 +81,31 @@ public class PostController {
 			ms.insertMedia(media);
 		}
 		return "post/postWrite";
+	}
+	@RequestMapping("updateFrom")
+	private String updateFrom() {
+		return "post/updateFrom";
+	}
+	@RequestMapping("update")
+	private String update(Model model, Post post, Media media, HttpSession session) throws IOException {
+		// fileName에는 null(현재 사진 그대로 사용)일 수도 있고 값(사진변경)이 넘어 올 수도 있다.
+		String fileName = post.getFile().getOriginalFilename();
+		if(fileName != null && !fileName.equals("")) {	// 사진을 변경 했을 때만 처리
+			media.setFileName(fileName);
+			String real = session.getServletContext().getRealPath("/resources/upload");
+			FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
+			fos.write(post.getFile().getBytes());
+			fos.close();
+			/* ms.update(media); */
+		}
+		int postno = post.getPostno();
+		String content = post.getContent();
+		
+		post.setPostno(postno);
+		post.setContent(content);
+		
+		int result = ps.update(post);
+		model.addAttribute("result", result);
+		return "post/update";
 	}
 }

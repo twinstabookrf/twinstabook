@@ -12,4 +12,6 @@ public interface PostDao {
 
 	List<Post> postList(Post post);
 
+	int update(Post post);
+
 }

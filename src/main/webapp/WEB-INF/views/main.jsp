@@ -61,7 +61,6 @@ $(function(){
 	<%@include file="public/topNavbar.jsp" %>
 	<c:if test="${!empty list }">
 		<c:forEach items="${list }" var="list">
-		<!-- 여기에 중첩 c:forEach를 써서 같은 postno을 하나의 게시글에 보여지게 ..? -->
 			<div class="container fixed-width margin-top" align="center">
 				<div class="feed fixed-width">
 					<div class="posts border">
@@ -82,13 +81,10 @@ $(function(){
 								    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
 								  </div>
 								  <div class="carousel-inner">
-								    <div class="carousel-item active">
+								    <div class="carousel-item active">	<!-- 썸네일 첫번째사진 -->
 								      <img src="..." class="d-block w-100" alt="...">
 								    </div>
-								    <div class="carousel-item">
-								      <img src="..." class="d-block w-100" alt="...">
-								    </div>
-								    <div class="carousel-item">
+								    <div class="carousel-item">		<!-- 두번째 사진부터는 여기에 for문 돌려야함 -->
 								      <img src="..." class="d-block w-100" alt="...">
 								    </div>
 								  </div>

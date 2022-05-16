@@ -29,6 +29,11 @@ public class PostServiceImpl implements PostService{
 		return pd.postList(post);
 	}
 
+	@Override
+	public int update(Post post) {
+		return pd.update(post);
+	}
+
 
 
 }
