@@ -9,9 +9,5 @@ import com.ch.twinstabook.service.MemberService;
 public class Membercontroller {
 	@Autowired
 	private MemberService mb;
-	
-	public String main() {
-		return "main";
-	}
-	
+		
 }

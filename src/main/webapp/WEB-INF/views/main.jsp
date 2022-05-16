@@ -8,18 +8,34 @@
 <link href="resources/css/font.css" rel="stylesheet" type="text/css">
 
 <script type="text/javascript">
-$(function(){	
-	$('#reply_input').keydown(function(event) {
-		if (event.keyCode == 13) {
-			event.preventDefault();
-			$('#reply_submit').click();
-		}
+
+	$(function() {
+		$('#reply_input').keydown(function(event) {// 키가 눌릴 때
+			if (event.keyCode == 13) {// enter면서
+				if (!event.shiftKey){	// shift가 안눌린상태면
+					event.preventDefault();// enter 입력 무시
+					$('#reply_submit').click();// submit
+				}
+				// enter면서 shift가 눌리면  개행
+			}
+		
+			else if($('#reply_input').val()!=""){
+				$('#reply_submit').attr("disabled",false);
+			}
+		// 댓글 입력창이 비어있으면 submit disable
+			else{
+				$('#reply_submit').attr("disabled",true);
+			}
+			adjustHeight();// 어쨌든 키가 눌릴 때 마다 크기 조절
+		});
 	});
-});
-	function chk() {
-		alert("reply!");
-		return false;
-	}
+	/* textare 자동 크기조절 함수 */
+	function adjustHeight() {
+		var textEle = $('#reply_input');
+		textEle[0].style.height = 'auto';
+		var textEleHeight = textEle.prop('scrollHeight');
+		textEle.css('height', textEleHeight);
+	};
 </script>
 <style type="text/css">
 	body{font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
@@ -39,7 +55,8 @@ $(function(){
 	.overflow{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
 	.email-text{color:#828282;}
 	.email-text:hover{color:#828282;}
-	.submit-btn{border:0;background-color:white;color:#0095f6;}
+	.reply-submit-btn{border:0;background-color:white;color:#0095f6;}
+	.reply-submit-btn:disabled{color:#8095f6;}
 	.reply_input{
 		position:relative;
 		background: 0 0;
@@ -47,11 +64,11 @@ $(function(){
 	    color: #262626;
 	    color: rgba(var(--i1d,38,38,38),1);
 	    height: 18px;
-	    max-height: 80px;
 	    outline: 0;
 	    padding: 0;
 	    resize:none;
-	    width:560px; 	
+	    width:560px; 
+	    overflow: hidden;
 	}
 </style>
 </head>
@@ -61,44 +78,58 @@ $(function(){
 	<div class="container fixed-width margin-top" align="center">
 		<div class="feed fixed-width">
 			<div class="posts border">
+			<c:if test="${not empty postList }">
+			<c:forEach var="post" items="${postList}">
+				<!-- 게시물 헤드 (프로필사진, 이름, 이메일) -->
 				<div class="post_head p-2 d-flex justify-content-start border-bottom align-items-center">
-					<a href="#" class="m-2 img-circle"><img alt="프사" src="${path}/resources/happysmile.jpg"></a>
+					<a href="#" class="m-2 img-circle">
+						<img alt="프사" src="${path}/resources/happysmile.jpg"></a>
 					<div class="d-flex flex-column align-items-start">
-					<a href="#" class="id-text font-default-size">${writer}</a>
-					<a href="#" class="email-text font-default-size">${email}</a></div>
+						<a href="#" class="id-text font-default-size">${post.writer}</a>
+						<a href="#" class="email-text font-default-size">${post.originWriter}</a></div>
 				</div>
-				<!-- post_head -->
+				<!-- 게시물 내용(썸네일, 메뉴, 좋아요 현황, 댓글 목록, 댓글 입력 창 -->
 				<div class="post_content">
+					<!-- 게시물 썸네일 -->
 					<a href="#" class="post_pics_slide mb-1 border-bottom">
 						<img class="fixed-width" alt="썸네일" src="${path}/resources/logo/logo-img-w.png">
 						<!-- 슬라이드 뷰 -->
 					</a>
-					<!-- post_menu -->
 					<div class="post_foot p-2">
+						<!-- 좋아요, 댓글, DM 메뉴 버튼 -->
 						<div class="post_menu d-flex justify-content-start mb-2	">
 							<a href="#"><i class="bi bi-heart menu-icon"></i></a>
 							<a href="#"><i class="bi bi-chat-left menu-icon"></i></a>
 							<a href="#"><i class="bi bi-send menu-icon"></i></a>
 						</div>
+						<!-- 첫번째 좋아요 사용자 외 XX명이 좋아합니다 -->
 						<div class="post_likes font-default-size d-flex flex-row align-items-center" align="left">
 							<a href="#" class="img-circle img-circle-small">
 								<img alt="프사" src="${path}/resources/happysmile.jpg"></a>
-							<a href="#" class="id-text font-default-size">${firstLike}</a> 외
-							<a href="#">${likes}</a>명
+							<a href="#" class="id-text font-default-size">${post.firstLike}</a> 외
+							<a href="#">${post.likes}</a>명이 좋아합니다
 						</div>
 						<div class="post_replys font-default-size" align="left">
-							<table class="font-default-size">
+							<!-- 댓글 목록 -->
+							<c:if test="${not empty post.replyList }">
+								<table class="font-default-size">
+								<c:forEach var="reply" items="${post.replyList}">
 								<colgroup><col width="50px"><col width="530px"><col width="20px"></colgroup>
-								<tr><td><a href="#" class="id-text">${replyWrier}</a></td>
-									<td>${replyContent }</td>
+								<tr><td><a href="#" class="id-text">${reply.writer}</a></td>
+									<td>${reply.content}</td>
 									<!-- 댓글 좋아요 버튼 -->
 									<td><input type="checkbox" id="like1" class="likes" name="like1" hidden="hidden">
 									<label class="cursor" onclick="likeReply()" for="like1"><i class="bi bi-heart"></i></label></td></tr>
-							</table>
+								</c:forEach>
+								</table>	
+							</c:if>
+							<!-- 댓글 입력창 -->
 							<div class="post_reply_input d-flex align-items-center"> 
-								<form action="replyInsert.html" onsubmit="return chk()" id="reply_form" name="reply_form" class="m-0 p-0 d-flex align-items-baseline">
-									<textarea id="reply_input" class="reply_input" placeholder="댓글 달기..."></textarea>
-									<input id="reply_submit" type="submit" name="reply_submit" class="submit-btn" value="게시">
+								<form action="replyInsert.html" onsubmit="return rply_chk()" id="reply_form" name="reply_form" class="m-0 p-0 d-flex align-items-baseline">
+									<input type="hidden" name="sessionId" value="${sessionMem.member_id}">
+									<input type="hidden" name="postNo" value="${post.postno}">
+									<textarea id="reply_input" name="reply_input" class="reply_input" placeholder="댓글 달기..."></textarea>
+									<input id="reply_submit" type="submit" name="reply_submit" class="reply-submit-btn" value="게시" disabled="disabled">
 								</form>
 							</div>
 							<!-- post_reply_input -->
@@ -108,8 +139,10 @@ $(function(){
 					<!-- post_foot -->
 				</div>
 				<!-- post_content -->
-			</div>
 			<!-- posts -->
+			</c:forEach>
+		</c:if>
+			</div>
 		</div>
 		<!-- feed -->
 	</div>
