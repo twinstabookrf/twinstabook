@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="memberns">
-		<select id="select" parameterType="String" resultType="member">
-		select * from member where member_id=#{member_id}
-	</select>
-=======
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -19,14 +9,4 @@
 		insert into member values (#{member_id}, #{pwd}, #{name}, #{email}, #{profile_pic}, sysdate, 'n', #{ask}, #{answer})
 	</select>
 
->>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
-=======
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="memberns">
-	<select id="select" parameterType="String" resultType="member">
-		select * from member where member_id=#{member_id}
-	</select>
->>>>>>> refs/remotes/origin/manho
 </mapper>
