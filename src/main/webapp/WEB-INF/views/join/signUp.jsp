@@ -10,20 +10,20 @@
 <body>
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
-			alert("로그인 되었습니다.")
-			location.href="main.html"
+			alert("회원가입 되었습니다.");
+			location.href="loginForm.html";
 		</script>
-	</c:if>
+	</c:if>	
 	<c:if test="${result == 0 }">
 		<script type="text/javascript">
-			alert("암호가 다릅니다.")
-			history.go(-1);
+			alert("회원가입에 실패하셨습니다.");
+			history.back();
 		</script>
-	</c:if>
+	</c:if>	
 	<c:if test="${result == -1 }">
 		<script type="text/javascript">
-			alert("없는 아이디 입니다.")
-			history.go(-1);
+			alert("아이디가 중복되었습니.");
+			history.back();
 		</script>
 	</c:if>
 </body>
