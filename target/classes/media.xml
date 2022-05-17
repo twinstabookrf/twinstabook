@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -21,4 +22,13 @@
 		insert into media values(seq_media.nextval, #{postno}, #{fileName})
 	</insert>
 >>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
+=======
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="medians">
+	<select id="list" parameterType="integer" resultType="media">
+		select * from media where postno=#{postno}
+	</select>
+>>>>>>> refs/remotes/origin/manho
 </mapper>

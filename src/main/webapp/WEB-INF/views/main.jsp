@@ -356,7 +356,7 @@ a:hover {
 										</c:forEach><!-- post.media radio -->
 									</section>
 									<!-- control -->
-								</div>
+								</div> 
 								<!-- post-pics -->
 							</c:if>
 							<!-- post.mediaList -->
