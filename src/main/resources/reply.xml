@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="replyns">
+	<insert id="insert" parameterType="reply">
+		insert into
+			reply(replyno,member_id,postno,content,crt_date,mdf_date,likes,ref,ref_step,ref_level)
+			values(replyno_seq.nextval,#{member_id},#{postno},#{content},sysdate,sysdate,0,0,0,0)
+	</insert>
+	<select id="list" parameterType="integer" resultType="reply">
+		select * from reply where postno=#{postno}
+	</select>
+	<select id="firstLike" parameterType="integer" resultType="String">
+		select name
+		from member,
+		    (select member_id from
+		    (select * from like_post where postno=#{postno} order by member_id )where rownum = 1) a
+		where member.member_id = a.member_id
+	</select>
+</mapper>
+<!-- 
+	private int replyno;
+	private String member_id;
+	private int postno;
+	private String content;	
+	private Date crt_date;
+	private Date mdf_date;
+	private int likes;
+	private int ref;
+	private int ref_step;
+	private int ref_level; -->
