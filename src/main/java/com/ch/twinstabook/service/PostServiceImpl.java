@@ -39,5 +39,10 @@ public class PostServiceImpl implements PostService{
 		return pd.list(startRow, endRow);
 	}
 
+	@Override
+	public int delete(int postno) {
+		return pd.delete(postno);
+	}
+
 }
 

@@ -14,8 +14,11 @@
 	<%@include file="../public/topNavbar.jsp" %>
 	
 	<div class="container" align="center">
-		<form action="updateForm.html" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
+		<form action="update.html" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
 			<input type="hidden" name="postno" value="${post.postno }">
+			<c:forEach items="${media }" var="media" >
+				<input type="hidden" name="mediano" value="${media.mediano }">
+			</c:forEach>
 				<table id="table" class="table table-hover">
 				<caption>게시물 수정</caption>
 					<%-- <tr>
@@ -26,7 +29,7 @@
 						<td><input class="form-control" id="file" type="file" name="file" multiple="multiple">
 							 <div id="showFiles">
 							 	<c:forEach items="${media }" var="media">
-							 		${media.fileName }
+							 		${media.fileName }<br>
 							 	</c:forEach></div></td>
 					</tr>
 					<tr>

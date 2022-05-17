@@ -21,6 +21,9 @@
 			sysdate, null, 0, 0, 0)
 	</insert>
 	<update id="update" parameterType="post">
-		update post set content=#{cotent}, mdf_date=sysdate where postno=#{postno}
+		update post set content=#{content}, mdf_date=sysdate where postno=#{postno}
 	</update>
+	<delete id="delete" parameterType="integer">
+		delete from post where postno=#{postno}
+	</delete>
 </mapper> 

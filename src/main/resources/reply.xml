@@ -17,6 +17,9 @@
 		    (select * from like_post where postno=#{postno} order by member_id )where rownum = 1) a
 		where member.member_id = a.member_id
 	</select>
+	<delete id="deleteAll" parameterType="integer">
+		delete from reply where postno=#{postno}
+	</delete>
 </mapper>
 <!-- 
 	private int replyno;

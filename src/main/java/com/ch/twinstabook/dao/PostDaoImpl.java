@@ -43,5 +43,10 @@ public class PostDaoImpl implements PostDao{
 		return sst.selectList("postns.list",param);
 	}
 
+	@Override
+	public int delete(int postno) {
+		return sst.delete("postns.delete",postno);
+	}
+
 
 }

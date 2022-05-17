@@ -12,4 +12,6 @@ public interface ReplyService {
 
 	String firstLike(int postno);
 
+	int deleteAll(int postno);
+
 }

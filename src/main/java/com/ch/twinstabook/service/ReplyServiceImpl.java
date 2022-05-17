@@ -27,4 +27,9 @@ public class ReplyServiceImpl implements ReplyService{
 	public String firstLike(int postno) {
 		return rd.firstLike(postno);
 	}
+
+	@Override
+	public int deleteAll(int postno) {
+		return rd.deleteAll(postno);
+	}
 }

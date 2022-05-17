@@ -24,4 +24,8 @@ public class ReplyDaoImpl implements ReplyDao{
 	public String firstLike(int postno) {
 		return sst.selectOne("replyns.firstLike",postno);
 	}
+	@Override
+	public int deleteAll(int postno) {
+		return sst.delete("replyns.deleteAll", postno);
+	}
 }

@@ -16,5 +16,8 @@ public interface PostDao {
 
 	List<Post> list(int startRow, int endRow);
 
+	int delete(int postno);
+
+
 }
 

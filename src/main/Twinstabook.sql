@@ -19,7 +19,8 @@ insert into member values('manho','1234','manho','jmkfmly@naver.com',null,sysdat
 
 
 drop table post;
-
+delete from post;
+drop sequence  seq_post;
 create sequence seq_post;	-- 포스트 시퀀스
 
 create table post(
@@ -36,6 +37,7 @@ rts	number(9)	not null,											-- rt횟수
 CONSTRAINT fk_member_id foreign key(member_id) references member(member_id),
 CONSTRAINT fk_origin_member_id foreign key(origin_member_id) references member(member_id)
 );
+select * from post;
 
 insert into post values(1,'manho','manho','내용',sysdate,sysdate,0,0,0);	-- 임시 게시물
 
@@ -100,7 +102,9 @@ CONSTRAINT fk_fwer_m_id foreign key(fwer_m_id) references member(member_id)
 
 
 drop table media;
+delete from media;
 
+drop sequence  seq_media;
 create sequence seq_media;	-- 미디어 시퀀스
 
 create table media(
@@ -110,12 +114,4 @@ fileName varchar2(32),											-- 파일명
 CONSTRAINT fk_postno4 foreign key(postno) references post(postno)
 );
 
-
-drop table tag;
-
-create table tag(
-tagno number(9) primary key,								-- 임시키
-postno number(9) unique not null,						-- 게시물번호
-tagName varchar2(32) primary key,						-- 태그명
-CONSTRAINT fk_postno4 foreign key(postno) references post(postno)
-);
+select *from media;
