@@ -9,7 +9,8 @@
 <body>
 <script type="text/javascript">
 	/* location.href="main.html"; */
-	location.href="main.html";
+	/* location.href="loginForm.html"; */
+	location.href="loginForm.html";
 </script>
 </body>
 </html>

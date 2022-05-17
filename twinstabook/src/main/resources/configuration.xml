@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="post" type="com.ch.twinstabook.model.Post" />
+		<typeAlias alias="media" type="com.ch.twinstabook.model.Media" />
+		<typeAlias alias="member" type="com.ch.twinstabook.model.Member" />
+	</typeAliases>
+	<mappers>
+		<mapper resource="post.xml" />
+		<mapper resource="media.xml" />
+		<mapper resource="member.xml" />
+	</mappers>
+</configuration>

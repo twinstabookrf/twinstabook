@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.ch.twinstabook.dao;
 
 import java.util.List;
@@ -14,3 +15,15 @@ public interface MediaDao {
 
 
 }
+=======
+package com.ch.twinstabook.dao;
+
+import com.ch.twinstabook.model.Media;
+
+public interface MediaDao {
+
+	void insertMedia(Media media2);
+
+
+}
+>>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook

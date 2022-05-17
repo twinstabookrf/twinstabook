@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.ch.twinstabook.service;
 
 import java.util.List;
@@ -16,3 +17,24 @@ public interface PostService {
 
 	Post select(int postno);
 }
+=======
+package com.ch.twinstabook.service;
+
+import java.util.List;
+
+import com.ch.twinstabook.model.Post;
+
+public interface PostService {
+
+	int insertPost(Post post);
+
+	int getPostno();
+
+	List<Post> postList(Post post);
+
+	int update(Post post);
+
+
+
+}
+>>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook

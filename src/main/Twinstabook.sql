@@ -8,16 +8,27 @@ email varchar2(32) not null,							-- 이메일
 profile_pic varchar2(32),								-- 프로필사진
 reg_date date not null,									-- 가입일
 id_drop char(2)  default 'n' not null					-- 삭제여부
-);
 
+);
+select * from member;
+ 
+alter table member ADD ask number(5) not null;    		--이거 사용 !
+alter table member ADD answer varchar2(50) not null;	--이거 사용 !
+
+<<<<<<< HEAD
 insert into member values('manho','1234','manho','jmkfmly@naver.com',null,sysdate,'n');
 
 drop table post;
 
+=======
+delete from post;
+create sequence seq_post;
+>>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 create table post(
 postno number(9)  primary key,							-- 게시글번호
 origin_member_id varchar2(32) not null,					-- 원작자 아이디
 member_id varchar2(32) not null ,						-- 작성자 아이디
+<<<<<<< HEAD
 --title varchar2(32) not null,							-- 제목
 content	varchar2(2048),									-- 내용
 crt_date date not null,									-- 작성일
@@ -25,9 +36,18 @@ mdf_date date,											-- 수정일
 views number(9)	not null,								-- 조회수
 likes number(9)	not null,								-- 좋아요
 rts	number(9)	not null,								-- rt횟수
+=======
+content	varchar2(2048),							-- 내용
+crt_date date not null,								-- 작성일
+mdf_date date,									-- 수정일
+views number(9)	not null,							-- 조회수
+likes number(9)	not null,							-- 좋아요
+rts	number(9)	not null,							-- rt횟수
+>>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 CONSTRAINT fk_member_id foreign key(member_id) references member(member_id),
 CONSTRAINT fk_origin_member_id foreign key(origin_member_id) references member(member_id)
 );
+select*from post;
 
 insert into post values(1,'manho','manho','내용',sysdate,sysdate,0,0,0);
 
@@ -89,19 +109,32 @@ CONSTRAINT fk_fwee_m_id foreign key(fwee_m_id) references member(member_id),
 CONSTRAINT fk_fwer_m_id foreign key(fwer_m_id) references member(member_id)
 );
 
+<<<<<<< HEAD
 drop table media;
 
 create table media(
 mediano number(9) primary key,							-- 임시키
 postno number(9) ,										-- 게시물번호
 fileName varchar2(32),									-- 파일명
+=======
+delete from media;
+create sequence seq_media;
+create table media( 
+mediano number(9) primary key,               -- 미디어번호
+postno number(9) not null,                     -- 게시물번호
+fileName varchar2(32) not null,                  -- 파일명
+>>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 CONSTRAINT fk_postno4 foreign key(postno) references post(postno)
 );
+<<<<<<< HEAD
 create sequence seq_media;
 
 
 
 drop table tag;
+=======
+select*from media;
+>>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 
 create table tag(
 tagno number(9) primary key,					-- 임시키

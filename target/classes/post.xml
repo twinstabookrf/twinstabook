@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -25,3 +26,26 @@
 		update post set content=#{cotent}, mdf_date=sysdate where postno=#{postno}
 	</update>
 </mapper> 
+=======
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="postns">
+	<select id="select" parameterType="integer" resultType="post">
+		select * from post where postno=#{postno}
+	</select>
+	<select id="getPostno" resultType="integer">
+		select seq_post.nextval from dual
+	</select>
+	<select id="postList" parameterType="post" resultType="post">
+		select i.* from (select p.*, m.mediano, m.fileName from post p, media m where p.postno = m.postno) i order by mediano
+	</select>
+	<insert id="insertPost" parameterType="post">
+		insert into post values(#{postno}, 'test', 'test', #{content},
+			sysdate, null, 0, 0, 0)
+	</insert>
+	<update id="update" parameterType="post">
+		update post set content=#{cotent}, mdf_date=sysdate where postno=#{postno}
+	</update>
+</mapper>
+>>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook

@@ -9,7 +9,7 @@
 	  <init-param>
 	    <param-name>contextConfigLocation</param-name>
 	    <param-value>
-	      classpath:config/spring/servlet-context.xml
+	      /WEB-INF/spring/root-context.xml
 	    </param-value>
 	  </init-param>
 	  <load-on-startup>1</load-on-startup>

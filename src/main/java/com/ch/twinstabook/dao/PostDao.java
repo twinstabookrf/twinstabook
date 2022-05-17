@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.ch.twinstabook.dao;
 
 import java.util.List;
@@ -17,3 +18,22 @@ public interface PostDao {
 	Post select(int postno);
 
 }
+=======
+package com.ch.twinstabook.dao;
+
+import java.util.List;
+
+import com.ch.twinstabook.model.Post;
+
+public interface PostDao {
+
+	int insertPost(Post post);
+
+	int getPostno();
+
+	List<Post> postList(Post post);
+
+	int update(Post post);
+
+}
+>>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook

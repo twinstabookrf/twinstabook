@@ -3,10 +3,17 @@ package com.ch.twinstabook.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+=======
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+>>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +24,16 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ch.twinstabook.model.Media;
+<<<<<<< HEAD
 import com.ch.twinstabook.model.Member;
 import com.ch.twinstabook.model.Post;
 import com.ch.twinstabook.model.Reply;
 import com.ch.twinstabook.service.MediaService;
 import com.ch.twinstabook.service.MemberService;
+=======
+import com.ch.twinstabook.model.Post;
+import com.ch.twinstabook.service.MediaService;
+>>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 import com.ch.twinstabook.service.PostService;
 import com.ch.twinstabook.service.ReplyService;
 
@@ -30,12 +42,18 @@ public class PostController {
 	@Autowired
 	private PostService ps;
 	@Autowired
+<<<<<<< HEAD
 	private ReplyService rs;
 	@Autowired
 	private MemberService ms;
 	@Autowired
 	private MediaService mds;
+=======
+	private MediaService ms;
+	
+>>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 	@RequestMapping("main")
+<<<<<<< HEAD
 	public String main(Model model, HttpServletRequest request) {
 		// fee에 보여줄 post 추출
 		List<Post> postList = ps.list(1, 10);
@@ -70,6 +88,20 @@ public class PostController {
         session.setAttribute("manho",member);
 		model.addAttribute("postList",postList);
 		model.addAttribute("sessionMem",member);
+=======
+	public String main(Model model) {
+		Post post = new Post();
+		List<Post> list = ps.postList(post);
+		model.addAttribute("list",list);
+		
+		model.addAttribute("writer" , "manho");
+		model.addAttribute("email" , "cookieValentain@twinstabook.com");
+		model.addAttribute("replyWrier" , "cookie");
+		model.addAttribute("replyContent" , "잘 봤습니다");
+		model.addAttribute("firstLike" , "manomano");
+		model.addAttribute("likes" , 99);
+		
+>>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 		return "main";
 	}
 	@RequestMapping("postWriteForm")
@@ -79,6 +111,7 @@ public class PostController {
 	@RequestMapping("postWrite")
 	public String postWrite(Post post, Model model, MultipartHttpServletRequest mhr, HttpSession session) throws IOException {
 		int result = 0;
+<<<<<<< HEAD
 		// 마지막 postno 추출
 		int maxpostno = ps.getPostno();
 		post.setPostno(maxpostno);
@@ -120,6 +153,42 @@ public class PostController {
 		List<Media> media = mds.selectList(postno);
 		model.addAttribute("post", post);
 		model.addAttribute("media", media);
+=======
+		
+		int maxpostno = ps.getPostno();
+		post.setPostno(maxpostno);
+		
+		if (post.getContent() != null || post.getFile() != null) {
+			result = ps.insertPost(post);		// 게시글 작성
+			model.addAttribute("result", result);
+		}
+
+		if(post.getFile() != null) {
+			// 파일 여러개를 한번에 받기
+			List<MultipartFile> list = mhr.getFiles("file");
+			// 여러개를 하나씩 나눠서 저장하고 photos에 넣기
+			List<Media> media = new ArrayList<Media>();
+			// 실제로 저장될 위치
+			String real = session.getServletContext().getRealPath("resources/upload");
+			for(MultipartFile mf : list) {
+				Media md = new Media();
+				String fileName = mf.getOriginalFilename();
+				md.setFileName(fileName);
+				md.setPostno(maxpostno);
+				media.add(md);
+				// FileOutputStream : 데이터를 파일에 바이트 스트림으로 저장하기 위해 사용한다.
+				FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
+				fos.write(mf.getBytes());
+				fos.close();
+			}
+			System.out.println(media);
+			ms.insertMedia(media);
+		}
+		return "post/postWrite";
+	}
+	@RequestMapping("updateFrom")
+	private String updateFrom() {
+>>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 		return "post/updateFrom";
 	}
 	@RequestMapping("update")
