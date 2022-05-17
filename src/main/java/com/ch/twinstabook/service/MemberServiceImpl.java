@@ -21,4 +21,8 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return md.insert(member);
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 }

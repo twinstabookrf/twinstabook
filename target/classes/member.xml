@@ -8,4 +8,8 @@
 	<select id="insert" parameterType="member">
 		insert into member values (#{member_id}, #{pwd}, #{name}, #{email}, #{profile_pic}, sysdate, 'n', #{ask}, #{answer})
 	</select>
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 </mapper>
