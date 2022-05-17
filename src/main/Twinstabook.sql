@@ -1,3 +1,4 @@
+
 create table member (
 member_id varchar2(32)   primary key,					-- 아이디
 pwd varchar2(50) not null,								-- 암호
@@ -5,13 +6,14 @@ name varchar2(32) not null,								-- 이름(별명)
 email varchar2(32) not null,							-- 이메일
 profile_pic varchar2(32),								-- 프로필사진
 reg_date date not null,									-- 가입일
-id_drop char(2)  default 'n' not null					-- 삭제여부
+id_drop char(2)  default 'n' not null,					-- 삭제여부
+ask number(5) not null,
+answer varchar2(50) not null
 
 );
+
 select * from member;
  
-alter table member ADD ask number(5) not null;    		--이거 사용 !
-alter table member ADD answer varchar2(50) not null;	--이거 사용 !
 
 delete from post;
 create sequence seq_post;
@@ -19,15 +21,16 @@ create table post(
 postno number(9)  primary key,							-- 게시글번호
 origin_member_id varchar2(32) not null,					-- 원작자 아이디
 member_id varchar2(32) not null ,						-- 작성자 아이디
-content	varchar2(2048),							-- 내용
-crt_date date not null,								-- 작성일
-mdf_date date,									-- 수정일
-views number(9)	not null,							-- 조회수
-likes number(9)	not null,							-- 좋아요
-rts	number(9)	not null,							-- rt횟수
+content	varchar2(2048),									-- 내용
+crt_date date not null,									-- 작성일
+mdf_date date,											-- 수정일
+views number(9)	not null,								-- 조회수
+likes number(9)	not null,								-- 좋아요
+rts	number(9)	not null,								-- rt횟수
 CONSTRAINT fk_member_id foreign key(member_id) references member(member_id),
 CONSTRAINT fk_origin_member_id foreign key(origin_member_id) references member(member_id)
 );
+
 select*from post;
 
 
@@ -76,6 +79,7 @@ postno number(9) not null,                     -- 게시물번호
 fileName varchar2(32) not null,                  -- 파일명
 CONSTRAINT fk_postno4 foreign key(postno) references post(postno)
 );
+
 select*from media;
 
 create table tag(

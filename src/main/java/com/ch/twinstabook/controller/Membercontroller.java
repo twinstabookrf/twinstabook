@@ -83,7 +83,7 @@ public class Membercontroller {
 	public String login(Member member, Model model, HttpSession session) {
 		 int result=0; 			//암호가 다를때
 		 Member member2 = ms.select(member.getMember_id());
-		 if(member ==null || member.getId_drop().equals("y"))
+		 if(member == null || member.getId_drop().equals("y"))
 			 result = -1;    	//없는 아이디 
 		 else if(passwordEncoder.matches(member.getPwd(),member2.getPwd())) {
 		 result = 1; 			// 암호와 아이디 일
@@ -92,6 +92,8 @@ public class Membercontroller {
 		 model.addAttribute("result",result);
 		return "join/login";
 	}
+	
+	//포스트 컨트롤러와 충돌
 /*	@RequestMapping("main")
 	public String main(Member member, Model model, HttpSession session) {
 		String id =(String)session.getAttribute("member_id");
@@ -107,6 +109,7 @@ public class Membercontroller {
 	
 	@RequestMapping("pwdHint")
 	public String pwdHint() {
+		
 		return "join/pwdHint";
 	}
 	
