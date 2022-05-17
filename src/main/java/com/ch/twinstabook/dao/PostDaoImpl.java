@@ -28,5 +28,10 @@ public class PostDaoImpl implements PostDao{
 		return sst.selectList("postns.postList", post);
 	}
 
+	@Override
+	public int update(Post post) {
+		return sst.update("postns.update", post);
+	}
+
 
 }

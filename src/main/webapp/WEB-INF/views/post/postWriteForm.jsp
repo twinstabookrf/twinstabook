@@ -10,12 +10,21 @@
 <link href="resources/css/font.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 	function chk() {
-		/* var file = document.getElementsById('file');
-		var content = document.getElementsById('content'); */
 		if (frm.file.value == "" && frm.content.value == "") {
 			alert("파일을 첨부하거나 내용을 입력해 주세요 ! :)");
 			return false;
 		}
+	}
+	window.onload = function(){		// 파일 업로드하면 밑에 파일명 보여주기
+        target = document.getElementById('file');
+        target.addEventListener('change', function(){
+            fileList = "";
+            for(i = 0; i < target.files.length; i++){
+                fileList += target.files[i].name + '<br>';
+            }
+            target2 = document.getElementById('showFiles');
+            target2.innerHTML = fileList;
+        });
 	}
 </script>
 </head>
@@ -34,7 +43,8 @@
 					</tr> --%>
 					<tr>
 						<th>파일</th>
-						<td><input class="form-control" id="file" type="file" name="file" multiple="multiple"></td>
+						<td><input class="form-control" id="file" type="file" name="file" multiple="multiple">
+							 <div id="showFiles"></div></td>
 					</tr>
 					<tr>
 						<th>내용<br><br><sup>(<span id="nowByte">0</span>/2000bytes)</sup></th>

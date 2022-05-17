@@ -12,6 +12,8 @@ public interface PostService {
 
 	List<Post> postList(Post post);
 
+	int update(Post post);
+
 
 
 }
