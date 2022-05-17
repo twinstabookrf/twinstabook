@@ -15,7 +15,7 @@
 		<form class="login" method="post" action="">
 		<div><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
 			<div class="sign-form">
-				<input type="text" id="id" name="member_id" placeholder="사용자 아이디">
+				<input type="text" id="member_id" name="member_id" placeholder="사용자 아이디">
 			</div> 
 			<div class="sign-form">
 				<input type="password" id="password" name="pwd" placeholder="비밀번호">
