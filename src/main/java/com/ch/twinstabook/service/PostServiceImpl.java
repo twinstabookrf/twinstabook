@@ -17,4 +17,24 @@ public class PostServiceImpl implements PostService{
 	public List<Post> list(int startRow, int endRow) {
 		return pd.list(startRow, endRow);
 	}
+	
+	@Override
+	public int insertPost(Post post) {
+		return pd.insertPost(post);
+	}
+
+	@Override
+	public int getPostno() {
+		return pd.getPostno();
+	}
+	
+	@Override
+	public int update(Post post) {
+		return pd.update(post);
+	}
+
+	@Override
+	public Post select(int postno) {
+		return pd.select(postno);
+	}
 }

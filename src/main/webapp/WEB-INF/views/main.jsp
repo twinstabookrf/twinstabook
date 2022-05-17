@@ -90,6 +90,10 @@ a:hover {
 	-webkit-text-stroke: 2px
 }
 
+.contentId-text {
+	font-weight: bold;
+}
+
 .id-text {
 	color: blue;
 }
@@ -218,7 +222,7 @@ a:hover {
 									<c:forEach var="media" items="${post.mediaList }">
 										<div>
 											<a href="#"><img class="fixed-width" alt="썸네일"
-												src="${path}/resources/${media.fileName}">
+												src="${path}/resources/upload/${media.fileName}">
 											</a>
 										</div>
 									</c:forEach><!-- post.media pics -->
@@ -247,6 +251,15 @@ a:hover {
 										alt="프사" src="${path}/resources/happysmile.jpg"></a> <a
 										href="#" class="id-text font-default-size">${post.firstLike}</a>
 									외 <a href="#">${post.likes}</a>명이 좋아합니다
+								</div>
+								<!-- 게시물 내용(content) -->
+								<div class="post_content" align="left">
+									<c:if test="${!empty post.content }">
+										<table class="font-default-size">
+											<tr><th><a href="#" class="contentId-text">${post.origin_member_id }</a></th>
+												<td>${post.content }</td>
+										</table>
+									</c:if>
 								</div>
 								<div class="post_replys font-default-size" align="left">
 									<!-- 댓글 목록 -->

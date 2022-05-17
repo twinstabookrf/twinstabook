@@ -51,6 +51,7 @@ CONSTRAINT fk_postno foreign key(postno) references post(postno)
 CREATE SEQUENCE  replyno_seq  START WITH 1 INCREMENT BY 1;
 select * from user_SEQUENCEs;
 drop sequence replyno_seq;
+
 select * from REPLY;
 insert into
 	reply(replyno,member_id,postno,content,crt_date,mdf_date,likes,ref,ref_step,ref_level)
@@ -108,4 +109,3 @@ postno number(9) unique not null,						-- 게시물번호
 tagName varchar2(32) primary key,						-- 태그명
 CONSTRAINT fk_postno4 foreign key(postno) references post(postno)
 );
-

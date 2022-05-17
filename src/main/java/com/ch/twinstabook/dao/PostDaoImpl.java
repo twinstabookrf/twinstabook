@@ -22,4 +22,21 @@ public class PostDaoImpl implements PostDao{
 		param.put("endRow", endRow);
 		return sst.selectList("postns.list",param);
 	}
+	@Override
+	public int insertPost(Post post) {
+		return sst.insert("postns.insertPost", post);
+	}
+
+	@Override
+	public int getPostno() {
+		return sst.selectOne("postns.getPostno");
+	}
+	@Override
+	public int update(Post post) {
+		return sst.update("postns.update", post);
+	}
+	@Override
+	public Post select(int postno) {
+		return sst.selectOne("postns.select", postno);
+	}
 }

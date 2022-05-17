@@ -3,6 +3,8 @@ package com.ch.twinstabook.model;
 import java.sql.Date;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 @Data
 public class Post {
@@ -17,6 +19,8 @@ public class Post {
 	private int likes;
 	private int rts;
 	
+	// 업로드용(input의 name과 fileName이 일치 해야함)
+	private MultipartFile file;
 	
 	// DB에 없는 데이터
 	private String writer;
