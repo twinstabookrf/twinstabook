@@ -4,24 +4,16 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="post" type="com.ch.twinstabook.model.Post" />
-<<<<<<< HEAD
 		<typeAlias alias="reply" type="com.ch.twinstabook.model.Reply" />
 		<typeAlias alias="member" type="com.ch.twinstabook.model.Member" />
 		<typeAlias alias="media" type="com.ch.twinstabook.model.Media" />
-=======
-		<typeAlias alias="media" type="com.ch.twinstabook.model.Media" />
 		<typeAlias alias="member" type="com.ch.twinstabook.model.Member" />
->>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 	</typeAliases>
 	<mappers>
 		<mapper resource="post.xml" />
-<<<<<<< HEAD
 		<mapper resource="reply.xml" />
 		<mapper resource="member.xml" />
 		<mapper resource="media.xml" />
-=======
-		<mapper resource="media.xml" />
 		<mapper resource="member.xml" />
->>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 	</mappers>
 </configuration>

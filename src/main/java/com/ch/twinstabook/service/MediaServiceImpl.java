@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package com.ch.twinstabook.service;
 
 import java.util.List;
@@ -31,33 +31,5 @@ public class MediaServiceImpl implements MediaService{
 		return md.list(postno);
 	}
 
-
-
 }
-=======
-package com.ch.twinstabook.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.ch.twinstabook.dao.MediaDao;
-import com.ch.twinstabook.model.Media;
-
-@Service
-public class MediaServiceImpl implements MediaService{
-	@Autowired
-	private MediaDao md;
-
-	@Override
-	public void insertMedia(List<Media> media) {
-		for (Media media2 : media) {
-			md.insertMedia(media2);
-		}
-	}
-
-
-
-}
->>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
