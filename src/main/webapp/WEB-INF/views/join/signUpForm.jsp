@@ -89,6 +89,8 @@
 		<div class="logo">Twinstabook</div> 
 			<div class="sign-form">
 					<input type="text" id="id" name="member_id" placeholder="사용자 아이디">
+					<input type="button" value="중복체크" onclick="idChk()">
+					<div id="idChk1" class="err"></div>
 			</div> 
 			<div class="sign-form">
 				<input type="password" id="password" name="pwd" placeholder="비밀번호">

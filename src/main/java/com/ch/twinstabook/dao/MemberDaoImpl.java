@@ -10,25 +10,14 @@ import com.ch.twinstabook.model.Member;
 public class MemberDaoImpl implements MemberDao {
 	@Autowired
 	private SqlSessionTemplate sst;
-<<<<<<< HEAD
-	@Override
-	public Member select(String member_id) {
-		return sst.selectOne("memberns.select",member_id);
-=======
 
 	@Override
 	public Member select(String member_id) {
 		return sst.selectOne("memberns.select", member_id);
->>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 	}
 
 	@Override
 	public int insert(Member member) {
 		return sst.insert("memberns.insert", member);
 	}
-<<<<<<< HEAD
-=======
-
-
->>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 }

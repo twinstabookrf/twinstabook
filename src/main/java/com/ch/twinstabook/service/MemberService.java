@@ -8,8 +8,4 @@ public interface MemberService {
 
 	int insert(Member member);
 
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 	}

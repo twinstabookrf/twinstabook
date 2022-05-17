@@ -21,10 +21,6 @@ import com.ch.twinstabook.service.MemberService;
 @Controller
 public class Membercontroller {
 	@Autowired
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 	private MemberService ms;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -113,9 +109,4 @@ public class Membercontroller {
 		
 		return "join/pwdHint";
 	}
-<<<<<<< HEAD
-
-=======
-	
->>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 }
