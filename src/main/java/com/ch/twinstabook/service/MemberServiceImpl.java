@@ -11,6 +11,10 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public Member select(String member_id) {
+<<<<<<< HEAD
+		return md.select(member_id);
+	}
+=======
 		
 		return md.select(member_id);
 	}
@@ -21,4 +25,5 @@ public class MemberServiceImpl implements MemberService{
 		return md.insert(member);
 	}
 
+>>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 }

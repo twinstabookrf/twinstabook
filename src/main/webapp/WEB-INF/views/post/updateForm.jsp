@@ -34,6 +34,26 @@
 	
 	<div class="container" align="center">
 		<form action="updateForm.html" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
+<<<<<<< HEAD
+			<input type="hidden" name="postno" value="${post.postno }">
+				<table id="table" class="table table-hover">
+				<caption>게시물 수정</caption>
+					<%-- <tr>
+						<td colspan="2">${member.profile_pic}${member.member_id}</td>
+					</tr> --%>
+					<tr>
+						<th>파일</th>
+						<td><input class="form-control" id="file" type="file" name="file" multiple="multiple">
+							 <div id="showFiles">
+							 	<c:forEach items="${media }" var="media">
+							 		${media.fileName }
+							 	</c:forEach></div></td>
+					</tr>
+					<tr>
+						<th>내용<br><br><sup>(<span id="nowByte">0</span>/2000bytes)</sup></th>
+						<td><textarea  class="form-control" id="content" rows="5" cols="55" name="content" maxlength="1000"
+							placeholder="내용을 입력하세요." onkeyup="fn_checkByte(this)">${post.content }</textarea></td>
+=======
 			<input type="hidden" name="postno" value="${list.postno }">
 				<table id="table" class="table table-hover">
 				<caption>게시물 수정</caption>
@@ -49,6 +69,7 @@
 						<th>내용<br><br><sup>(<span id="nowByte">0</span>/2000bytes)</sup></th>
 						<td><textarea  class="form-control" id="content" rows="5" cols="55" name="content" maxlength="1000"
 							placeholder="내용을 입력하세요." onkeyup="fn_checkByte(this)">${list.content }</textarea></td>
+>>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook
 					</tr>
 					<tr>
 						<td colspan="2" align="center"><input class="btn btn-sm btn-outline-dark" type="submit" value="수정"></td>
