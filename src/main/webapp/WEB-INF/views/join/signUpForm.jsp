@@ -94,16 +94,16 @@
 					<div id="idChk1" class="err"></div>
 			</div> 
 			<div class="sign-form">
-				<input type="password" id="password" name="pwd" placeholder="비밀번호">
+				<input type="password" id="password" name="pwd" placeholder="비밀번호" required="required">
 			</div>
 			<div class="sign-form">
-				<input type="password" id="password2" name="pwd" placeholder="비밀번호 확인">
+				<input type="password" id="password2" name="pwd" placeholder="비밀번호 확인" required="required">
 			</div>
 			<div class="sign-form">
-				<input type="text" id="name" name="name" placeholder="성함">
+				<input type="text" id="name" name="name" placeholder="성함" required="required">
 			</div>
 			<div class="sign-form">
-				<input type="email" id="email" name="email" placeholder="email">
+				<input type="email" id="email" name="email" placeholder="email" required="required">
 			</div>
 			<div class="sign-form">
 				<select name="pwdHint">
@@ -114,7 +114,7 @@
 				</select>
 			</div>
 			<div class="sign-form">
-				<input type="text" id="pwdHint" name="pwdHint" placeholder="비밀번호 힌트 답변">
+				<input type="text" id="pwdHint" name="pwdHint" placeholder="비밀번호 힌트 답변" required="required">
 			</div>
 		<!-- <div>
 				프로필 사진<input type="file" name="file" placeholder="프로필 사진을 추가하세요.">

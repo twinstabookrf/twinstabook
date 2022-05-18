@@ -10,7 +10,7 @@
 <script type="text/javascript">
 	function idChk(){
 		if (!frm.id.value){
-			alert("아이디를 입력한 후 체크하세요."); frm.id.focus();
+			alert("아이디를 입력하세요."); frm.id.focus();
 			return false;            //action nono
 		}
 	}
@@ -22,12 +22,12 @@
 	<div><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
 	<div class="logo">Twinstabook</div> 
 	<div class="form-group">
-		<input type="text" class="form-control" id="id" name="member_id" placeholder="사용자 아이디">
+		<input type="text" class="form-control" id="id" name="member_id" placeholder="사용자 아이디" required="required">
 	</div>
 	<div class="form-group">
-	    <input type="password" class="form-control" id="password" name="pwd" placeholder="비밀번호">
+	    <input type="password" class="form-control" id="password" name="pwd" placeholder="비밀번호" required="required">
 	</div>
-	    <button type="submit" class="login-btn" onclick="idChk()" >로그인</button>
+	    <input type="submit" class="login-btn" onclick="idChk()" value="로그인">
 </form>
 	<div class="signUp">
 	    	계정이 없으신가요? <button  id="button" class="btn btn-primary" onclick="location.href='signUpForm.html'">회원가입</button>

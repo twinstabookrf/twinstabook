@@ -56,12 +56,12 @@ public class Membercontroller {
 		//member는 화면에서 입력한 거, member2는 읽는데이터(아이디로 입력한 데이터가 있으면 중복)
 		Member  member2 = ms.select(member.getMember_id());
 		if(member2 == null) {
-			String fileName = member.getFile().getOriginalFilename();
+		/*	String fileName = member.getFile().getOriginalFilename();
 			member.setProfile_pic(fileName);
 			String real = session.getServletContext().getRealPath("/resources/upload");
 			FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
 			fos.write(member.getFile().getBytes());
-			fos.close();
+			fos.close(); */
 			//암호화 
 			String encPassword = passwordEncoder.encode(member.getPwd());
 			member.setPwd(encPassword);
@@ -80,7 +80,7 @@ public class Membercontroller {
 	public String login(Member member, Model model, HttpSession session) {
 		 int result=0; 			//암호가 다를때
 		 Member member2 = ms.select(member.getMember_id());
-		 if(member == null || member.getId_drop().equals("y"))
+		 if(member == null || member.getId_drop() == "y")
 			 result = -1;    	//없는 아이디 
 		 else if(passwordEncoder.matches(member.getPwd(),member2.getPwd())) {
 		 result = 1; 			// 암호와 아이디 일
