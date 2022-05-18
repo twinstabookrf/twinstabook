@@ -64,8 +64,9 @@
 	function idChk(){
 		if (!frm.id.value){
 			alert("아이디를 입력한 후 체크하세요."); frm.id.focus();
-			return false;
+			return false;            //action nono
 		}
+		// id ajax
 		$.post('idChk.html', "id ="+frm.id.value, function(data){
 			$('#idChk1').html(data);
 		});
@@ -80,11 +81,11 @@
 	} 
 	
 </script>
-<link href="resources/css/signUpForm1.css" rel="stylesheet" type="text/css">
+<link href="resources/css/signUpForm.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<main>
-	<form action="singUp.html" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
+	<form action="signUp.html" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
 		<div><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
 		<div class="logo">Twinstabook</div> 
 			<div class="sign-form">
@@ -119,7 +120,7 @@
 				프로필 사진<input type="file" name="file" placeholder="프로필 사진을 추가하세요.">
 			</div>
 			<div id="drop"><div id="thumbnails">그림을 올려놓으세요. </div></div> -->
-			<button type="submit" class="btn btn-primary" onclick="location.href=loginForm.html">가입하기</button>
+		<input type="submit" class="btn btn-primary" value="가입하기">
 		</form>
 	</main>
 </body>

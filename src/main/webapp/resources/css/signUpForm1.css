@@ -17,10 +17,10 @@ form{
 }
 
  main {
-    height: 700px;
+    height: 820px;
     width: 450px;
     padding: 100px 0;
-    border: #EFEFEF solid 2px;
+    border: #EFEFEF solid 0px;
     margin: 100px auto;
     text-align: center;
     display: flex;
