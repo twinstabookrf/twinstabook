@@ -18,7 +18,7 @@ public class PostServiceImpl implements PostService{
 	public int insertPost(Post post) {
 		return pd.insertPost(post);
 	}
-
+	
 	@Override
 	public int getPostno() {
 		return pd.getPostno();
@@ -43,6 +43,7 @@ public class PostServiceImpl implements PostService{
 	public int delete(int postno) {
 		return pd.delete(postno);
 	}
+
 
 }
 

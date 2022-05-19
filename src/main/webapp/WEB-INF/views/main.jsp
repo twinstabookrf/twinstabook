@@ -41,12 +41,6 @@
 		var textEleHeight = textEle.prop('scrollHeight');
 		textEle.css('height', textEleHeight);
 	};
-	/* @@임시@@ 게시글 삭제 함수 */
-	function del(postno) {
-		var cf = confirm("게시물을 삭제 하시겠습니까 ?");
-		if (cf) location.href="delete.html?postno="+postno;
-		else alert("취소 되었습니다!");
-	};
 </script>
 <style type="text/css">
 body {
@@ -218,10 +212,6 @@ a:hover {
 								<a href="#" class="id-text font-default-size">${post.writer}</a>
 								<a href="#" class="email-text font-default-size">${post.originWriter}</a>
 							</div>
-							<div>	<!-- @@@@@@@@@@@@@@@@임시@@@@@@@@@@@@@@@@@@@@-->
-								<a href="updateForm.html?postno=${post.postno }">수정</a>
-								<a onclick="del(${post.postno})">삭제</a>
-							</div> <!-- @@@@@@@@@@@@@@@@임시@@@@@@@@@@@@@@@@@@@@-->
 						</div>
 						<!-- 게시물 내용(썸네일, 메뉴, 좋아요 현황, 댓글 목록, 댓글 입력 창 -->
 						<div class="post_content">

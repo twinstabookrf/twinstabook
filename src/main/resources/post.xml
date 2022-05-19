@@ -15,10 +15,15 @@
 	<select id="getPostno" resultType="integer">
 		select seq_post.nextval from dual
 	</select>
-
-	<insert id="insertPost" parameterType="post">
-		insert into post values(#{postno}, 'test', 'test', #{content},
-			sysdate, null, 0, 0, 0)
+	<insert id="insertPost" parameterType="post"><!-- jixmxx를 각각의 컬럼명으로 바꿔야함 -->
+		insert into post values(#{postno}, 'jixmxx', 'jixmxx', 
+		<if test="content != null">	<!-- #{content}있을 때 -->
+			#{content}
+		</if>									
+		<if test="content == null"><!-- #{content}없을 때 -->
+			null
+		</if>
+		, sysdate, null, 0, 0, 0)
 	</insert>
 	<update id="update" parameterType="post">
 		update post set content=#{content}, mdf_date=sysdate where postno=#{postno}

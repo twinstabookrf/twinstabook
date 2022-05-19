@@ -1,7 +1,5 @@
 package com.ch.twinstabook.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -85,10 +83,8 @@ public class PostController {
 		int maxpostno = ps.getPostno();
 		post.setPostno(maxpostno);
 		
-		if (post.getContent() != null) {
-			result = ps.insertPost(post);		// 게시글 작성
-			model.addAttribute("result", result);
-		}
+		result = ps.insertPost(post);	// 게시물 작성
+		model.addAttribute("result", result);
 
 		if(post.getFile() != null) {
 			// 파일 여러개를 한번에 받기
@@ -96,7 +92,7 @@ public class PostController {
 			// 여러개를 하나씩 나눠서 저장하고 media에 넣기
 			List<Media> media = new ArrayList<Media>();
 			// 실제로 저장될 위치
-			String real = session.getServletContext().getRealPath("resources/upload");
+			String real = session.getServletContext().getRealPath("/resources/upload");
 			for(MultipartFile mf : list) {
 				Media md = new Media();
 				String fileName = mf.getOriginalFilename();

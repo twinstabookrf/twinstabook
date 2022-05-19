@@ -8,7 +8,11 @@
 </head>
 <body>
 <script type="text/javascript">
-	location.href="main.html";
+	/* location.href="main.html"; */
+	/* location.href="myPage.html"; */
+	/* location.href="postWriteForm.html"; */
+	/* location.href="signUpForm.html"; */
+	location.href="loginForm.html";
 </script>
 </body>
 </html>

@@ -7,7 +7,7 @@ import com.ch.twinstabook.model.Post;
 public interface PostDao {
 
 	int insertPost(Post post);
-
+	
 	int getPostno();
 
 	int update(Post post);
@@ -17,7 +17,6 @@ public interface PostDao {
 	List<Post> list(int startRow, int endRow);
 
 	int delete(int postno);
-
-
+	
 }
 
