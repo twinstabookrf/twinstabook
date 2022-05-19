@@ -16,5 +16,7 @@ public interface PostService {
 
 	List<Post> list(int startRow, int endRow);
 
+	int delete(int postno);
+
 }
 

@@ -64,27 +64,28 @@
 	function idChk(){
 		if (!frm.id.value){
 			alert("아이디를 입력한 후 체크하세요."); frm.id.focus();
-			return false;
+			return false;            //action nono
 		}
-		$.post('idChk.html', "id ="+frm.id.value, function(data){
+		// id ajax
+		$.post('idChk.html', "member_id="+frm.member_id.value, function(data){
 			$('#idChk1').html(data);
 		});
 		
 	}
 		function chk(){
-			if(frm.password.value != frm.password2.value){
-				alert("암호와 암호확인이 다릅니다."); frm.password.focus();
-				frm.password.value =""; frm.password2.value ="";
+			if(frm.pwd.value != frm.pwd2.value){
+				alert("암호와 암호확인이 다릅니다."); frm.pwd.focus();
+				frm.pwd.value =""; frm.pwd2.value ="";
 				return false;
 		}
 	} 
 	
 </script>
-<link href="resources/css/signUpForm1.css" rel="stylesheet" type="text/css">
+<link href="resources/css/signUpForm.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<main>
-	<form action="singUp.html" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
+	<form action="signUp.html" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
 		<div><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
 		<div class="logo">Twinstabook</div> 
 			<div class="sign-form">
@@ -93,19 +94,19 @@
 					<div id="idChk1" class="err"></div>
 			</div> 
 			<div class="sign-form">
-				<input type="password" id="password" name="pwd" placeholder="비밀번호">
+				<input type="password" id="password" name="pwd" placeholder="비밀번호" required="required">
 			</div>
 			<div class="sign-form">
-				<input type="password" id="password2" name="pwd" placeholder="비밀번호 확인">
+				<input type="password" id="password2" name="pwd2" placeholder="비밀번호 확인" required="required">
 			</div>
 			<div class="sign-form">
-				<input type="text" id="name" name="name" placeholder="성함">
+				<input type="text" id="name" name="name" placeholder="성함" required="required">
 			</div>
 			<div class="sign-form">
-				<input type="email" id="email" name="email" placeholder="email">
+				<input type="email" id="email" name="email" placeholder="email" required="required">
 			</div>
 			<div class="sign-form">
-				<select name="pwdHint">
+				<select name="ask" id="ask" required="required">
 					<option value="" selected>비밀번호 힌트</option>
 					<option value="1">제1호 보물</option>
 					<option value="2">졸업한 초등학교</option>
@@ -113,13 +114,13 @@
 				</select>
 			</div>
 			<div class="sign-form">
-				<input type="text" id="pwdHint" name="pwdHint" placeholder="비밀번호 힌트 답변">
+				<input type="text" id="answer" name="answer" placeholder="비밀번호 힌트 답변" required="required">
 			</div>
 		<!-- <div>
 				프로필 사진<input type="file" name="file" placeholder="프로필 사진을 추가하세요.">
 			</div>
 			<div id="drop"><div id="thumbnails">그림을 올려놓으세요. </div></div> -->
-			<button type="submit" class="btn btn-primary" onclick="location.href=loginForm.html">가입하기</button>
+		<input type="submit" class="btn btn-primary" value="가입하기">
 		</form>
 	</main>
 </body>

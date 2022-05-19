@@ -222,7 +222,7 @@ a:hover {
 									<c:forEach var="media" items="${post.mediaList }">
 										<div>
 											<a href="#"><img class="fixed-width" alt="썸네일"
-												src="${path}/resources/${media.fileName}">
+												src="${path}/resources/upload/${media.fileName}">
 											</a>
 										</div>
 									</c:forEach><!-- post.media pics -->

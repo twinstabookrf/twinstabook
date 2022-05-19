@@ -1,27 +1,31 @@
 drop table member;
-
+delete from MEMBER;
 create table member (
 member_id varchar2(32)   primary key,					-- 아이디
-pwd varchar2(50) not null,									-- 암호
-name varchar2(32) not null,									-- 이름(별명)
-email varchar2(32) not null,									-- 이메일
+pwd varchar2(100) not null,										-- 암호
+name varchar2(32) not null,										-- 이름(별명)
+email varchar2(32) not null,										-- 이메일
 profile_pic varchar2(32),											-- 프로필사진
-reg_date date not null,											-- 가입일
-id_drop char(2)  default 'n' not null						-- 삭제여부
+reg_date date not null,												-- 가입일
+id_drop char(2) default 'n',										-- 삭제여부
+ask number(5) not null,											-- 암호 찾기 질문
+answer varchar2(50) not null									-- 암호 찾기 답
 );
+
+-- alter table member ADD ask number(5) not null;    				 --이거 사용 !
+-- alter table member ADD answer varchar2(50) not null;		     --이거 사용 !
+-- alter table member modify(pwd varchar2(100));	 		   	     --이거 사용 !
 
 select * from member;
  
-alter table member ADD ask number(5) not null;    		--이거 사용 !
-alter table member ADD answer varchar2(50) not null;		--이거 사용 !
 
-insert into member values('manho','1234','manho','jmkfmly@naver.com',null,sysdate,'n');	-- test id
+
+insert into member values('jixmxx','1234','jixmxx','jixmxx@naver.com',null,sysdate,'n',1,'또리');	-- test id
 
 
 drop table post;
-
-create sequence seq_post;	-- 포스트 시퀀스
-
+delete from post;
+create sequence seq_post;		-- 포스트 시퀀스
 create table post(
 postno number(9)  primary key,							-- 게시글번호
 origin_member_id varchar2(32) not null,				-- 원작자 아이디
@@ -36,11 +40,13 @@ rts	number(9)	not null,											-- rt횟수
 CONSTRAINT fk_member_id foreign key(member_id) references member(member_id),
 CONSTRAINT fk_origin_member_id foreign key(origin_member_id) references member(member_id)
 );
+select * from post;
 
 insert into post values(1,'manho','manho','내용',sysdate,sysdate,0,0,0);	-- 임시 게시물
 
 
 drop table reply;
+delete from reply;
 select * from reply;
 create table reply(
 replyno	number(9)  primary key,							-- 댓글번호
@@ -58,14 +64,14 @@ CONSTRAINT fk_postno foreign key(postno) references post(postno)
 );
 
 
+drop sequence replyno_seq;
 CREATE SEQUENCE  replyno_seq  START WITH 1 INCREMENT BY 1;	-- 리플 시퀀스
 select * from user_SEQUENCEs;
-drop sequence replyno_seq;
 select * from REPLY;
-insert into
-	reply(replyno,member_id,postno,content,crt_date,mdf_date,likes,ref,ref_step,ref_level)
-	values(1,'manho',1,'ss',sysdate,sysdate,0,0,0,0);
-delete from reply;
+--insert into
+--	reply(replyno,member_id,postno,content,crt_date,mdf_date,likes,ref,ref_step,ref_level)
+--	values(1,'manho',1,'ss',sysdate,sysdate,0,0,0,0);
+
 
 
 drop table like_post;
@@ -100,9 +106,9 @@ CONSTRAINT fk_fwer_m_id foreign key(fwer_m_id) references member(member_id)
 
 
 drop table media;
-
+delete from media;
+drop sequence  seq_media;
 create sequence seq_media;	-- 미디어 시퀀스
-
 create table media(
 mediano number(9) primary key,							-- 임시키
 postno number(9) ,												-- 게시물번호
@@ -110,12 +116,4 @@ fileName varchar2(32),											-- 파일명
 CONSTRAINT fk_postno4 foreign key(postno) references post(postno)
 );
 
-
-drop table tag;
-
-create table tag(
-tagno number(9) primary key,								-- 임시키
-postno number(9) unique not null,						-- 게시물번호
-tagName varchar2(32) primary key,						-- 태그명
-CONSTRAINT fk_postno4 foreign key(postno) references post(postno)
-);
+select *from media;

@@ -22,8 +22,8 @@
 	</c:if>	
 	<c:if test="${result == -1 }">
 		<script type="text/javascript">
-			alert("아이디가 중복되었습니.");
-			history.back();
+			alert("아이디가 중복되었습니다.");
+			history.go(-1);
 		</script>
 	</c:if>
 </body>

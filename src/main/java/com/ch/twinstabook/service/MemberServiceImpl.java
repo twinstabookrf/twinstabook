@@ -18,7 +18,6 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public int insert(Member member) {
-		// TODO Auto-generated method stub
 		return md.insert(member);
 	}
 }

@@ -22,14 +22,22 @@ public class MediaServiceImpl implements MediaService{
 	}
 
 	@Override
-	public List<Media> selectList(int postno) {
-		return md.selectList(postno);
-	}
-
-	@Override
 	public List<Media> list(int postno) {
 		return md.list(postno);
 	}
+
+	@Override
+	public void update(List<Media> media) {
+		for (Media media2 : media) {
+			md.update(media2);
+		}
+	}
+
+	@Override
+	public int delete(int postno) {
+		return md.delete(postno);
+	}
+
 
 }
 

@@ -9,8 +9,10 @@ public interface MediaService {
 
 	void insertMedia(List<Media> media);
 
-	List<Media> selectList(int postno);
-
 	List<Media> list(int postno);
+
+	void update(List<Media> media);
+
+	int delete(int postno);
 
 }

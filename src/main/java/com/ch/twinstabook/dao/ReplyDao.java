@@ -12,4 +12,6 @@ public interface ReplyDao {
 
 	String firstLike(int postno);
 
+	int deleteAll(int postno);
+
 }

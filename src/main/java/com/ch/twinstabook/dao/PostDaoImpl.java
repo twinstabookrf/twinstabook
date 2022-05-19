@@ -19,7 +19,7 @@ public class PostDaoImpl implements PostDao{
 	public int insertPost(Post post) {
 		return sst.insert("postns.insertPost", post);
 	}
-
+	
 	@Override
 	public int getPostno() {
 		return sst.selectOne("postns.getPostno");
@@ -43,5 +43,9 @@ public class PostDaoImpl implements PostDao{
 		return sst.selectList("postns.list",param);
 	}
 
+	@Override
+	public int delete(int postno) {
+		return sst.delete("postns.delete",postno);
+	}
 
 }

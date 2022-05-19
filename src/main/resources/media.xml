@@ -2,13 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="medians">
-	<select id="selectList" parameterType="integer" resultType="media">
-		select * from media where postno=#{postno}
-	</select>
 	<select id="list" parameterType="integer" resultType="media">
 		select * from media where postno=#{postno}
 	</select>
 	<insert id="insertMedia" parameterType="media">
 		insert into media values(seq_media.nextval, #{postno}, #{fileName})
 	</insert>
+	<update id="update" parameterType="media">
+		update media set fileName=#{fileName} where postno=#{postno}
+	</update>
+	<delete id="delete" parameterType="integer">
+		delete from media where postno=#{postno}
+	</delete>
 </mapper>

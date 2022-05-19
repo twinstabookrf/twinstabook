@@ -18,7 +18,7 @@ public class PostServiceImpl implements PostService{
 	public int insertPost(Post post) {
 		return pd.insertPost(post);
 	}
-
+	
 	@Override
 	public int getPostno() {
 		return pd.getPostno();
@@ -38,6 +38,12 @@ public class PostServiceImpl implements PostService{
 	public List<Post> list(int startRow, int endRow) {
 		return pd.list(startRow, endRow);
 	}
+
+	@Override
+	public int delete(int postno) {
+		return pd.delete(postno);
+	}
+
 
 }
 

@@ -10,7 +10,9 @@ public interface MediaDao {
 
 	void insertMedia(Media media2);
 
-	List<Media> selectList(int postno);
+	void update(Media media2);
+
+	int delete(int postno);
 
 }
 

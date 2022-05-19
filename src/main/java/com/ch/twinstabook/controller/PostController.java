@@ -63,7 +63,6 @@ public class PostController {
 			// post에 사진/동영상 리스트 추가
 			post.setMediaList(mds.list(post.getPostno()));
 			/* System.out.println(post.getMediaList()); */
-			System.out.println(post);
 		}
 		// 세션 더미
 		Member member = ms.select("manho");
@@ -84,18 +83,16 @@ public class PostController {
 		int maxpostno = ps.getPostno();
 		post.setPostno(maxpostno);
 		
-		if (post.getContent() != null || post.getFile() != null) {
-			result = ps.insertPost(post);		// 게시글 작성
-			model.addAttribute("result", result);
-		}
+		result = ps.insertPost(post);	// 게시물 작성
+		model.addAttribute("result", result);
 
 		if(post.getFile() != null) {
 			// 파일 여러개를 한번에 받기
 			List<MultipartFile> list = mhr.getFiles("file");
-			// 여러개를 하나씩 나눠서 저장하고 photos에 넣기
+			// 여러개를 하나씩 나눠서 저장하고 media에 넣기
 			List<Media> media = new ArrayList<Media>();
 			// 실제로 저장될 위치
-			String real = session.getServletContext().getRealPath("resources/upload");
+			String real = session.getServletContext().getRealPath("/resources/upload");
 			for(MultipartFile mf : list) {
 				Media md = new Media();
 				String fileName = mf.getOriginalFilename();
@@ -113,37 +110,62 @@ public class PostController {
 		}
 		return "post/postWrite";
 	}
-	@RequestMapping("updateFrom")
-	private String updateFrom(Model model, int postno) {
+	@RequestMapping("updateForm")
+	private String updateForm(Model model, int postno) {
 		// postno별 post조회
 		Post post = ps.select(postno);
 		// postno별 리스트 추출
-		List<Media> media = mds.selectList(postno);
+		List<Media> media = mds.list(postno);
 		model.addAttribute("post", post);
 		model.addAttribute("media", media);	
-		return "post/updateFrom";
+		return "post/updateForm";
 	}
 	
 	@RequestMapping("update")
-	private String update(Model model, Post post, Media media, HttpSession session) throws IOException {
-		// fileName에는 null(현재 사진 그대로 사용)일 수도 있고 값(사진변경)이 넘어 올 수도 있다.
-		String fileName = post.getFile().getOriginalFilename();
-		if(fileName != null && !fileName.equals("")) {	// 사진을 변경 했을 때만 처리
-			media.setFileName(fileName);
-			String real = session.getServletContext().getRealPath("/resources/upload");
-			FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
-			fos.write(post.getFile().getBytes());
-			fos.close();
-			/* ms.update(media); */
+	private String update(Model model, Post post, Media media, HttpSession session, MultipartHttpServletRequest mhr) throws IOException {
+		// 파일 여러개를 한번에 받기
+		List<MultipartFile> list = mhr.getFiles("file");
+		// 여러개를 하나씩 나눠서 저장하고 media2에 넣기
+		List<Media> media2 = new ArrayList<Media>();
+ 		if(post.getFile() != null) {	// 사진을 변경 했을 때만 처리
+			for(MultipartFile mf : list) {
+				Media md = new Media();
+				String fileName = mf.getOriginalFilename();
+				md.setPostno(post.getPostno());
+				md.setFileName(fileName);
+				md.setMediano(media.getMediano());
+				media2.add(md);
+				String real = session.getServletContext().getRealPath("/resources/upload");
+				// FileOutputStream : 데이터를 파일에 바이트 스트림으로 저장하기 위해 사용한다.
+				FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
+				fos.write(mf.getBytes());
+				fos.close();
+			}
 		}
-		int postno = post.getPostno();
+		System.out.println(media2);
+		mds.update(media2);
+
 		String content = post.getContent();
 		
-		post.setPostno(postno);
 		post.setContent(content);
 		
 		int result = ps.update(post);
 		model.addAttribute("result", result);
 		return "post/update";
+	}
+	@RequestMapping("delete")
+	private String delete(int postno, Model model) {
+		// postno별 모든 댓글 삭제
+		int result3 = rs.deleteAll(postno);
+		// postno별 미디어 삭제
+		int result2 = mds.delete(postno);
+		// postno별 게시물 삭제
+		int result = ps.delete(postno);
+		
+		model.addAttribute("result3", result3);
+		model.addAttribute("result2", result2);
+		model.addAttribute("result", result);
+		
+		return "post/delete";
 	}
 }

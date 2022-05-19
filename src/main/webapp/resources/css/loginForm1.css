@@ -25,7 +25,7 @@ main {
     height: 490px;
     width: 450px;
     padding: 100px 0;
-    border: #EFEFEF solid 2px;
+    border: #EFEFEF solid 0px;
     margin: 100px auto;
     text-align: center;
     display: flex;
@@ -53,19 +53,17 @@ input:focus {
     outline: none;
 }
 
-.login-btn {
+#loginBtn {
     width: 300px;
     height: 35px;
     border-radius: 6px;
     border: white;
     margin-bottom: 100px;
-    background-color: #3849ea;
-    color: white;
     font-size: 17px;
     text-align:center;
 }
 
-.login-btn:hover {
+#loginBtn:hover {
     cursor: pointer;
 }
 

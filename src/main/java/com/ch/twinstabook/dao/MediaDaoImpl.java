@@ -24,7 +24,13 @@ public class MediaDaoImpl implements MediaDao{
 	}
 
 	@Override
-	public List<Media> selectList(int postno) {
-		return sst.selectList("medians.selectList",postno);
+	public void update(Media media2) {
+		sst.update("medians.update", media2);
 	}
+
+	@Override
+	public int delete(int postno) {
+		return sst.delete("medians.delete", postno);
+	}
+
 }
