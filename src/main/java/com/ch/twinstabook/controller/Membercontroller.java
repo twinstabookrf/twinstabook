@@ -49,6 +49,7 @@ public class Membercontroller {
 	}
 	@RequestMapping("pwdHint2")
 	public String pwdHint2(String member_id, Model model) {
+		System.out.println(member_id);
 		Member member = ms.select(member_id);
 		model.addAttribute("member",member);
 		return "join/pwdHint2";
@@ -60,7 +61,23 @@ public class Membercontroller {
 		System.out.println(cnt);
 		return "join/pwdHint3";
 	}
-	
+	@RequestMapping("pwdidChk.html")
+	public String pwdidChk(Member member, Model model, HttpSession session) {
+		int result =0;
+		
+		 Member member2 = ms.select(member.getMember_id());
+		 if(member2 == null) {
+			 result = -1;    	//없는 아이디 
+		 } else { 
+			 model.addAttribute("member",member2);
+			 model.addAttribute("member_id",member2.getMember_id());
+			 return "join/pwdHint2";
+		 }
+		 model.addAttribute("result",result);
+		 return "join/pwdidChk";
+		 
+		
+	}
 
 	
 //	@RequestMapping(value = "idChk2", produces = "text/html;charset=utf-8")

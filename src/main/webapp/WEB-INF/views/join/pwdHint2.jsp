@@ -13,9 +13,9 @@
 		<form class="login" method="post"enctype="multipart/form-data" action="pwdHint3.html">
 			<div class="img"><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
 			<div class="logo">Twinstabook</div> 
-			<input type="text" id="id" name="member_id" value="${member.member_id} ">
+			<input type="text" id="id" name="member_id"  readonly value="${member.member_id} ">
 			<div class="hint-form">
-				<div>
+				<div class="pwdHint">
 					<c:if test="${member.ask==1 }">
 							제 1호 보물
 					</c:if>

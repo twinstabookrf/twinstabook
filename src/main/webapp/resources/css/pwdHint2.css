@@ -15,6 +15,13 @@
     font-family: 'Lobster', cursive;
 }
 
+.pwdHint{
+	font-weight : bold;
+	font-size:large;
+	margin-bottom : 10;
+	
+}
+
  main {
     height: 580px;
     width: 450px;
