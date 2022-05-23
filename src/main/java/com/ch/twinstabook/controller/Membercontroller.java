@@ -51,12 +51,6 @@ public class Membercontroller {
 	
 	@RequestMapping("pwdHint2")
 	public String pwdHint2(String member_id, Model model) {
-<<<<<<< HEAD
-		Member member = ms.select(member_id);
-		model.addAttribute("member",member);
-		
-		return "join/pwdHint2";
-=======
 		int result =0;
 		 Member member = ms.select(member_id);
 		 if(member == null) {
@@ -67,7 +61,6 @@ public class Membercontroller {
 		 model.addAttribute("member",member);
 		 model.addAttribute("result",result);
 		 return "join/pwdHint2";
->>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook.git
 	}
 	
 	@RequestMapping("pwdHint3")
@@ -87,21 +80,22 @@ public class Membercontroller {
 		return "join/pwdHint3";
 	}
 	
+	@RequestMapping("pwdHint4")
+	public String pwdHint4(Member member,String member_id, Model model) {
+		int result = 0;
+		Member member2 = ms.select(member.getMember_id());
+		if(member.getPwd().equals(member2.getPwd())){
+			result =-1;
+			
+		}else if (!member.getPwd().equals(member2.getPwd())) {
+			String encPassword = passwordEncoder.encode(member.getPwd());
+			member.setPwd(encPassword);
+			result = ms.update(member);
+		}
+		return "join/pwdHint4";
+	}
 	
-<<<<<<< HEAD
-//	@RequestMapping("pwdidChk")
-//	public String pwdidChk( String member_id, Model model) {
-//		 int result =0;
-//		 Member member = ms.select(member_id);
-//		 if(member == null) {
-//			 result = -1;    	//없는 아이디 
-//		 } else 
-//			 result = 1;
-//
-//		 model.addAttribute("result",result);
-//		 return "join/pwdidChk";
-//	}
-=======
+	
 	/*
 	 * @RequestMapping("pwdidChk") public String pwdidChk(String member_id, Model
 	 * model) { int result =0; Member member = ms.select(member_id); if(member ==
@@ -109,7 +103,6 @@ public class Membercontroller {
 	 * model.addAttribute("member",member); model.addAttribute("result",result);
 	 * return "join/pwdHint2"; }
 	 */
->>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook.git
 	
 	@RequestMapping(value = "idChk", produces = "text/html;charset=utf-8")
 	@ResponseBody	// 전에는 return "idChk";통해 보여주지만, @ResponseBody는 jsp를 통하지 않고 직접 문자를 전달함

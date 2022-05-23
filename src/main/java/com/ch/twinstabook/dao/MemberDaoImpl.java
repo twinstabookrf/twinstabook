@@ -27,4 +27,9 @@ public class MemberDaoImpl implements MemberDao {
 		
 	}
 
+	@Override
+	public int update(Member member) {
+		return sst.update("memberns.update",member);
+	}
+
 }

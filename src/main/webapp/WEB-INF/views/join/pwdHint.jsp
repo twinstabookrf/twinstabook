@@ -12,11 +12,7 @@
 </head>
 <body>
 	<main>
-<<<<<<< HEAD
-		<form class="login" method="post" enctype="multipart/form-data" action="pwdHint2.html" name="frm">
-=======
 		<form class="login" method="post" action="pwdHint2.html">
->>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook.git
 			<div class="img"><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
 			<div class="logo">Twinstabook</div> 
 			<div class="hint-form">

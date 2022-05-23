@@ -10,5 +10,7 @@ public interface MemberService {
 
 	int checkHint(Member member);
 
+	int update(Member member);
+
 
 	}

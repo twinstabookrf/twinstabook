@@ -11,7 +11,6 @@
 <body>
 <c:if test="${result > 0 }">
 		<script type="text/javascript">
-		alert("비밀번호 힌트를 제출하시오.")
 		</script>
 	</c:if>
 	<c:if test="${result < 0 }">

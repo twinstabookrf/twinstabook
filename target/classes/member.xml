@@ -5,10 +5,6 @@
 	<select id="select" parameterType="string" resultType="member">
 		select * from member where member_id=#{member_id}
 	</select>
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook.git
 	<select id="checkHint" parameterType="member" resultType="int">
 		select count(*) 
  		from member 
@@ -25,4 +21,7 @@
 		</if>
 		sysdate, 'n', #{ask}, #{answer})
 	</insert>
+	<update id="update" parameterType="member">
+		update member set pwd=#{pwd} where member_id=#{member_id}
+	</update>		
 </mapper>

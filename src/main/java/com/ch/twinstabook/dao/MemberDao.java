@@ -9,6 +9,8 @@ public interface MemberDao {
 
 	int checkHint(Member member);
 
+	int update(Member member);
+
 	
 }
 

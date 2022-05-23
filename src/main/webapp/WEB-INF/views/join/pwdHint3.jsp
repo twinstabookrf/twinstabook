@@ -31,7 +31,7 @@ function chk(){
 <body>
 
 	<main>
-		<form action="44444444444444444.html" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
+		<form action="pwdHint4.html" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
 			<div><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
 			<div class="logo">Twinstabook</div> 
 			<div class="sign-form">
