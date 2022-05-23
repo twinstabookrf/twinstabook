@@ -11,7 +11,7 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("게시물 작성 성공 ! :)");
-		location.href="main.html";
+		location.href="myPage.html?member_id='${member_id}'";
 	</script>
 </c:if>
 <c:if test="${result <= 0 }">

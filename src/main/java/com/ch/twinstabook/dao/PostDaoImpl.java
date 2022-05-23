@@ -48,4 +48,14 @@ public class PostDaoImpl implements PostDao{
 		return sst.delete("postns.delete",postno);
 	}
 
+	@Override
+	public List<Post> postList(String member_id) {
+		return sst.selectList("postns.postList", member_id);
+	}
+
+	@Override
+	public int postTotal(String member_id) {
+		return sst.selectOne("postns.postTotal", member_id);
+	}
+
 }
