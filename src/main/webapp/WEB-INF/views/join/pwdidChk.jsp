@@ -8,6 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:if test="${result > 0 }">
+		<script type="text/javascript">
+		alert("비밀번호 힌트를 제출하시오.")
+		location.href="pwdHint2.html"
+		</script>
+	</c:if>
 	<c:if test="${result < 0 }">
 		<script type="text/javascript">
 			alert("없는 아이디 입니다.");

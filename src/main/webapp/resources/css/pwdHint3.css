@@ -1,0 +1,53 @@
+@charset "EUC-KR";
+
+@charset "EUC-KR";
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.img{
+	margin-top:-32px;
+}
+
+.logo {
+    margin-bottom: 40px;
+    font-size: 50px;
+    font-family: 'Lobster', cursive;
+}
+
+.pwdHint{
+	font-weight : bold;
+	font-size:large;
+	margin-bottom : 10;
+	
+}
+
+ main {
+    height: 580px;
+    width: 450px;
+    padding: 100px 0;
+    border: #EFEFEF solid 0px;
+    margin: 100px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+
+ input , select {
+    height: 45px;
+    width: 300px;
+    margin-bottom: 10px;
+    background-color:#FAFAFA;
+    border: #EFEFEF 1px solid;
+    border-radius: 6px;
+    padding-left: 10px;
+}
+
+.btn{
+	font-weight:bolder;
+	margin-top:5px;
+}
+

@@ -47,13 +47,20 @@ public class Membercontroller {
 	public String signUpForm() {
 		return "join/signUpForm";
 	}
+	
+	@RequestMapping("pwdHint")
+	public String pwdHint() {
+		
+		return "join/pwdHint";
+	}
+	
 	@RequestMapping("pwdHint2")
 	public String pwdHint2(String member_id, Model model) {
-		System.out.println(member_id);
 		Member member = ms.select(member_id);
 		model.addAttribute("member",member);
 		return "join/pwdHint2";
 	}
+	
 	@RequestMapping("pwdHint3")
 	public String pwdHint3(Member member,String member_id,String answer) {
 		
@@ -61,33 +68,20 @@ public class Membercontroller {
 		System.out.println(cnt);
 		return "join/pwdHint3";
 	}
-	@RequestMapping("pwdidChk.html")
-	public String pwdidChk(Member member, Model model, HttpSession session) {
-		int result =0;
-		
-		 Member member2 = ms.select(member.getMember_id());
-		 if(member2 == null) {
+	
+	
+	@RequestMapping("pwdidChk")
+	public String pwdidChk( String member_id, Model model) {
+		 int result =0;
+		 Member member = ms.select(member_id);
+		 if(member == null) {
 			 result = -1;    	//없는 아이디 
-		 } else { 
-			 model.addAttribute("member",member2);
-			 model.addAttribute("member_id",member2.getMember_id());
-			 return "join/pwdHint2";
-		 }
+		 } else 
+			 result = 1;
+
 		 model.addAttribute("result",result);
 		 return "join/pwdidChk";
-		 
-		
 	}
-
-	
-//	@RequestMapping(value = "idChk2", produces = "text/html;charset=utf-8")
-//	@ResponseBody	// 전에는 return "idChk";통해 보여주지만, @ResponseBody는 jsp를 통하지 않고 직접 문자를 전달함
-//	public String IdChk2(String member_id) {
-//		String msg="";
-//		Member member = ms.select(member_id);
-//		if(member == null) msg="없는 아이디 입니다.";
-//		return msg;
-//	}idChk
 	
 	@RequestMapping(value = "idChk", produces = "text/html;charset=utf-8")
 	@ResponseBody	// 전에는 return "idChk";통해 보여주지만, @ResponseBody는 jsp를 통하지 않고 직접 문자를 전달함
@@ -141,12 +135,6 @@ public class Membercontroller {
 		return "join/login";
 	}
 	
-	
-	@RequestMapping("pwdHint")
-	public String pwdHint() {
-		
-		return "join/pwdHint";
-	}
 	@RequestMapping("myPage")
 	public String myPage(Model model, HttpSession session) {
 //		String member_id =(String)session.getAttribute("member_id");

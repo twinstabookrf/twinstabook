@@ -7,11 +7,11 @@
 	</select>
 
 <select id="checkHint" parameterType="member" resultType="int">
-SELECT 1 FROM DUAL
-<!-- 		select count(*) -->
-<!-- 		from member -->
-<!-- 		 where member_id=#{member_id} -->
-<!-- 		 ANd answer = #{answer} -->
+
+		select count(*) 
+ 		from member 
+		 where member_id=#{member_id} 
+ 		 ANd answer = #{answer} 
 	</select>
 	
 	
