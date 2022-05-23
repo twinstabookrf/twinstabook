@@ -6,12 +6,11 @@
 		select * from member where member_id=#{member_id}
 	</select>
 
-<select id="checkHint" parameterType="member" resultType="int">
-
+	<select id="checkHint" parameterType="member" resultType="int">
 		select count(*) 
  		from member 
 		 where member_id=#{member_id} 
- 		 ANd answer = #{answer} 
+ 		 And answer = #{answer} 
 	</select>
 	
 	

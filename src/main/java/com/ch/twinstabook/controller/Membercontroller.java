@@ -58,6 +58,7 @@ public class Membercontroller {
 	public String pwdHint2(String member_id, Model model) {
 		Member member = ms.select(member_id);
 		model.addAttribute("member",member);
+		
 		return "join/pwdHint2";
 	}
 	
@@ -70,18 +71,18 @@ public class Membercontroller {
 	}
 	
 	
-	@RequestMapping("pwdidChk")
-	public String pwdidChk( String member_id, Model model) {
-		 int result =0;
-		 Member member = ms.select(member_id);
-		 if(member == null) {
-			 result = -1;    	//없는 아이디 
-		 } else 
-			 result = 1;
-
-		 model.addAttribute("result",result);
-		 return "join/pwdidChk";
-	}
+//	@RequestMapping("pwdidChk")
+//	public String pwdidChk( String member_id, Model model) {
+//		 int result =0;
+//		 Member member = ms.select(member_id);
+//		 if(member == null) {
+//			 result = -1;    	//없는 아이디 
+//		 } else 
+//			 result = 1;
+//
+//		 model.addAttribute("result",result);
+//		 return "join/pwdidChk";
+//	}
 	
 	@RequestMapping(value = "idChk", produces = "text/html;charset=utf-8")
 	@ResponseBody	// 전에는 return "idChk";통해 보여주지만, @ResponseBody는 jsp를 통하지 않고 직접 문자를 전달함
