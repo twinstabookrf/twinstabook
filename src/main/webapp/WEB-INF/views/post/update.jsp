@@ -11,7 +11,7 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("게시물 수정 성공! :)")
-		location.href="main.html";		// 마이페이지로 수정하기
+		location.href="myPage.html?member_id='${member_id}'&postno='${postno}'";
 	</script>
 </c:if>
 <c:if test="${result == 0 }">

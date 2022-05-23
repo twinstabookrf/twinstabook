@@ -17,6 +17,10 @@ public interface PostDao {
 	List<Post> list(int startRow, int endRow);
 
 	int delete(int postno);
+
+	List<Post> postList(String member_id);
+
+	int postTotal(String member_id);
 	
 }
 

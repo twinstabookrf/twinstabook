@@ -10,8 +10,8 @@
 <body>
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
-		alert("삭제 성공! :)");
-		location.href="main.html";		// 마이페이지로 변경해야됨
+		alert("게시물 삭제 성공! :)");
+		location.href="myPage.html?member_id='${member_id}'";
 	</script>
 </c:if>
 <c:if test="${result == 0 }">

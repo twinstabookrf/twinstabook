@@ -5,18 +5,18 @@
 	<select id="select" parameterType="string" resultType="member">
 		select * from member where member_id=#{member_id}
 	</select>
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook.git
 	<select id="checkHint" parameterType="member" resultType="int">
 		select count(*) 
  		from member 
 		 where member_id=#{member_id} 
  		 And answer = #{answer} 
 	</select>
-	
-	
 	<insert id="insert" parameterType="member">
-		insert into member <!-- (member_id, pwd, name, email, profile_pic, reg_date, id_drop, ask, answer)  -->
-		values(#{member_id}, #{pwd}, #{name}, #{email},
+		insert into member values(#{member_id}, #{pwd}, #{name}, #{email},
 		<if test="profile_pic != null">
 			#{profile_pic}, 
 		</if>

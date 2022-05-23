@@ -44,6 +44,16 @@ public class PostServiceImpl implements PostService{
 		return pd.delete(postno);
 	}
 
+	@Override
+	public List<Post> postList(String member_id) {
+		return pd.postList(member_id);
+	}
+
+	@Override
+	public int postTotal(String member_id) {
+		return pd.postTotal(member_id);
+	}
+
 
 }
 

@@ -15,13 +15,15 @@
 	
 	<div class="container" align="center">
 		<form action="postWrite.html" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
-			<input type="hidden" name="origin_member_id" value="${member_id }">
-			<input type="hidden" name="member_id" value="${member_id }">
+			<input type="hidden" name="origin_member_id" value="${member.member_id }">
+			<input type="hidden" name="member_id" value="${member.member_id }">
 				<table id="table" class="table table-hover">
 				<caption>게시물 만들기</caption>
-					<%-- <tr>
-						<td colspan="2">${member.profile_pic}${member.member_id}</td>
-					</tr> --%>
+				<c:if test="${member.profile_pic != null }">
+					<tr>
+						<td colspan="2"><img src="resources/upload/${member.profile_pic}" width="40" height="32">${member.member_id}</td>
+					</tr>
+				</c:if>
 					<tr>
 						<th>파일</th>
 						<td><input class="form-control" id="file" type="file" name="file" multiple="multiple">
