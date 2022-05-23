@@ -8,4 +8,6 @@ public interface MemberService {
 
 	int insert(Member member);
 
+	int checkHint(Member member);
+
 	}

@@ -12,12 +12,18 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public Member select(String member_id) {
-		
 		return md.select(member_id);
 	}
 
 	@Override
 	public int insert(Member member) {
+		
 		return md.insert(member);
+	}
+
+	@Override
+	public int checkHint(Member member) {
+		return  md.checkHint(member);
+	
 	}
 }

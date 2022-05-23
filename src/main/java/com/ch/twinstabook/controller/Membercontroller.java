@@ -1,20 +1,25 @@
 package com.ch.twinstabook.controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.lang.System.Logger;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ch.twinstabook.model.Media;
 import com.ch.twinstabook.model.Member;
-import com.ch.twinstabook.model.Post;
 import com.ch.twinstabook.service.MediaService;
 import com.ch.twinstabook.service.MemberService;
 import com.ch.twinstabook.service.PostService;
@@ -33,10 +38,39 @@ public class Membercontroller {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
+	
+//	@RequestMapping("pwdHint")
+//	public String pwdHint(String member_id) {
+//		return "join/pwdHint";
+//	}
 	@RequestMapping("signUpForm")
 	public String signUpForm() {
 		return "join/signUpForm";
 	}
+	@RequestMapping("pwdHint2")
+	public String pwdHint2(String member_id, Model model) {
+		Member member = ms.select(member_id);
+		model.addAttribute("member",member);
+		return "join/pwdHint2";
+	}
+	@RequestMapping("pwdHint3")
+	public String pwdHint3(Member member,String member_id,String answer) {
+		
+		int cnt = ms.checkHint(member);
+		System.out.println(cnt);
+		return "join/pwdHint3";
+	}
+	
+
+	
+//	@RequestMapping(value = "idChk2", produces = "text/html;charset=utf-8")
+//	@ResponseBody	// 전에는 return "idChk";통해 보여주지만, @ResponseBody는 jsp를 통하지 않고 직접 문자를 전달함
+//	public String IdChk2(String member_id) {
+//		String msg="";
+//		Member member = ms.select(member_id);
+//		if(member == null) msg="없는 아이디 입니다.";
+//		return msg;
+//	}idChk
 	
 	@RequestMapping(value = "idChk", produces = "text/html;charset=utf-8")
 	@ResponseBody	// 전에는 return "idChk";통해 보여주지만, @ResponseBody는 jsp를 통하지 않고 직접 문자를 전달함
@@ -90,16 +124,6 @@ public class Membercontroller {
 		return "join/login";
 	}
 	
-	//포스트 컨트롤러와 충돌
-/*	@RequestMapping("main")
-	public String main(Member member, Model model, HttpSession session) {
-		String id =(String)session.getAttribute("member_id");
-		if(id != null && !id.equals(id)) {
-			member = ms.select(id);
-			model.addAttribute("member", member);
-		}
-		return "join/main";
-	} */
 	
 	@RequestMapping("pwdHint")
 	public String pwdHint() {

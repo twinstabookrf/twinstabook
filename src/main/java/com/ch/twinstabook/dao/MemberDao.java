@@ -6,4 +6,7 @@ public interface MemberDao {
 	Member select(String member_id);
 
 	int insert(Member member);
-	}
+
+	int checkHint(Member member);
+}
+

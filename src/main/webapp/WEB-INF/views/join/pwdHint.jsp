@@ -12,13 +12,13 @@
 </head>
 <body>
 	<main>
-		<form class="login" method="post" action="pwdHint2.html">
+		<form class="login" method="post" enctype="multipart/form-data" action="pwdHint2.html" name="frm">
 			<div class="img"><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
 			<div class="logo">Twinstabook</div> 
 			<div class="hint-form">
 				<input type="text" id="id" name="member_id" placeholder="사용자 아이디">
 			</div> 
-			<div class="hint-form">
+			<!-- <div class="hint-form">
 				<select name="pwdHint">
 					<option value="" selected>비밀번호 힌트</option>
 					<option value="1">제1호 보물</option>
@@ -28,7 +28,7 @@
 			</div>
 			<div class="hint-form">
 				<input type="text" id="pwdHint" name="pwdHint" placeholder="비밀번호 힌트 답변">
-			</div>
+			</div> -->
 				<button type="submit" class="btn btn-primary">비밀번호 찾기</button>
  		</form>
 	</main>
