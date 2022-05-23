@@ -10,4 +10,5 @@ public interface MemberService {
 
 	int checkHint(Member member);
 
+
 	}

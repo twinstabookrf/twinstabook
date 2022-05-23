@@ -51,32 +51,43 @@ public class Membercontroller {
 	
 	@RequestMapping("pwdHint2")
 	public String pwdHint2(String member_id, Model model) {
-		Member member = ms.select(member_id);
-		model.addAttribute("member",member);
-		return "join/pwdHint2";
+		int result =0;
+		 Member member = ms.select(member_id);
+		 if(member == null) {
+			 result = -1;    	//없는 아이디 
+		 } else {
+			 result = 1;
+		 }
+		 model.addAttribute("member",member);
+		 model.addAttribute("result",result);
+		 return "join/pwdHint2";
 	}
 	
 	@RequestMapping("pwdHint3")
-	public String pwdHint3(Member member,String member_id,String answer) {
+	public String pwdHint3(Member member,String member_id, Model model) {
+		System.out.println(member.getAnswer());
+		System.out.println(member.getMember_id());
+		int result =0;
+		Member member2 = ms.select(member.getMember_id());
 		
-		int cnt = ms.checkHint(member);
-		System.out.println(cnt);
+		System.out.println("저장된값 = "+member2);
+		if (member.getAnswer().equals(member2.getAnswer())) {
+			result = 1;		// 답과 db값이 같음
+		} else {
+			result = -1;	// 입력한 비밀번호찾기 답과 db값이 다름
+		}
+		model.addAttribute("result", result);
 		return "join/pwdHint3";
 	}
 	
 	
-	@RequestMapping("pwdidChk")
-	public String pwdidChk( String member_id, Model model) {
-		 int result =0;
-		 Member member = ms.select(member_id);
-		 if(member == null) {
-			 result = -1;    	//없는 아이디 
-		 } else 
-			 result = 1;
-
-		 model.addAttribute("result",result);
-		 return "join/pwdidChk";
-	}
+	/*
+	 * @RequestMapping("pwdidChk") public String pwdidChk(String member_id, Model
+	 * model) { int result =0; Member member = ms.select(member_id); if(member ==
+	 * null) { result = -1; //없는 아이디 } else { result = 1; }
+	 * model.addAttribute("member",member); model.addAttribute("result",result);
+	 * return "join/pwdHint2"; }
+	 */
 	
 	@RequestMapping(value = "idChk", produces = "text/html;charset=utf-8")
 	@ResponseBody	// 전에는 return "idChk";통해 보여주지만, @ResponseBody는 jsp를 통하지 않고 직접 문자를 전달함

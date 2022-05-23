@@ -8,5 +8,7 @@ public interface MemberDao {
 	int insert(Member member);
 
 	int checkHint(Member member);
+
+	
 }
 

@@ -5,16 +5,12 @@
 	<select id="select" parameterType="string" resultType="member">
 		select * from member where member_id=#{member_id}
 	</select>
-
-<select id="checkHint" parameterType="member" resultType="int">
-
+	<select id="checkHint" parameterType="member" resultType="int">
 		select count(*) 
  		from member 
 		 where member_id=#{member_id} 
  		 ANd answer = #{answer} 
 	</select>
-	
-	
 	<insert id="insert" parameterType="member">
 		insert into member values(#{member_id}, #{pwd}, #{name}, #{email},
 		<if test="profile_pic != null">

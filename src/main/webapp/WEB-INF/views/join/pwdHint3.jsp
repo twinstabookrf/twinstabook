@@ -6,6 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<c:if test="${result > 0 }">
+	<script type="text/javascript">
+	alert("비밀번호를 변경해 주세요.")
+	</script>
+</c:if>
+<c:if test="${result < 0 }">
+	<script type="text/javascript">
+		alert("비밀번호 정답이 다릅니다.");
+		history.back();
+	</script>
+</c:if>
 <script type="text/javascript">
 function chk(){
 	if(frm.pwd.value != frm.pwd2.value){
@@ -20,7 +31,7 @@ function chk(){
 <body>
 
 	<main>
-		<form action="loginForm.html" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
+		<form action="44444444444444444.html" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
 			<div><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
 			<div class="logo">Twinstabook</div> 
 			<div class="sign-form">
