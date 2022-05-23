@@ -6,13 +6,12 @@
 <head>
 <title>Twinstabook - 트위터와 인스타그램과 페이스북으로부터</title>
 <link href="resources/css/font.css" rel="stylesheet" type="text/css">
-
+<script src="//cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script type="text/javascript">
-	var curr = 0;
-	$(document).ready(function(){
-		$(".control>a").eq(curr).addClass('on').siblings().removeClass('on');
-		$(".post-pics>div").eq(curr).addClass('on').siblings().removeClass('on');
-	});
+	$( document ).ready( function() {
+	    $( '.slider' ).bxSlider();
+	  } );
 	$(function() {
 		// 댓글창 초기 설정 event listener 추가하기
 		$('#reply_input').keydown(function(event) {// 키가 눌릴 때
@@ -151,47 +150,19 @@ a:hover {
 	width: 560px;
 	overflow: hidden;
 }
-
+.post_content{
+	height:612px;
+}
 .post-pics {
 	position: relative;
 	overflow: hidden;
-	height:612px;
 }
-
-.post-pics>div {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	transition: 0.3s ease;
-	opacity: 0;
+.fixed-square{
+	width: 612px;
+	height: 612px;
 }
-
-.post-pics>div.on {
-	opacity: 1;
-}
-
-.control {
-	position: absolute;
-	width: 100%;
-	bottom: 30px;
-	text-align: center;
-}
-
-.control a {
-	display: inline-block;
-	width: 20px;
-	height: 20px;
-	background: #f6f5f5;
-	line-height: 26px;
-	font-size: 0.8em;
-	border-radius: 14px;
-	margin: 0 2px;
+.thumnail{
 	cursor: pointer;
-}
-
-.control a.on{
-	background: #9ab3f5;
 }
 </style>
 </head>
@@ -214,18 +185,25 @@ a:hover {
 							</div>
 						</div>
 						<!-- 게시물 내용(썸네일, 메뉴, 좋아요 현황, 댓글 목록, 댓글 입력 창 -->
-						<div class="post_content">
+						<div class="post_content fixed-square">
 							<!-- 게시물 썸네일 및 사진 목록 -->
 							<c:if test="${not empty post.mediaList }">
 								<!-- 슬라이드 뷰 -->
-								<div class="post-pics post_pics_slide mb-1 border-bottom align-items-center ">
+								<div class="post-pics post_pics_slide mb-1 border-bottom align-items-center slider">
 									<c:forEach var="media" items="${post.mediaList }">
+<<<<<<< HEAD
 										<div>
 											<a href="#"><img class="fixed-width" alt="썸네일"
 												src="${path}/resources/upload/${media.fileName}">
 											</a>
+=======
+										<div class="align-items-center">
+											<img class="thumnail w-100" alt="썸네일"
+												src="${path}/resources/${media.fileName}">
+>>>>>>> refs/remotes/origin/manho
 										</div>
 									</c:forEach><!-- post.media pics -->
+<<<<<<< HEAD
 									<section class="control">
 										<c:forEach var="media" items="${post.mediaList }">
 											
@@ -233,6 +211,9 @@ a:hover {
 									</section>
 									<!-- control -->
 								</div>
+=======
+								</div> 
+>>>>>>> refs/remotes/origin/manho
 								<!-- post-pics -->
 							</c:if>
 							<!-- post.mediaList -->
