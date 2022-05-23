@@ -5,13 +5,12 @@ member_id varchar2(32)   primary key,					-- 아이디
 pwd varchar2(100) not null,										-- 암호
 name varchar2(32) not null,										-- 이름(별명)
 email varchar2(32) not null,										-- 이메일
-profile_pic varchar2(32) default 'profile.png',											-- 프로필사진
+profile_pic varchar2(32),											-- 프로필사진
 reg_date date not null,												-- 가입일
 id_drop char(2) default 'n',										-- 삭제여부
 ask number(5) not null,											-- 암호 찾기 질문
 answer varchar2(50) not null									-- 암호 찾기 답
 );
-
 
 -- alter table member ADD ask number(5) not null;    				 --이거 사용 !
 -- alter table member ADD answer varchar2(50) not null;		     --이거 사용 !
@@ -21,11 +20,12 @@ select * from member;
  
 
 
+-- insert into member values('jixmxx','1234','jixmxx','jixmxx@naver.com',null,sysdate,'n',1,'또리');	-- test id
 
 
 drop table post;
-drop sequence seq_post;
 delete from post;
+drop sequence seq_post;
 create sequence seq_post;		-- 포스트 시퀀스
 create table post(
 postno number(9)  primary key,							-- 게시글번호
@@ -42,8 +42,6 @@ CONSTRAINT fk_member_id foreign key(member_id) references member(member_id),
 CONSTRAINT fk_origin_member_id foreign key(origin_member_id) references member(member_id)
 );
 select * from post;
-
-insert into post values(1,'manho','manho','내용',sysdate,sysdate,0,0,0);	-- 임시 게시물
 
 
 drop table reply;
@@ -88,7 +86,7 @@ CONSTRAINT fk_member_id3 foreign key(member_id) references member(member_id)
 drop table like_reply;
 
 create table like_reply (
-like_replyno number(9) primary key,						-- 임시키
+like_replyno number(32) primary key,					-- 임시키
 replyno	number(9)	not null,									-- 댓글번호
 member_id	varchar2(32)	not null,						-- 회원아이디
 CONSTRAINT fk_replyno foreign key(replyno) references reply(replyno),
@@ -98,13 +96,13 @@ CONSTRAINT fk_member_id4 foreign key(member_id) references member(member_id)
 drop table follow;
 
 create table follow(
-followno number(9) primary key,							-- 임시키
-fwer_m_id varchar2(32) not null,							-- 팔로워
-fwee_m_id varchar2(32) not null unique,				-- 팔로잉
-CONSTRAINT fk_fwee_m_id foreign key(fwee_m_id) references member(member_id),
-CONSTRAINT fk_fwer_m_id foreign key(fwer_m_id) references member(member_id)
+member_id varchar2(32) primary key,					-- 아이디
+fwer_m_id varchar2(32) not null,							-- 팔로워(나를 팔로우 하는사람)
+fwee_m_id varchar2(32) not null,							-- 팔로잉(내가 팔로우 하는사람)
+CONSTRAINT fk_member_id5 foreign key(member_id) references member(member_id)
 );
 
+select * from FOLLOW;
 
 drop table media;
 delete from media;
@@ -113,8 +111,9 @@ create sequence seq_media;	-- 미디어 시퀀스
 create table media(
 mediano number(9) primary key,							-- 임시키
 postno number(9) ,												-- 게시물번호
-fileName varchar2(32),											-- 파일명
+fileName varchar2(70),											-- 파일명
 CONSTRAINT fk_postno4 foreign key(postno) references post(postno)
 );
+-- alter table media modify(fileName varchar2(70));		-- 이거 사용!
 
 select *from media;

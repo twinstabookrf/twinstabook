@@ -16,22 +16,25 @@
 	<div class="container" align="center">
 		<form action="update.html" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
 			<input type="hidden" name="postno" value="${post.postno }">
-			<c:forEach items="${media }" var="media" >
-				<input type="hidden" name="mediano" value="${media.mediano }">
-			</c:forEach>
+			<input type="hidden" name="member_id" value="${member_id }">
+<%-- 			<c:if test="${empty media }">
+				<input type="hidden" name="noMedia" value="1">
+			</c:if> --%>
 				<table id="table" class="table table-hover">
 				<caption>게시물 수정</caption>
 					<%-- <tr>
 						<td colspan="2">${member.profile_pic}${member.member_id}</td>
 					</tr> --%>
-					<tr>
-						<th>파일</th>
-						<td><input class="form-control" id="file" type="file" name="file" multiple="multiple">
-							 <div id="showFiles">
-							 	<c:forEach items="${media }" var="media">
-							 		${media.fileName }<br>
-							 	</c:forEach></div></td>
-					</tr>
+						<tr>
+							<th>파일</th>
+							<td><input class="form-control" id="file" type="file" name="file" multiple="multiple">
+								 <div id="showFiles">
+								 	<c:forEach items="${media }" var="media">
+								 		${media.fileName }<br>
+								 	</c:forEach>
+								 </div>
+							</td>
+						</tr>
 					<tr>
 						<th>내용<br><br><sup>(<span id="nowByte">0</span>/2000bytes)</sup></th>
 						<td><textarea  class="form-control" id="content" rows="5" cols="55" name="content" maxlength="1000"

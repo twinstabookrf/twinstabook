@@ -7,11 +7,13 @@
 		<typeAlias alias="reply" type="com.ch.twinstabook.model.Reply" />
 		<typeAlias alias="member" type="com.ch.twinstabook.model.Member" />
 		<typeAlias alias="media" type="com.ch.twinstabook.model.Media" />
+		<typeAlias alias="follow" type="com.ch.twinstabook.model.Follow" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="post.xml" />
 		<mapper resource="reply.xml" />
 		<mapper resource="member.xml" />
 		<mapper resource="media.xml" />
+		<mapper resource="follow.xml" />
 	</mappers>
 </configuration>

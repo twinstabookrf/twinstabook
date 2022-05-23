@@ -9,13 +9,26 @@
 <link href="resources/css/pwdHint2.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<c:if test="${result > 0 }">
+		<script type="text/javascript">
+		alert("비밀번호 힌트를 제출하시오.")
+		</script>
+	</c:if>
+	<c:if test="${result < 0 }">
+		<script type="text/javascript">
+			alert("없는 아이디 입니다.");
+			history.back();
+		</script>
+</c:if>
 	<main>
-		<form class="login" method="post"enctype="multipart/form-data" action="pwdHint3.html">
+		<form class="login" method="post" action="pwdHint3.html">
+			<input type="hidden" name="member_id" value="${member.member_id }">
 			<div class="img"><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
 			<div class="logo">Twinstabook</div> 
-			<input type="text" id="id" name="member_id" value="${member.member_id} ">
+			<%-- <input type="text" id="id" name="member_id"  readonly value="${member.member_id} "> --%>
+			<span>${member.member_id}</span>
 			<div class="hint-form">
-				<div>
+				<div class="pwdHint">
 					<c:if test="${member.ask==1 }">
 							제 1호 보물
 					</c:if>
@@ -27,7 +40,7 @@
 					</c:if>
 						
 				</div>
-					<input type="text" id="answer" name="answer" placeholder="비밀번호 힌트 답변">
+					<input type="text" id="answer" name="answer" required="required" placeholder="비밀번호 힌트 답변">
 			</div> 
 			<button type="submit" class="btn btn-primary">비밀번호 찾기</button>
 		</form>

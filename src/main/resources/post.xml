@@ -15,8 +15,14 @@
 	<select id="getPostno" resultType="integer">
 		select seq_post.nextval from dual
 	</select>
+	<select id="postList" parameterType="string" resultType="post">
+		select * from post where member_id=#{member_id} order by crt_date desc
+	</select>
+	<select id="postTotal" parameterType="string" resultType="integer">
+		select count(*) from post where member_id=#{member_id}
+	</select>
 	<insert id="insertPost" parameterType="post"><!-- jixmxx를 각각의 컬럼명으로 바꿔야함 -->
-		insert into post values(#{postno}, 'jixmxx', 'jixmxx', 
+		insert into post values(#{postno}, #{origin_member_id}, #{member_id}, 
 		<if test="content != null">	<!-- #{content}있을 때 -->
 			#{content}
 		</if>									
