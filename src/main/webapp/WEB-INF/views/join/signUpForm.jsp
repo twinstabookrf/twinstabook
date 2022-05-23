@@ -100,7 +100,7 @@
 				<input type="password" id="password2" name="pwd2" placeholder="비밀번호 확인" required="required">
 			</div>
 			<div class="sign-form">
-				<input type="text" id="name" name="name" placeholder="성함" required="required">
+				<input type="text" id="name" name="name" placeholder="닉네임 (실제사용되는 닉네임입니다.)" required="required">
 			</div>
 			<div class="sign-form">
 				<input type="email" id="email" name="email" placeholder="email" required="required">

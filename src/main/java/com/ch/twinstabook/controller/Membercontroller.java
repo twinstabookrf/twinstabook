@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ch.twinstabook.model.Media;
 import com.ch.twinstabook.model.Member;
 import com.ch.twinstabook.model.Post;
 import com.ch.twinstabook.model.Reply;
@@ -34,9 +33,49 @@ public class Membercontroller {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
+	
+//	@RequestMapping("pwdHint")
+//	public String pwdHint(String member_id) {
+//		return "join/pwdHint";
+//	}
 	@RequestMapping("signUpForm")
 	public String signUpForm() {
 		return "join/signUpForm";
+	}
+	
+	@RequestMapping("pwdHint")
+	public String pwdHint() {
+		
+		return "join/pwdHint";
+	}
+	
+	@RequestMapping("pwdHint2")
+	public String pwdHint2(String member_id, Model model) {
+		Member member = ms.select(member_id);
+		model.addAttribute("member",member);
+		return "join/pwdHint2";
+	}
+	
+	@RequestMapping("pwdHint3")
+	public String pwdHint3(Member member,String member_id,String answer) {
+		
+		int cnt = ms.checkHint(member);
+		System.out.println(cnt);
+		return "join/pwdHint3";
+	}
+	
+	
+	@RequestMapping("pwdidChk")
+	public String pwdidChk( String member_id, Model model) {
+		 int result =0;
+		 Member member = ms.select(member_id);
+		 if(member == null) {
+			 result = -1;    	//없는 아이디 
+		 } else 
+			 result = 1;
+
+		 model.addAttribute("result",result);
+		 return "join/pwdidChk";
 	}
 	
 	@RequestMapping(value = "idChk", produces = "text/html;charset=utf-8")
@@ -89,12 +128,7 @@ public class Membercontroller {
 		 model.addAttribute("result",result);
 		return "join/login";
 	}
-	
-	@RequestMapping("pwdHint")
-	public String pwdHint() {
-		
-		return "join/pwdHint";
-	}
+
 	@RequestMapping("myPage")
 	public String myPage(Model model, HttpSession session) {
 		String member_id = (String)session.getAttribute("member_id");

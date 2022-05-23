@@ -21,4 +21,10 @@ public class MemberDaoImpl implements MemberDao {
 		return sst.insert("memberns.insert", member);
 	}
 
+	@Override
+	public int checkHint(Member  member) {
+		return sst.selectOne("memberns.checkHint",member);
+		
+	}
+
 }
