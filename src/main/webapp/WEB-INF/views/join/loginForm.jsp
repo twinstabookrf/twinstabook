@@ -10,17 +10,17 @@
 </head>
 <body>
 <main>
-<form method="post" action="login.html">
-	<div><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
-	<div class="logo">Twinstabook</div> 
-	<div class="form-group">
-		<input type="text" class="form-control" id="member_id" name="member_id" placeholder="사용자 아이디" required="required">
-	</div>
-	<div class="form-group">
-	    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="비밀번호" required="required">
-	</div>
-	    <input type="submit" class="btn btn-primary" id="loginBtn" value="로그인">
-</form>
+	<form method="post" action="login.html">
+		<div><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
+		<div class="logo">Twinstabook</div> 
+		<div class="form-group">
+			<input type="text" class="form-control" id="member_id" name="member_id" placeholder="사용자 아이디" required="required">
+		</div>
+		<div class="form-group">
+		    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="비밀번호" required="required">
+		</div>
+		    <input type="submit" class="btn btn-primary" id="loginBtn" value="로그인">
+	</form>
 	<div class="signUp">
 	    	계정이 없으신가요? <button  id="button" class="btn btn-primary" onclick="location.href='signUpForm.html'">회원가입</button>
 	</div>

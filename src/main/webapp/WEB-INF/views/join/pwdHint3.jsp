@@ -31,13 +31,13 @@ function chk(){
 
 	<main>
 		<form action="pwdHint4.html" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
-			<div><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
+			<div><img class="img" alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
 			<input type="hidden" name="member_id" value="${member.member_id }">
 			<div class="logo">Twinstabook</div> 
-			<div class="sign-form">
+			<div class="hint-form">
 				<input type="password" id="password" name="pwd" placeholder="새로운 비밀번호" required="required">
 			</div>
-			<div class="sign-form">
+			<div class="hint-form">
 				<input type="password" id="password2" name="pwd2" placeholder="비밀번호 확인" required="required">
 			</div>
 			<input type="submit" class="btn btn-primary" value="변경하기">

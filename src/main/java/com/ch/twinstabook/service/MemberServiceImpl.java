@@ -32,6 +32,16 @@ public class MemberServiceImpl implements MemberService{
 		return md.update(member);
 	}
 
+	@Override
+	public int updateAll(Member member) {
+		return md.updateAll(member);
+	}
+
+	@Override
+	public int delete(String member_id) {
+		return md.delete(member_id);
+	}
+
 
 
 }

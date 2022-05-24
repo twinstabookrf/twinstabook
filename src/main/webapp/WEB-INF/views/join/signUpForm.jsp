@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="resources/css/signUpForm.css" rel="stylesheet" type="text/css">
 <style>
 	.drag-over {background : yellow;}
 	.thumb{width: 200px; padding: 5px; float:left;}
@@ -16,50 +17,7 @@
 	#drop  {border : 1px solid black; width : 300px; height : 200px; padding : 3px;}
 </style>
 <script type="text/javascript">
-	$(document).on("drop",function(e){ 
-		$('input[type="file"]').prop("files", e.originalEvent.dataTransfer.files);
-	});
 	
-	$(function(){
-		var uploadfiles = []; //복수의 파일도 가능
-		var $drop = $('#drop');
-		$drop.on("dragenter",function(e){
-			$('#thumbnails').text("");
-			$(this).addClass("drag-over");
-		}).on("dragleave",function(e){
-			$('thumbnails').text("그림 올려놓으세요");
-			$(this).removeClass("drag-over");	
-		}).on("dragover",function(e){	//그림을 올려놓았을때
-			e.stopPropagation();	//이벤트를 전달하지마라
-			e.preventDefault();     //원래 기능을 하지마라
-		}).on("drop",function(e){
-			e.preventDefault();
-			$(this).removeClass("drag-over");
-			var files = e.originalEvent.dataTransfer.files;   //드래그 그림들
-			for(var i = 0 ; i < files.length; i++){
-				var file = files[i];
-				 var size = uploadfiles.push(file);  //업로드 파일 목록배열
-				 preview(file);            //미리보기
-			}
-		});
-		
-		// X 클릭한 그림 삭제
-		$('thumbnails').on('click',function(e){
-			var $target = $(e.target);
-			var idx = $target.attr('data-idx');
-			$target.parent().remove();
-		});
-	});
-	function preview(file){
-		var reader = new FileReader();
-		reader.onload = (function (f){
-			return function(e){
-				var div= "<div class='thumb'><div class='close'>X</div><img src='"+e.target.result+"'/><div>'";
-				$('thumbnails').append(div);
-			}
-		})(file);
-		reader.readAsDataURL(file);  //readasdata = 컨텐츠를 특정  blob 이나 file에서 불러
-	}
 	
 	function idChk(){
 		if (!frm.id.value){
@@ -81,7 +39,6 @@
 	} 
 	
 </script>
-<link href="resources/css/signUpForm.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<main>
@@ -116,10 +73,6 @@
 			<div class="sign-form">
 				<input type="text" id="answer" name="answer" placeholder="비밀번호 힌트 답변" required="required">
 			</div>
-		<!-- <div>
-				프로필 사진<input type="file" name="file" placeholder="프로필 사진을 추가하세요.">
-			</div>
-			<div id="drop"><div id="thumbnails">그림을 올려놓으세요. </div></div> -->
 		<input type="submit" class="btn btn-primary" value="가입하기">
 		</form>
 	</main>

@@ -17,5 +17,4 @@ public class Member {
 	private int ask;
 	private String answer;
 	private MultipartFile file; 
-	private int cnt;
 }

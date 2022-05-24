@@ -1,5 +1,7 @@
 package com.ch.twinstabook.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -34,10 +36,7 @@ public class Membercontroller {
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	
-//	@RequestMapping("pwdHint")
-//	public String pwdHint(String member_id) {
-//		return "join/pwdHint";
-//	}
+
 	@RequestMapping("signUpForm")
 	public String signUpForm() {
 		return "join/signUpForm";
@@ -79,31 +78,65 @@ public class Membercontroller {
 	@RequestMapping("pwdHint4")
 	public String pwdHint4(Member member,String member_id, Model model) {
 		int result = 0;
-		Member member2 = ms.select(member.getMember_id());
-		System.out.println(member2);
-		if(member.getPwd().equals(member2.getPwd())){
-			result =-1;
-			
-		}else {
 			String encPassword = passwordEncoder.encode(member.getPwd());
 			member.setPwd(encPassword);
 			result = ms.update(member);
 			result = 0;
-		}
-		System.out.println("기존비번 :"+member2.getPwd());
-		System.out.println("바뀐비번 :"+member.getPwd());
+		
 		model.addAttribute("result",result);
 		return "join/pwdHint4";
 	}
 	
+	@RequestMapping("updateForm1")
+	public String updateForm1(Model model, HttpSession session) {
+		String member_id = (String) session.getAttribute("member_id");
+		Member member = ms.select(member_id);
+		model.addAttribute("member",member);
+		return "join/updateForm1";
+	}
+	@RequestMapping("update1")
+	public String update1(Member member, Model model, HttpSession session) throws IOException {
+		int result = 0;
+		String fileName = member.getFile().getOriginalFilename();
+		if(fileName != null && !fileName.equals("")) {  
+			 member.setProfile_pic(fileName); 
+			String real = session.getServletContext().getRealPath("/resources  /upload");
+			FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
+			fos.write(member.getFile().getBytes());
+			fos.close();
+		}
+		String encPassword = passwordEncoder.encode(member.getPwd());
+		member.setPwd(encPassword);
+		result = ms.updateAll(member);
+		
+		model.addAttribute("result",result);
+		return "join/update1";
+	}
+	@RequestMapping("delete1")
+	public String delete1(Model model, HttpSession session) {
+		String member_id = (String) session.getAttribute("member_id");
+		int result = ms.delete(member_id);
+		if(result > 0) session.invalidate();   //세션 없애는 것(탈퇴처리)
+		model.addAttribute("result",result);
+		return "join/delete1";
+	}
 	
-	/*
-	 * @RequestMapping("pwdidChk") public String pwdidChk(String member_id, Model
-	 * model) { int result =0; Member member = ms.select(member_id); if(member ==
-	 * null) { result = -1; //없는 아이디 } else { result = 1; }
-	 * model.addAttribute("member",member); model.addAttribute("result",result);
-	 * return "join/pwdHint2"; }
-	 */
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "join/logout";
+	}
+	
+	@RequestMapping("profile")
+	public String profile(Member member, Model model, HttpSession session) {
+		String member_id = (String) session.getAttribute("member_id");
+		if (member_id != null && !member_id.equals("")) {
+			member = ms.select(member_id);
+			model.addAttribute("member", member);
+		}
+		return "join/profile";
+		
+	}
 	
 	@RequestMapping(value = "idChk", produces = "text/html;charset=utf-8")
 	@ResponseBody	// 전에는 return "idChk";통해 보여주지만, @ResponseBody는 jsp를 통하지 않고 직접 문자를 전달함
@@ -121,12 +154,12 @@ public class Membercontroller {
 		//member는 화면에서 입력한 거, member2는 읽는데이터(아이디로 입력한 데이터가 있으면 중복)
 		Member  member2 = ms.select(member.getMember_id());
 		if(member2 == null) {
-		/*	String fileName = member.getFile().getOriginalFilename();
+			String fileName = member.getFile().getOriginalFilename();
 			member.setProfile_pic(fileName);
-			String real = session.getServletContext().getRealPath("/resources/upload");
-			FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
+			String real = session.getServletContext().getRealPath("/resources/upload");  //실제로 저장되는 공간
+			FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));  
 			fos.write(member.getFile().getBytes());
-			fos.close(); */
+			fos.close(); 
 			//암호화
 			String encPassword = passwordEncoder.encode(member.getPwd());
 			member.setPwd(encPassword);
@@ -143,10 +176,10 @@ public class Membercontroller {
 	
 	@RequestMapping("login")
 	public String login(Member member, Model model, HttpSession session) {
-		 int result=0; 			//암호가 다를때
+		 int result=0; 				//암호가 다를때
 		 Member member2 = ms.select(member.getMember_id());
 		 if(member2 == null || member2.getId_drop().equals("y")) {
-			 result = -1;    	//없는 아이디 
+			 result = -1;    		//없는 아이디 
 		 } else if (passwordEncoder.matches(member.getPwd(), member2.getPwd())) {
 			 result = 1; 			// 암호와 아이디 일치
 			 session.setAttribute("member_id", member.getMember_id());

@@ -1,7 +1,5 @@
 @charset "EUC-KR";
 
-@charset "EUC-KR";
-
 * {
     margin: 0;
     box-sizing: border-box;
@@ -15,6 +13,21 @@
     margin-bottom: 40px;
     font-size: 50px;
     font-family: 'Lobster', cursive;
+}
+
+.pwdHint{
+	height: 30;
+    font-weight: bold;
+    font-size: large;
+    margin-bottom: 10;
+    width: 300px;
+    margin-bottom: 10;
+    background-color: #FAFAFA;
+    border: #EFEFEF 1px solid;
+    border-radius: 6px;
+    padding-left: 10px;
+    margin-left: 75;
+	
 }
 
  main {

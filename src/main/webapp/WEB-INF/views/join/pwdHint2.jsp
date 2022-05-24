@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="resources/css/pwdHint2.css" rel="stylesheet" type="text/css">
+<link href="resources/css/pwdHint2a.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <c:if test="${result > 0 }">
@@ -25,7 +25,6 @@
 			<div class="img"><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
 			<div class="logo">Twinstabook</div> 
 			<%-- <input type="text" id="id" name="member_id"  readonly value="${member.member_id} "> --%>
-			<span>${member.member_id}</span>
 			<div class="hint-form">
 				<div class="pwdHint">
 					<c:if test="${member.ask==1 }">

@@ -32,4 +32,14 @@ public class MemberDaoImpl implements MemberDao {
 		return sst.update("memberns.update",member);
 	}
 
+	@Override
+	public int updateAll(Member member) {
+		return sst.update("memberns.updateAll",member);
+	}
+
+	@Override
+	public int delete(String member_id) {
+		return sst.update("memberns.delete",member_id);
+	}
+
 }

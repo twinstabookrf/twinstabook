@@ -5,12 +5,16 @@
 	<select id="select" parameterType="string" resultType="member">
 		select * from member where member_id=#{member_id}
 	</select>
+	
+	
 	<select id="checkHint" parameterType="member" resultType="int">
 		select count(*) 
  		from member 
 		 where member_id=#{member_id} 
  		 And answer = #{answer} 
 	</select>
+	
+	<!-- insert -->
 	<insert id="insert" parameterType="member">
 		insert into member values(#{member_id}, #{pwd}, #{name}, #{email},
 		<if test="profile_pic != null">
@@ -21,7 +25,30 @@
 		</if>
 		sysdate, 'n', #{ask}, #{answer})
 	</insert>
+	
+	<!-- update -->
 	<update id="update" parameterType="member">
 		update member set pwd=#{pwd} where member_id=#{member_id}
-	</update>		
+	</update>	
+	
+	<!-- UpdateAll -->
+	<update id="updateAll" parameterType="member">
+		update member set pwd=#{pwd}, name=#{name}, email=#{email},
+		<if test="profile_pic != null">
+			#{profile_pic}, 
+		</if>
+		<if test="profile_pic == null">
+			null, 
+		</if>
+		#{ask}, #{answer}
+		where member_id=#{member_id}
+	</update>
+	<update id="delete" parameterType="string">
+		update member set id_drop='y'
+		where member_id=#{member_id}
+	</update>
+	
+	<!-- delete -->
+	
+		
 </mapper>
