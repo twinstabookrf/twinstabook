@@ -16,10 +16,6 @@ function del(postno) {
 	if (cf) location.href="delete.html?postno="+postno;
 	else alert("취소 되었습니다!");
 };
-/* 팔로잉하는 함수 */
-function following() {
-	
-}
 $( document ).ready( function() {
     $( '.slider' ).bxSlider();
   } );
@@ -54,7 +50,7 @@ function adjustHeight() {
 </script>
 <style>
 	.head {
-		width: 50%;
+		width: 40%;
 		margin: 0 auto;
 		padding-top: 50px;
 		padding-bottom: 10px;
@@ -81,7 +77,7 @@ function adjustHeight() {
 	}
 	
 	.main_nav {
-		width: 50%;
+		width: 40%;
 		margin: 0 auto;
 		padding-bottom: 10px;
 	}
@@ -96,6 +92,19 @@ function adjustHeight() {
 		font-size: 1.1em;
 		cursor: Default;
 		color: #4793d7;
+	}
+	
+	.proImg {
+		width: 150px;
+	    height: 150px; 
+	    border-radius: 70%;
+	    overflow: hidden;
+	}
+	
+	.profile{
+		width: 100%;
+	    height: 100%;
+	    object-fit: cover;
 	}
 	
 	/* 메인부분 */
@@ -226,12 +235,16 @@ function adjustHeight() {
 		border: 0;
 		color: #262626;
 		color: rgba(var(- -i1d, 38, 38, 38), 1);
-		height: 18px;
+		height: 20px;
 		outline: 0;
 		padding: 0;
 		resize: none;
-		width: 560px;
 		overflow: hidden;
+		width: 100%;
+	}
+	
+	#reply_table #rpText{
+		width: 700px;"
 	}
 	
 	.post_writing {
@@ -261,6 +274,7 @@ function adjustHeight() {
 	.thumnail{
 		cursor: pointer;
 	}
+	
 </style>
 </head>
 <body>
@@ -270,13 +284,16 @@ function adjustHeight() {
 	<div class="head" align="center">
 		<table class="headTable">
 			<tr>
-				<td rowspan="4"><div style="height: 100%;">
-						<img alt="프로필사진" src="resources/happysmile.jpg" width="150px"height="150px">
+				<td rowspan="4"><div class="proImg" >
+						<img class="profile" alt="프로필사진" src="resources/happysmile.jpg">
 					</div></td>
-				<td class="text_id">${member.name } &nbsp <button class="btn btn-primary btn-sm" onclick="following()">팔로우</button></td>
-				<td colspan="2" style="text-align: center;">
-					<button class="btn btn-outline-dark" title="프로필 편집"><i class="bi bi-gear-fill"></i></button>&nbsp &nbsp
-					<button class="btn btn-outline-dark" onclick="location.href='postWriteForm.html'" title="글쓰기"><i class="bi bi-pencil-fill"></i></button></td>
+				<td class="text_id">${member.name }<!--  &nbsp <button class="btn btn-primary btn-sm" onclick="following()">팔로우</button> --></td>
+				<c:if test="${member.member_id eq member_id }">
+					<td colspan="2" style="text-align: center;">
+						<button class="btn btn-outline-dark" title="프로필 편집"><i class="bi bi-gear-fill"></i></button>&nbsp &nbsp
+						<button class="btn btn-outline-dark" onclick="location.href='postWriteForm.html'" title="글쓰기"><i class="bi bi-pencil-fill"></i></button>
+					</td>
+				</c:if>
 			</tr>
 			<tr>
 				<td colspan="3"><span>게시물 ${postTotal }&nbsp &nbsp </span>
@@ -412,8 +429,16 @@ function adjustHeight() {
 									name="reply_form" class="m-0 p-0 d-flex align-items-baseline">
 									<input type="hidden" name="sessionId" value="${member.member_id}">
 									<input type="hidden" name="postNo" value="${post.postno}">
-									<textarea id="reply_input" name="reply_input" class="reply_input" placeholder="댓글 달기..."></textarea>
-									<input id="reply_submit" type="submit" name="reply_submit" class="reply-submit-btn" value="게시" disabled="disabled">
+									<table id="reply_table">
+										<tr>
+											<td id="rpText">
+												<textarea id="reply_input" name="reply_input" class="reply_input" placeholder="댓글 달기..."></textarea>
+											</td>
+											<td id="rpSubmit">
+												<input id="reply_submit" type="submit" name="reply_submit" class="reply-submit-btn" value="게시" disabled="disabled">
+											</td>
+										</tr>
+									</table>
 								</form>
 							</div>
 							<!-- post_reply_input -->

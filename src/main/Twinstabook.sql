@@ -93,13 +93,15 @@ CONSTRAINT fk_replyno foreign key(replyno) references reply(replyno),
 CONSTRAINT fk_member_id4 foreign key(member_id) references member(member_id)
 );
 
+
 drop table follow;
 
-create table follow(
-member_id varchar2(32) primary key,					-- 아이디
-fwer_m_id varchar2(32) not null,							-- 팔로워(나를 팔로우 하는사람)
-fwee_m_id varchar2(32) not null,							-- 팔로잉(내가 팔로우 하는사람)
-CONSTRAINT fk_member_id5 foreign key(member_id) references member(member_id)
+create table follow(					
+followno number(9) primary key,					-- 임시키
+fwer_m_id varchar2(32) not null,						-- 팔로워
+fwee_m_id varchar2(32) not null unique,					-- 팔로잉
+CONSTRAINT fk_fwee_m_id foreign key(fwee_m_id) references member(member_id),
+CONSTRAINT fk_fwer_m_id foreign key(fwer_m_id) references member(member_id)
 );
 
 select * from FOLLOW;

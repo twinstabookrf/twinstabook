@@ -17,8 +17,10 @@ function del(postno) {
 	else alert("취소 되었습니다!");
 };
 /* 팔로잉하는 함수 */
-function following() {
-	
+function following(member_id) {
+	var cf = confirm(member_id+"님을 "+"팔로우 하시겠습니까 ?");
+	if (cf) location.href="follow.html?member_id="+member_id;
+	else alert("취소 :)");
 }
 $( document ).ready( function() {
     $( '.slider' ).bxSlider();
@@ -54,7 +56,7 @@ function adjustHeight() {
 </script>
 <style>
 	.head {
-		width: 50%;
+		width: 40%;
 		margin: 0 auto;
 		padding-top: 50px;
 		padding-bottom: 10px;
@@ -81,7 +83,7 @@ function adjustHeight() {
 	}
 	
 	.main_nav {
-		width: 50%;
+		width: 40%;
 		margin: 0 auto;
 		padding-bottom: 10px;
 	}
@@ -96,6 +98,19 @@ function adjustHeight() {
 		font-size: 1.1em;
 		cursor: Default;
 		color: #4793d7;
+	}
+	
+	.proImg {
+		width: 150px;
+	    height: 150px; 
+	    border-radius: 70%;
+	    overflow: hidden;
+	}
+	
+	.profile{
+		width: 100%;
+	    height: 100%;
+	    object-fit: cover;
 	}
 	
 	/* 메인부분 */
@@ -270,13 +285,19 @@ function adjustHeight() {
 	<div class="head" align="center">
 		<table class="headTable">
 			<tr>
-				<td rowspan="4"><div style="height: 100%;">
-						<img alt="프로필사진" src="resources/happysmile.jpg" width="150px"height="150px">
+				<td rowspan="4"><div class="proImg" >
+						<img class="profile" alt="프로필사진" src="resources/happysmile.jpg">
 					</div></td>
-				<td class="text_id">${member.name } &nbsp <button class="btn btn-primary btn-sm" onclick="following()">팔로우</button></td>
-				<td colspan="2" style="text-align: center;">
-					<button class="btn btn-outline-dark" title="프로필 편집"><i class="bi bi-gear-fill"></i></button>&nbsp &nbsp
-					<button class="btn btn-outline-dark" onclick="location.href='postWriteForm.html'" title="글쓰기"><i class="bi bi-pencil-fill"></i></button></td>
+				<td class="text_id">
+					${member.name } &nbsp 
+					<button class="btn btn-primary btn-sm" onclick="following('${member.member_id}')">팔로우</button>
+				</td>
+				<c:if test="${member.member_id eq member_id }">
+					<td colspan="2" style="text-align: center;">
+						<button class="btn btn-outline-dark" title="프로필 편집"><i class="bi bi-gear-fill"></i></button>&nbsp &nbsp
+						<button class="btn btn-outline-dark" onclick="location.href='postWriteForm.html'" title="글쓰기"><i class="bi bi-pencil-fill"></i></button>
+					</td>
+				</c:if>
 			</tr>
 			<tr>
 				<td colspan="3"><span>게시물 ${postTotal }&nbsp &nbsp </span>

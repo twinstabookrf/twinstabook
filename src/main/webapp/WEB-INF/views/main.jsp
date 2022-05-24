@@ -193,7 +193,7 @@ a:hover {
 									<c:forEach var="media" items="${post.mediaList }">
 										<div class="align-items-center">
 											<img class="thumnail w-100" alt="썸네일"
-												src="${path}/resources/${media.fileName}">
+												src="${path}/resources/upload/${media.fileName}">
 										</div>
 									</c:forEach><!-- post.media pics -->
 								</div> 

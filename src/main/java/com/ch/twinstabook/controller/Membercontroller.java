@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ch.twinstabook.model.Member;
 import com.ch.twinstabook.model.Post;
 import com.ch.twinstabook.model.Reply;
+import com.ch.twinstabook.service.FollowService;
 import com.ch.twinstabook.service.MediaService;
 import com.ch.twinstabook.service.MemberService;
 import com.ch.twinstabook.service.PostService;
@@ -32,6 +33,8 @@ public class Membercontroller {
 	private ReplyService rs;
 	@Autowired
 	private MediaService mds;
+	@Autowired
+	private FollowService fs;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
@@ -248,5 +251,9 @@ public class Membercontroller {
 		model.addAttribute("post", post);
 		
 		return "page/writerPage";
+	}
+	@RequestMapping("follow")
+	private String follow(String member_id, HttpSession session) {
+		return "page/follow";		// 일단 page폴더에 해놓은겁니다!
 	}
 }
