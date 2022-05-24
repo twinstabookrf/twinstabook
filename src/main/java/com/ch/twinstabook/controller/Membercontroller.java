@@ -65,12 +65,8 @@ public class Membercontroller {
 	
 	@RequestMapping("pwdHint3")
 	public String pwdHint3(Member member,String member_id, Model model) {
-		System.out.println(member.getAnswer());
-		System.out.println(member.getMember_id());
 		int result =0;
 		Member member2 = ms.select(member.getMember_id());
-		
-		System.out.println("저장된값 = "+member2);
 		if (member.getAnswer().equals(member2.getAnswer())) {
 			result = 1;		// 답과 db값이 같음
 		} else {
@@ -84,14 +80,19 @@ public class Membercontroller {
 	public String pwdHint4(Member member,String member_id, Model model) {
 		int result = 0;
 		Member member2 = ms.select(member.getMember_id());
+		System.out.println(member2);
 		if(member.getPwd().equals(member2.getPwd())){
 			result =-1;
 			
-		}else if (!member.getPwd().equals(member2.getPwd())) {
+		}else {
 			String encPassword = passwordEncoder.encode(member.getPwd());
 			member.setPwd(encPassword);
 			result = ms.update(member);
+			result = 0;
 		}
+		System.out.println("기존비번 :"+member2.getPwd());
+		System.out.println("바뀐비번 :"+member.getPwd());
+		model.addAttribute("result",result);
 		return "join/pwdHint4";
 	}
 	

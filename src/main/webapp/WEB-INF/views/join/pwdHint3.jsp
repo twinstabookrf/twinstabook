@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
-	alert("비밀번호를 변경해 주세요.")
 	</script>
 </c:if>
 <c:if test="${result < 0 }">
@@ -21,7 +20,7 @@
 function chk(){
 	if(frm.pwd.value != frm.pwd2.value){
 		alert("암호와 암호확인이 다릅니다."); frm.pwd.focus();
-		frm.pwd.value =""; frm.pwd2.value ="";
+		frm.pwd.value =""; frm.pwd2.value ="";            //기존 작성했던 비밀번호와 비밀번호확인 지우고싶을때
 		return false;
 	}
 } 
@@ -33,6 +32,7 @@ function chk(){
 	<main>
 		<form action="pwdHint4.html" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
 			<div><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
+			<input type="hidden" name="member_id" value="${member.member_id }">
 			<div class="logo">Twinstabook</div> 
 			<div class="sign-form">
 				<input type="password" id="password" name="pwd" placeholder="새로운 비밀번호" required="required">

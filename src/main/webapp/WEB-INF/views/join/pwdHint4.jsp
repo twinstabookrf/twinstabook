@@ -10,17 +10,17 @@
 <body>
 <c:if test="${result < 0 }">
 	<script type="text/javascript">
-			alert("이전 암호와 같습니다.";)
+			alert("이전 암호와 같습니다.");
 		history.back();
 	</script>
 </c:if>
 <c:if test="${result == 0 }">
 	<script type="text/javascript">
+		alert("비밀번호가 변경되었습니다.");
 		location.href="loginForm.html";
 	</script>
 </c:if>
 
-	<input type="hidden" name="member_id" value="${member.member_id }">
 
 
 </body>
