@@ -16,6 +16,10 @@ function del(postno) {
 	if (cf) location.href="delete.html?postno="+postno;
 	else alert("취소 되었습니다!");
 };
+/* 작성자 이름 누르면 writerPage로 가는 함수 */
+function writerPage(member_id) {
+	location.href="writerPage.html?member_id="+member_id;
+}
 $( document ).ready( function() {
     $( '.slider' ).bxSlider();
   } );
@@ -54,6 +58,7 @@ function adjustHeight() {
 		margin: 0 auto;
 		padding-top: 50px;
 		padding-bottom: 10px;
+		margin-top: 50px;
 	}
 	
 	.headTable {
@@ -165,7 +170,14 @@ function adjustHeight() {
 	}
 	
 	.mId-text {
+		font-size: 16px;
 		font-weight: bold;
+		color: #4793d7;
+		cursor: pointer;
+	}
+	
+	.mId-text:hover {
+		color: #4793d7;
 	}
 	
 	#nameCrtDate {
@@ -266,20 +278,43 @@ function adjustHeight() {
 		overflow: hidden;
 	}
 	
-	.fixed-square{
+	.fixed-square {
 		width: 612px;
 		height: 612px;
 	}
 	
-	.thumnail{
+	.thumnail {
 		cursor: pointer;
 	}
 	
+	.noPost {
+		padding-top: 50px;
+		margin: 0 auto;
+		width: 40%;
+		text-align: center;
+	}
+	
+	.noPost i {
+		font-size: 200px;
+	}
+	
+	.noPost span {
+		font-size: 30px;
+		font-weight: bold;
+	}
+	
+	.topNavbar{
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 100;
+	}
 </style>
 </head>
 <body>
 	<!-- topNavbar -->
-	<%@include file="../public/topNavbar.jsp"%>
+	<div class="topNavbar"><%@include file="../public/topNavbar.jsp"%></div>
 	<!-- 마이페이지 프로필 부분 -->
 	<div class="head" align="center">
 		<table class="headTable">
@@ -312,6 +347,12 @@ function adjustHeight() {
 		&nbsp <span class="main_nav_icon"><i class="bi bi-bookmark-fill"></i> 북마크</span> --><hr>
 	</div>
 	<!-- 마이페이지 메인 -->
+	<c:if test="${empty post }">
+		<div class="noPost">
+			<i class="bi bi-camera-fill"></i><br>
+			<span>게시물이 없습니다 :(</span>
+		</div>
+	</c:if>
 	<c:if test="${!empty post }">
 		<c:forEach var="post" items="${post}">
 			<div class="main">
@@ -319,7 +360,7 @@ function adjustHeight() {
 				<div class="post_head p-2 d-flex justify-content-start border-bottom align-items-center">
 					<a href="#" class="m-2 img-circle"> <img alt="프사" src="${path}/resources/${post.profile_pic}"></a>
 					<div class="d-flex flex-column align-items-start" id="nameCrtDate">
-						<a href="#" class="mId-text font-default-size">${post.origin_member_id}</a>
+						<a class="mId-text" onclick="writerPage('${post.member_id}')">${post.member_id}</a>
 						<c:if test="${post.mdf_date eq null }">
 							<a href="#" class="crt_date-text font-default-size">작성일 : ${post.crt_date}</a>
 						</c:if>

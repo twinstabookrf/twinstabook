@@ -256,4 +256,23 @@ public class Membercontroller {
 	private String follow(String member_id, HttpSession session) {
 		return "page/follow";		// 일단 page폴더에 해놓은겁니다!
 	}
+	@RequestMapping("search")
+	private String search(Model model, String id, HttpSession session) {
+		String member_id =(String)session.getAttribute("member_id");	// 세션에 저장된 아이디
+		int result = 0;
+		Member member = ms.select(id);	// 입력받은 아이디
+		if (member != null) {
+			if (member_id.equals(member.getMember_id())) {
+				result = 1;		// 세션에 저장된 아이디와 입력받은 아이디가 같음
+			} else {
+				result = 0;		// 세션에 저장된 아이디와 입력받은 아이디가 같지 않음
+			}
+		} else {
+			result = -1;	// 없는 아이디
+		}
+		model.addAttribute("id", id);
+		model.addAttribute("member_id", member_id);		
+		model.addAttribute("result", result);
+		return "public/search";
+	}
 }
