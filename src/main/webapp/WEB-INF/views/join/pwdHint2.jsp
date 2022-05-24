@@ -24,7 +24,6 @@
 			<input type="hidden" name="member_id" value="${member.member_id }">
 			<div class="img"><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
 			<div class="logo">Twinstabook</div> 
-			<%-- <input type="text" id="id" name="member_id"  readonly value="${member.member_id} "> --%>
 			<div class="hint-form">
 				<div class="pwdHint">
 					<c:if test="${member.ask==1 }">
@@ -44,25 +43,4 @@
 		</form>
 	</main>
 </body>
-<script>
-
-// function checkHint(){
-   
-// 	var params = {
-//             id        : $("#id").val()
-//           , ansert       : $("#answer").val()
-//   }      
-
-//   $.ajax({
-//       type : "POST",           
-//       url : "pwdHint3.html",      
-//       data : {member_id :$("#id").val() },           
-//       success : function(data){ 
-//          alert(data);
-      
-//       },
-//   });
-	
-// }
-</script>
 </html>

@@ -191,29 +191,12 @@ a:hover {
 								<!-- 슬라이드 뷰 -->
 								<div class="post-pics post_pics_slide mb-1 border-bottom align-items-center slider">
 									<c:forEach var="media" items="${post.mediaList }">
-<<<<<<< HEAD
-										<div>
-											<a href="#"><img class="fixed-width" alt="썸네일"
-												src="${path}/resources/upload/${media.fileName}">
-											</a>
-=======
 										<div class="align-items-center">
 											<img class="thumnail w-100" alt="썸네일"
 												src="${path}/resources/${media.fileName}">
->>>>>>> refs/remotes/origin/manho
 										</div>
 									</c:forEach><!-- post.media pics -->
-<<<<<<< HEAD
-									<section class="control">
-										<c:forEach var="media" items="${post.mediaList }">
-											
-										</c:forEach><!-- post.media radio -->
-									</section>
-									<!-- control -->
-								</div>
-=======
 								</div> 
->>>>>>> refs/remotes/origin/manho
 								<!-- post-pics -->
 							</c:if>
 							<!-- post.mediaList -->
