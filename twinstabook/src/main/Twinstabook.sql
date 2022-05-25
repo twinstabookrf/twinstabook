@@ -6,7 +6,6 @@ email varchar2(32) not null,							-- 이메일
 profile_pic varchar2(32),								-- 프로필사진
 reg_date date not null,									-- 가입일
 id_drop char(2)  default 'n' not null					-- 삭제여부
-
 );
 select * from member;
  

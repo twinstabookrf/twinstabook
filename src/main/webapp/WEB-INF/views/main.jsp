@@ -155,7 +155,7 @@ a:hover {
 	overflow: hidden;
 }
 .post_content{
-	height:612px;
+/* 	height:612px; */
 }
 .post-pics {
 	position: relative;
@@ -199,11 +199,11 @@ a:hover {
 							</div>
 						</div>
 						<!-- 게시물 내용(썸네일, 메뉴, 좋아요 현황, 댓글 목록, 댓글 입력 창 -->
-						<div class="post_content fixed-square">
+						<div class="post_content">
 							<!-- 게시물 썸네일 및 사진 목록 -->
 							<c:if test="${not empty post.mediaList }">
 								<!-- 슬라이드 뷰 -->
-								<div class="post-pics post_pics_slide mb-1 border-bottom align-items-center slider">
+								<div class="post-pics post_pics_slide mb-1 border-bottom align-items-center slider fixed-square">
 									<c:forEach var="media" items="${post.mediaList }">
 										<div class="align-items-center">
 											<img class="thumnail w-100" alt="썸네일"
