@@ -5,16 +5,17 @@ member_id varchar2(32)   primary key,					-- 아이디
 pwd varchar2(100) not null,										-- 암호
 name varchar2(32) not null,										-- 이름(별명)
 email varchar2(32) not null,										-- 이메일
-profile_pic varchar2(32),											-- 프로필사진
+profile_pic varchar2(32) default 'pro.png',											-- 프로필사진
 reg_date date not null,												-- 가입일
 id_drop char(2) default 'n',										-- 삭제여부
 ask number(5) not null,											-- 암호 찾기 질문
-answer varchar2(50) not null									-- 암호 찾기 답
+answer varchar2(50) not null	,								-- 암호 찾기 답
+greeting varchar2(80)												-- 소개글
 );
 
 -- alter table member ADD ask number(5) not null;    				 --이거 사용 !
 -- alter table member ADD answer varchar2(50) not null;		     --이거 사용 !
--- alter table member modify(pwd varchar2(100));	 		   	     --이거 사용 !
+-- alter table member modify(profile_pic varchar2(32) default 'pro.png');	 		   	     --이거 사용 !
 
 select * from member;
  
@@ -27,6 +28,7 @@ drop table post;
 delete from post;
 drop sequence seq_post;
 create sequence seq_post;		-- 포스트 시퀀스
+
 create table post(
 postno number(9)  primary key,							-- 게시글번호
 origin_member_id varchar2(32) not null,				-- 원작자 아이디
@@ -35,7 +37,7 @@ member_id varchar2(32) not null ,							-- 작성자 아이디
 content	varchar2(2048),											-- 내용
 crt_date date not null,											-- 작성일
 mdf_date date,														-- 수정일
-views number(9)	not null,									-- 조회수
+-- views number(9)	not null,									-- 조회수
 likes number(9)	not null,										-- 좋아요
 rts	number(9)	not null,											-- rt횟수
 CONSTRAINT fk_member_id foreign key(member_id) references member(member_id),

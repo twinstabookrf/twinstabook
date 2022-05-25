@@ -31,7 +31,7 @@
 				<div>
 				<input type="button" class="btn btn-primary" value="로그아웃" onclick="location.href='logout.html'">
 			</div>	
-				<div>
+			<div>
 				<input type="button" class="btn btn-primary" value="탈퇴하기" onclick="del()">
 			</div>	
 	</main>

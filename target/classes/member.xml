@@ -30,7 +30,7 @@
 		<if test="profile_pic == null">
 			null, 
 		</if>
-		sysdate, 'n', #{ask}, #{answer})
+		sysdate, 'n', #{ask}, #{answer}, null)
 	</insert>
 	
 	<!-- update -->
