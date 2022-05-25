@@ -126,6 +126,7 @@ public class Membercontroller {
 	
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
+		
 		session.invalidate();
 		return "join/logout";
 	}

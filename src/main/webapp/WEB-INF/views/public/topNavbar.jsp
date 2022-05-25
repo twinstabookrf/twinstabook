@@ -51,7 +51,7 @@
 	<!-- 홈 -->
 	<a class="nav-link active" href="main.html"><i class="bi bi-house-door-fill home"></i></a>
 	<!-- 로그아웃 -->
-	<a class="nav-link active" href="#"><i class="bi bi-door-open-fill logOut"></i></a>
+	<a class="nav-link active" href="logout.html"><i class="bi bi-door-open-fill logOut"></i></a>
 </div>
 <%-- <div class="header border-bottom" align="center">
 <a class="navbar-brand" href="main.html">

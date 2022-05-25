@@ -51,7 +51,7 @@
 		<if test="profile_pic == null">
 			null, 
 		</if>
-		#{ask}, #{answer}
+		#{ask}, #{answer},#{greeting}
 		where member_id=#{member_id}
 	</update>
 	

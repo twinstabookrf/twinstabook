@@ -68,6 +68,14 @@
 				return false;
 		}
 	} 
+		function del(){
+			var con =confirm("정말 탈퇴하시겠습니까?");
+			if (con) location.href="delete1.html";
+			else{
+				alert("탈퇴가 취소되었습니다.");
+				return;
+			}
+		}
 	
 </script>
 </head>
@@ -81,19 +89,19 @@
 					<input type="text" id="id" name="member_id" readonly value="${member.member_id }" style="text-align:center; font-weight:bolder">
 			</div> 
 			<div class="update-form">
-				<input type="password" id="password" name="pwd" placeholder="비밀번호" required="required" autofocus="autofocus">
+				<input type="password" id="password" name="pwd" placeholder="비밀번호"  autofocus="autofocus">
 			</div>
 			<div class="update-form">
-				<input type="password" id="password2" name="pwd2" placeholder="비밀번호 확인" required="required">
+				<input type="password" id="password2" name="pwd2" placeholder="비밀번호 확인">
 			</div>
 			<div class="update-form">
-				<input type="text" id="name" name="name" value="${member.name }" required="required">
+				<input type="text" id="name" name="name" value="${member.name }" >
 			</div>
 			<div class="update-form">
-				<input type="email" id="email" name="email" value="${member.email }" required="required">
+				<input type="email" id="email" name="email" value="${member.email }" >
 			</div>
 			<div class="update-form">
-				<select name="ask" id="ask" required="required">
+				<select name="ask" id="ask" >
 					<option value="" selected>비밀번호 힌트</option>
 					<option value="1">제1호 보물</option>
 					<option value="2">졸업한 초등학교</option>
@@ -101,16 +109,19 @@
 				</select>
 			</div>
 			<div class="update-form">
-				<input type="text" id="answer" name="answer" placeholder="비밀번호 힌트 답변" required="required">
+				<input type="text" id="answer" name="answer" placeholder="비밀번호 힌트 답변">
 			</div>
 			 <div>
-				<input type="text" readonly  value="프로필 사진을 추가하세요." style="text-align:center; font-size:20px; font-weight:bolder">
+				<input type="text" readonly  value="프로필 사진을 추가해주세요" style="text-align:center; font-size:20px; font-weight:bolder">
 			</div>		   
 		    <div>
 				<input type="file" name="file">
 			</div>
 				<input type="submit" class="btn btn-primary" value="변경하기">		
 		</form>
+		<div>
+			<input type="button" class="btn btn-danger" value="탈퇴하기" onclick="del()">
+		</div>	
 	</main>
 </body>
 </html>

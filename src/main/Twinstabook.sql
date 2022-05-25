@@ -8,22 +8,14 @@ email varchar2(32) not null,										-- 이메일
 profile_pic varchar2(32) default 'pro.png',											-- 프로필사진
 reg_date date not null,												-- 가입일
 id_drop char(2) default 'n',										-- 삭제여부
-<<<<<<< HEAD
-ask number(5) not null,												-- 암호 찾기 질문
-answer varchar2(50) not null										-- 암호 찾기 답
-=======
 ask number(5) not null,											-- 암호 찾기 질문
 answer varchar2(50) not null	,								-- 암호 찾기 답
 greeting varchar2(80)												-- 소개글
->>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook.git
 );
 
-<<<<<<< HEAD
-=======
 -- alter table member ADD ask number(5) not null;    				 --이거 사용 !
 -- alter table member ADD answer varchar2(50) not null;		     --이거 사용 !
 -- alter table member modify(profile_pic varchar2(32) default 'pro.png');	 		   	     --이거 사용 !
->>>>>>> branch 'master' of https://github.com/twinstabookrf/twinstabook.git
 
 select * from member;
  
