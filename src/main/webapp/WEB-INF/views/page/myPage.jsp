@@ -17,8 +17,8 @@ function del(postno) {
 	else alert("취소 되었습니다!");
 };
 /* 작성자 이름 누르면 writerPage로 가는 함수 */
-function writerPage(member_id) {
-	location.href="writerPage.html?member_id="+member_id;
+function writerPage(name) {
+	location.href="writerPage.html?name="+name;
 }
 $( document ).ready( function() {
     $( '.slider' ).bxSlider();
@@ -360,7 +360,7 @@ function adjustHeight() {
 				<div class="post_head p-2 d-flex justify-content-start border-bottom align-items-center">
 					<a href="#" class="m-2 img-circle"> <img alt="프사" src="${path}/resources/${post.profile_pic}"></a>
 					<div class="d-flex flex-column align-items-start" id="nameCrtDate">
-						<a class="mId-text" onclick="writerPage('${post.member_id}')">${post.member_id}</a>
+						<a class="mId-text" onclick="writerPage('${member.name}')">${member.name}</a>
 						<c:if test="${post.mdf_date eq null }">
 							<a href="#" class="crt_date-text font-default-size">작성일 : ${post.crt_date}</a>
 						</c:if>

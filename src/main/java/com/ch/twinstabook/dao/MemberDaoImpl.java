@@ -49,5 +49,10 @@ public class MemberDaoImpl implements MemberDao {
 		return sst.selectList("memberns.selectAll");
 	}
 
+	@Override
+	public Member selectName(String name) {
+		return sst.selectOne("memberns.selectName", name);
+	}
+
 
 }

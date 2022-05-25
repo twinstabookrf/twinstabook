@@ -20,4 +20,6 @@ public interface MemberService {
 
 	List<Member> selectAll();
 
+	Member selectName(String name);
+
 	}

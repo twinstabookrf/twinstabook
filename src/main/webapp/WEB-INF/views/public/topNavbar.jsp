@@ -43,7 +43,7 @@
 	<a class="nav-link active" href="main.html"><img alt="Twinstabook" src="${path }/resources/logo/logo-txt-w2.png" height="25px"></a>
 	<!-- 검색창 -->
 	<form class="d-flex" action="search.html" method="post">
-	   	<input class="form-control" type="text" name="id" placeholder="Search (ID)" aria-label="Search">
+	   	<input class="form-control" type="text" name="name" placeholder="Search (ID)" aria-label="Search">
 	   	<button class="btn btn-outline-dark btn-sm" type="submit">Search</button>
 	</form>
 	<!-- 마이페이지 -->
