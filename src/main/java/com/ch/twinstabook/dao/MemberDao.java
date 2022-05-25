@@ -1,5 +1,7 @@
 package com.ch.twinstabook.dao;
 
+import java.util.List;
+
 import com.ch.twinstabook.model.Member;
 public interface MemberDao {
 
@@ -14,6 +16,8 @@ public interface MemberDao {
 	int updateAll(Member member);
 
 	int delete(String member_id);
+
+	List<Member> selectAll();
 
 	
 }

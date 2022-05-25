@@ -40,6 +40,10 @@
 		var textEleHeight = textEle.prop('scrollHeight');
 		textEle.css('height', textEleHeight);
 	};
+	/* 작성자 이름 누르면 writerPage로 가는 함수 */
+	function writerPage(member_id) {
+		location.href="writerPage.html?member_id="+member_id;
+	}
 </script>
 <style type="text/css">
 body {
@@ -151,7 +155,7 @@ a:hover {
 	overflow: hidden;
 }
 .post_content{
-	height:612px;
+/* 	height:612px; */
 }
 .post-pics {
 	position: relative;
@@ -164,11 +168,21 @@ a:hover {
 .thumnail{
 	cursor: pointer;
 }
+#writer-id{
+	cursor: pointer;
+}
+.topNavbar{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+}
 </style>
 </head>
 <body>
 	<!-- topNavbar -->
-	<%@include file="public/topNavbar.jsp"%>
+	<div class="topNavbar"><%@include file="public/topNavbar.jsp"%></div>
 	<div class="container fixed-width margin-top" align="center">
 		<div class="feed fixed-width">
 			<div class="posts border">
@@ -180,16 +194,16 @@ a:hover {
 							<a href="#" class="m-2 img-circle"> <img alt="프사"
 								src="${path}/resources/${post.profile_pic}"></a>
 							<div class="d-flex flex-column align-items-start">
-								<a href="#" class="id-text font-default-size">${post.writer}</a>
+								<a class="id-text font-default-size" id="writer-id" onclick="writerPage('${post.member_id}')">${post.member_id}</a>
 								<a href="#" class="email-text font-default-size">${post.originWriter}</a>
 							</div>
 						</div>
 						<!-- 게시물 내용(썸네일, 메뉴, 좋아요 현황, 댓글 목록, 댓글 입력 창 -->
-						<div class="post_content fixed-square">
+						<div class="post_content">
 							<!-- 게시물 썸네일 및 사진 목록 -->
 							<c:if test="${not empty post.mediaList }">
 								<!-- 슬라이드 뷰 -->
-								<div class="post-pics post_pics_slide mb-1 border-bottom align-items-center slider">
+								<div class="post-pics post_pics_slide mb-1 border-bottom align-items-center slider fixed-square">
 									<c:forEach var="media" items="${post.mediaList }">
 										<div class="align-items-center">
 											<img class="thumnail w-100" alt="썸네일"

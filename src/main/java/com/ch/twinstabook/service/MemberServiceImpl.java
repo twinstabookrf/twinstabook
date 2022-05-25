@@ -1,5 +1,7 @@
 package com.ch.twinstabook.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +42,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int delete(String member_id) {
 		return md.delete(member_id);
+	}
+
+	@Override
+	public List<Member> selectAll() {
+		return md.selectAll();
 	}
 
 

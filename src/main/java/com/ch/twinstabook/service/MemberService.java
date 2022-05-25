@@ -1,5 +1,7 @@
 package com.ch.twinstabook.service;
 
+import java.util.List;
+
 import com.ch.twinstabook.model.Member;
 
 public interface MemberService {
@@ -16,5 +18,6 @@ public interface MemberService {
 
 	int delete(String member_id);
 
+	List<Member> selectAll();
 
 	}

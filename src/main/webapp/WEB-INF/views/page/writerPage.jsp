@@ -16,6 +16,10 @@ function del(postno) {
 	if (cf) location.href="delete.html?postno="+postno;
 	else alert("취소 되었습니다!");
 };
+/* 작성자 이름 누르면 writerPage로 가는 함수 */
+function writerPage(member_id) {
+	location.href="writerPage.html?member_id="+member_id;
+}
 /* 팔로잉하는 함수 */
 function following(member_id) {
 	var cf = confirm(member_id+"님을 "+"팔로우 하시겠습니까 ?");
@@ -60,6 +64,7 @@ function adjustHeight() {
 		margin: 0 auto;
 		padding-top: 50px;
 		padding-bottom: 10px;
+		margin-top: 50px;
 	}
 	
 	.headTable {
@@ -171,7 +176,14 @@ function adjustHeight() {
 	}
 	
 	.mId-text {
+		font-size: 16px;
 		font-weight: bold;
+		color: #4793d7;
+		cursor: pointer;
+	}
+	
+	.mId-text:hover {
+		color: #4793d7;
 	}
 	
 	#nameCrtDate {
@@ -241,12 +253,16 @@ function adjustHeight() {
 		border: 0;
 		color: #262626;
 		color: rgba(var(- -i1d, 38, 38, 38), 1);
-		height: 18px;
+		height: 20px;
 		outline: 0;
 		padding: 0;
 		resize: none;
-		width: 560px;
 		overflow: hidden;
+		width: 100%;
+	}
+	
+	#reply_table #rpText{
+		width: 700px;"
 	}
 	
 	.post_writing {
@@ -268,19 +284,43 @@ function adjustHeight() {
 		overflow: hidden;
 	}
 	
-	.fixed-square{
+	.fixed-square {
 		width: 612px;
 		height: 612px;
 	}
 	
-	.thumnail{
+	.thumnail {
 		cursor: pointer;
+	}
+	
+	.noPost {
+		padding-top: 50px;
+		margin: 0 auto;
+		width: 40%;
+		text-align: center;
+	}
+	
+	.noPost i {
+		font-size: 200px;
+	}
+	
+	.noPost span {
+		font-size: 30px;
+		font-weight: bold;
+	}
+	
+	.topNavbar{
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 100;
 	}
 </style>
 </head>
 <body>
 	<!-- topNavbar -->
-	<%@include file="../public/topNavbar.jsp"%>
+	<div class="topNavbar"><%@include file="../public/topNavbar.jsp"%></div>
 	<!-- 마이페이지 프로필 부분 -->
 	<div class="head" align="center">
 		<table class="headTable">
@@ -323,7 +363,7 @@ function adjustHeight() {
 				<div class="post_head p-2 d-flex justify-content-start border-bottom align-items-center">
 					<a href="#" class="m-2 img-circle"> <img alt="프사" src="${path}/resources/${post.profile_pic}"></a>
 					<div class="d-flex flex-column align-items-start" id="nameCrtDate">
-						<a href="#" class="mId-text font-default-size">${post.origin_member_id}</a>
+						<a class="mId-text" onclick="writerPage('${post.member_id}')">${post.member_id}</a>
 						<c:if test="${post.mdf_date eq null }">
 							<a href="#" class="crt_date-text font-default-size">작성일 : ${post.crt_date}</a>
 						</c:if>
@@ -433,8 +473,16 @@ function adjustHeight() {
 									name="reply_form" class="m-0 p-0 d-flex align-items-baseline">
 									<input type="hidden" name="sessionId" value="${member.member_id}">
 									<input type="hidden" name="postNo" value="${post.postno}">
-									<textarea id="reply_input" name="reply_input" class="reply_input" placeholder="댓글 달기..."></textarea>
-									<input id="reply_submit" type="submit" name="reply_submit" class="reply-submit-btn" value="게시" disabled="disabled">
+									<table id="reply_table">
+										<tr>
+											<td id="rpText">
+												<textarea id="reply_input" name="reply_input" class="reply_input" placeholder="댓글 달기..."></textarea>
+											</td>
+											<td id="rpSubmit">
+												<input id="reply_submit" type="submit" name="reply_submit" class="reply-submit-btn" value="게시" disabled="disabled">
+											</td>
+										</tr>
+									</table>
 								</form>
 							</div>
 							<!-- post_reply_input -->

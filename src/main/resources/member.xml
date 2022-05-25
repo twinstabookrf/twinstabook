@@ -16,6 +16,11 @@
  		 And answer = #{answer} 
 	</select>
 	
+	<!-- selectAll -->
+	<select id="selectAll" resultType="member">
+		select member_id from member
+	</select>
+	
 	<!-- insert -->
 	<insert id="insert" parameterType="member">
 		insert into member values(#{member_id}, #{pwd}, #{name}, #{email},
@@ -25,7 +30,7 @@
 		<if test="profile_pic == null">
 			null, 
 		</if>
-		sysdate, 'n', #{ask}, #{answer})
+		sysdate, 'n', #{ask}, #{answer}, null)
 	</insert>
 	
 	<!-- update -->
