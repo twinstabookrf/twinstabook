@@ -17,8 +17,38 @@
 	#drop  {border : 1px solid black; width : 300px; height : 200px; padding : 3px;}
 </style>
 <script type="text/javascript">
+
+function chkPW(){
 	
-	
+	 var pw = $("#password").val();
+	 var id = $("#id").val();
+	 var name = $("#name").val();
+	 var num = pw.search(/[0-9]/g);
+	 var eng = pw.search(/[a-z]/ig);
+	 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
+	 if(id.length <2 || id.length >16 ){
+			alert("아이디는 2자리~16자리 이내로 입력해 주세요.");
+			return false;
+	 }
+	 else if(pw.length < 4 || pw.length > 20){
+		  alert("비밀번호는 4자리 ~ 20자리 이내로 입력해주세요.");
+		  return false;
+	 }else if(pw.search(/\s/) != -1){
+		  alert("비밀번호는 공백 없이 입력해주세요.");
+		  return false;
+	 }else if(num < 0 || eng < 0 || spe < 0 ){
+		  alert("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
+		  return false;
+	}else if (name.length <2 || name.length >16 ){
+		alert("닉네임은 2자리~16자리 이내로 입력해 주세요.");
+		return false;
+	 }else {
+		console.log("통과"); 
+	    return true;
+	 }
+
+	}
 	function idChk(){
 		if (!frm.id.value){
 			alert("아이디를 입력한 후 체크하세요."); frm.id.focus();
@@ -30,11 +60,16 @@
 		});
 		
 	}
+	
 		function chk(){
-			if(frm.pwd.value != frm.pwd2.value){
+			
+			if(!chkPW()){
+				return false;
+			}else if(frm.pwd.value != frm.pwd2.value){
 				alert("암호와 암호확인이 다릅니다."); frm.pwd.focus();
 				frm.pwd.value =""; frm.pwd2.value ="";
 				return false;
+				
 		}
 	} 
 	
