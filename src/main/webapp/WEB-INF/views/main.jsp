@@ -40,144 +40,275 @@
 		var textEleHeight = textEle.prop('scrollHeight');
 		textEle.css('height', textEleHeight);
 	};
+	/* 게시글 삭제 함수 */
+	function del(postno) {
+		var cf = confirm("게시물을 삭제 하시겠습니까 ?");
+		if (cf) location.href="delete.html?postno="+postno;
+		else alert("취소 되었습니다!");
+	};
 	/* 작성자 이름 누르면 writerPage로 가는 함수 */
 	function writerPage(name) {
 		location.href="writerPage.html?name="+name;
 	}
 </script>
 <style type="text/css">
-body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-		Helvetica, Arial, sans-serif;
-}
+.head {
+		width: 40%;
+		margin: 0 auto;
+		padding-top: 50px;
+		padding-bottom: 10px;
+		margin-top: 50px;
+	}
+	
+	.headTable {
+		margin: auto;
+		width: 100%;
+	}
+	
+	.text_id {
+		font-size: 1.2em;
+		color: #4793d7;
+	}
+	
+	.following {
+		text-decoration: none;
+		color: black;
+	}
+	
+	.following:hover {
+		font-weight: bold;
+		color: black;
+	}
+	
+	.main_nav {
+		width: 40%;
+		margin: 0 auto;
+		padding-bottom: 10px;
+	}
+	
+	.mainNavLogo {
+		width: 40px;
+		height: 32px;
+	}
+	
+	.main_nav_icon:hover {
+		font-weight: bold;
+		font-size: 1.1em;
+		cursor: Default;
+		color: #4793d7;
+	}
+	
+	.proImg {
+		width: 150px;
+	    height: 150px; 
+	    border-radius: 70%;
+	    overflow: hidden;
+	}
+	
+	.profile{
+		width: 100%;
+	    height: 100%;
+	    object-fit: cover;
+	}
+	
+	/* 메인부분 */
+	.main {
+		width: 40%;
+		margin: 0 auto;
+		border: 1px solid #d3d3d3;
+		margin-bottom: 15px;
+	}
+	#dropdown03{
+		color: black;
+	}
+	body {
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+			Helvetica, Arial, sans-serif;
+	}
 
-a {
-	color: black;
-	text-decoration: none;
-}
-
-a:hover {
-	color: black;
-}
-
-.align-items-center {
-	align-items: center !important
-}
-
-.fixed-width {
-	width: 612px;
-}
-
-.img-circle {
-	width: 42px;
-	height: 42px;
-	border-radius: 70%;
-	overflow: hidden;
-}
-
-.img-circle-small {
-	width: 14px;
-	height: 14px;
-	margin-right: 5px;
-}
-
-.img-circle img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-.menu-icon {
-	font-size: 30px;
-	margin-right: 15px;
-	-webkit-text-stroke: 2px
-}
-
-.contentId-text {
-	font-weight: bold;
-}
-
-.id-text {
-	color: blue;
-}
-
-.id-text:hover {
-	color: blue;
-}
-
-.font-default-size {
-	font-size: 14px;
-}
-
-.margin-top {
-	margin-top: 72px;
-}
-
-.cursor {
-	cursor: pointer;
-}
-
-.overflow {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-.email-text {
-	color: #828282;
-}
-
-.email-text:hover {
-	color: #828282;
-}
-
-.reply-submit-btn {
-	border: 0;
-	background-color: white;
-	color: #0095f6;
-}
-
-.reply-submit-btn:disabled {
-	color: #8095f6;
-}
-
-.reply_input {
-	position: relative;
-	background: 0 0;
-	border: 0;
-	color: #262626;
-	color: rgba(var(- -i1d, 38, 38, 38), 1);
-	height: 18px;
-	outline: 0;
-	padding: 0;
-	resize: none;
-	width: 560px;
-	overflow: hidden;
-}
-.post_content{
-/* 	height:612px; */
-}
-.post-pics {
-	position: relative;
-	overflow: hidden;
-}
-.fixed-square{
-	width: 612px;
-	height: 612px;
-}
-.thumnail{
-	cursor: pointer;
-}
-#writer-id{
-	cursor: pointer;
-}
-.topNavbar{
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 100;
-}
+	a {
+		color: black;
+		text-decoration: none;
+	}
+	
+	a:hover {
+		color: black;
+	}
+	
+	.align-items-center {
+		align-items: center !important
+	}
+	
+	.fixed-width {
+		width: 612px;
+	}
+	
+	.img-circle {
+		width: 42px;
+		height: 42px;
+		border-radius: 70%;
+		overflow: hidden;
+	}
+	
+	.img-circle-small {
+		width: 14px;
+		height: 14px;
+		margin-right: 5px;
+	}
+	
+	.img-circle img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	
+	.menu-icon {
+		font-size: 25px;
+		margin-right: 15px;
+		-webkit-text-stroke: 2px
+	}
+	
+	.mId-text {
+		font-size: 16px;
+		font-weight: bold;
+		color: #4793d7;
+		cursor: pointer;
+	}
+	
+	.mId-text:hover {
+		color: #4793d7;
+	}
+	
+	#nameCrtDate {
+		width: 100%
+	}
+	
+	.id-text {
+		color: #4793d7;
+	}
+	
+	.id-text:hover {
+		color: #4793d7;
+	}
+	
+	.font-default-size {
+		font-size: 14px;
+	}
+	
+	.margin-top {
+		margin-top: 72px;
+	}
+	
+	.cursor {
+		cursor: pointer;
+	}
+	
+	.overflow {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	
+	.crt_date-text {
+		font-size: 0.8em;
+		color: #828282;
+	}
+	
+	.crt_date-text:hover {
+		color: #828282;
+	}
+	
+	.modDel{
+		float: right;
+	}
+	
+	.email-text {
+		color: #828282;
+	}
+	
+	.email-text:hover {
+		color: #828282;
+	}
+	
+	.reply-submit-btn {
+		border: 0;
+		background-color: white;
+		color: #0095f6;
+	}
+	
+	.reply-submit-btn:disabled {
+		color: #8095f6;
+	}
+	
+	.reply_input {
+		position: relative;
+		background: 0 0;
+		border: 0;
+		color: #262626;
+		color: rgba(var(- -i1d, 38, 38, 38), 1);
+		height: 20px;
+		outline: 0;
+		padding: 0;
+		resize: none;
+		overflow: hidden;
+		width: 100%;
+	}
+	
+	#reply_table #rpText{
+		width: 700px;"
+	}
+	
+	.post_writing {
+		width: 95%;
+		margin: 0 auto;
+		padding: 20px 0;
+	}
+	
+	.postContent {
+		font-size: 1.2em;
+	}
+	
+	.postContent2 {
+		font-size: 1.8em;
+	}
+	
+	.post-pics {
+		position: relative;
+		overflow: hidden;
+	}
+	
+	.fixed-square {
+		width: 612px;
+		height: 612px;
+	}
+	
+	.thumnail {
+		cursor: pointer;
+	}
+	
+	.noPost {
+		padding-top: 50px;
+		margin: 0 auto;
+		width: 40%;
+		text-align: center;
+	}
+	
+	.noPost i {
+		font-size: 200px;
+	}
+	
+	.noPost span {
+		font-size: 30px;
+		font-weight: bold;
+	}
+	
+	.topNavbar{
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 100;
+	}
 </style>
 </head>
 <body>
@@ -197,6 +328,25 @@ a:hover {
 								<a class="id-text font-default-size" id="writer-id" onclick="writerPage('${post.name}')">${post.name}</a>
 								<a href="#" class="email-text font-default-size">${post.originWriter}</a>
 							</div>
+							<c:if test="${post.name eq member.name}">
+								<div class="modDel">
+									<nav class="navbar navbar-expand-sm" aria-label="Third navbar example"> <!-- 수정,삭제 드롭다운 -->
+				   						<div class="container-fluid">
+											<div class="collapse navbar-collapse" id="navbarsExample03">
+												<ul class="navbar-nav me-auto mb-2 mb-sm-0">
+													<li class="nav-item dropdown">
+														<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false" title="수정,삭제"><i class="bi bi-eraser-fill"></i></a>
+												<ul class="dropdown-menu" aria-labelledby="dropdown03">
+													<li><a class="dropdown-item" href="updateForm.html?member_id=${member.member_id }&postno=${post.postno}">수정</a></li>
+													<li><a class="dropdown-item" onclick="del(${post.postno})">삭제</a></li>
+												</ul>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</nav>
+							</div>
+						</c:if>
 						</div>
 						<!-- 게시물 내용(썸네일, 메뉴, 좋아요 현황, 댓글 목록, 댓글 입력 창 -->
 						<div class="post_content">
