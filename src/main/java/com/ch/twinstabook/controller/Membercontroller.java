@@ -195,8 +195,8 @@ public class Membercontroller {
 	@RequestMapping("myPage")
 	public String myPage(Model model, HttpSession session) {
 		String member_id = (String)session.getAttribute("member_id");
-		int postTotal = ps.postTotal(member_id);			// 작성한 포스트 갯수
 		Member member = ms.select(member_id);		// 맴버 조회
+		int postTotal = ps.postTotal(member_id);			// 작성한 포스트 갯수
 		List<Post> post = ps.postList(member_id);		// 포스트 리스트
 		for(Post post2 : post) {
 			// 최초 좋아요
@@ -226,10 +226,10 @@ public class Membercontroller {
 		return "page/myPage";
 	}
 	@RequestMapping("writerPage")
-	private String writerPage(Model model, String member_id) {
-		int postTotal = ps.postTotal(member_id);			// 작성한 포스트 갯수
-		Member member = ms.select(member_id);		// 맴버 조회
-		List<Post> post = ps.postList(member_id);		// 포스트 리스트
+	private String writerPage(Model model, String name) {
+		int postTotal = ps.postTotal(name);			// 작성한 포스트 갯수
+		Member member = ms.selectName(name);		// 맴버 조회
+		List<Post> post = ps.postList(member.getMember_id());		// 포스트 리스트
 		for(Post post2 : post) {
 			// 최초 좋아요
 			String firstLike = rs.firstLike(post2.getPostno());
@@ -257,21 +257,22 @@ public class Membercontroller {
 		return "page/follow";		// 일단 page폴더에 해놓은겁니다!
 	}
 	@RequestMapping("search")
-	private String search(Model model, String id, HttpSession session) {
+	private String search(Model model, String name, HttpSession session) {
 		String member_id =(String)session.getAttribute("member_id");	// 세션에 저장된 아이디
+		Member sessionMember = ms.select(member_id);		// 세션에서 받은 아이디로 select
+		Member member = ms.selectName(name);	// 입력받은 아이디로 select
+		
 		int result = 0;
-		Member member = ms.select(id);	// 입력받은 아이디
 		if (member != null) {
-			if (member_id.equals(member.getMember_id())) {
-				result = 1;		// 세션에 저장된 아이디와 입력받은 아이디가 같음
+			if (sessionMember.getName().contentEquals(member.getName())) {
+				result = 1;		// 세션에 저장된 name과 입력받은 name이 같음
 			} else {
-				result = 0;		// 세션에 저장된 아이디와 입력받은 아이디가 같지 않음
+				result = 0;		// 세션에 저장된 name과 입력받은 name이 같지 않음
 			}
 		} else {
 			result = -1;	// 없는 아이디
 		}
-		model.addAttribute("id", id);
-		model.addAttribute("member_id", member_id);		
+		model.addAttribute("name", name);
 		model.addAttribute("result", result);
 		return "public/search";
 	}

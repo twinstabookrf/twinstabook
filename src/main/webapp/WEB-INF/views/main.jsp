@@ -41,8 +41,8 @@
 		textEle.css('height', textEleHeight);
 	};
 	/* 작성자 이름 누르면 writerPage로 가는 함수 */
-	function writerPage(member_id) {
-		location.href="writerPage.html?member_id="+member_id;
+	function writerPage(name) {
+		location.href="writerPage.html?name="+name;
 	}
 </script>
 <style type="text/css">
@@ -194,7 +194,7 @@ a:hover {
 							<a href="#" class="m-2 img-circle"> <img alt="프사"
 								src="${path}/resources/${post.profile_pic}"></a>
 							<div class="d-flex flex-column align-items-start">
-								<a class="id-text font-default-size" id="writer-id" onclick="writerPage('${post.member_id}')">${post.member_id}</a>
+								<a class="id-text font-default-size" id="writer-id" onclick="writerPage('${post.name}')">${post.name}</a>
 								<a href="#" class="email-text font-default-size">${post.originWriter}</a>
 							</div>
 						</div>

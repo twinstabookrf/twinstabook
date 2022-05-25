@@ -15,7 +15,7 @@
 </c:if>
 <c:if test="${result == 0 }">
 	<script type="text/javascript">
-		location.href="writerPage.html?member_id=${id}";
+		location.href="writerPage.html?name=${name}";
 	</script>
 </c:if>
 <c:if test="${result < 0 }">

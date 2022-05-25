@@ -19,6 +19,8 @@ public interface MemberDao {
 
 	List<Member> selectAll();
 
+	Member selectName(String name);
+
 	
 }
 

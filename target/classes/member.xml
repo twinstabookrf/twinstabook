@@ -7,6 +7,10 @@
 	<select id="select" parameterType="string" resultType="member">
 		select * from member where member_id=#{member_id}
 	</select>
+	<!-- selectName -->
+	<select id="selectName" parameterType="string" resultType="member">
+		select * from member where name=#{name}
+	</select>
 	
 	<!-- checkHint -->
 	<select id="checkHint" parameterType="member" resultType="int">

@@ -40,12 +40,14 @@ public class PostController {
 	@RequestMapping("main")
 	public String main(Model model, HttpServletRequest request, HttpSession session) {
 		String member_id = (String)session.getAttribute("member_id");
+		
 		// fee에 보여줄 post 추출
 		List<Post> postList = ps.list(1, 10);
 		for(Post post : postList) {
 			// post에 작성자(원작자, 게시자) 이름 추가
 			Member postWriter = ms.select(post.getMember_id());
 			Member postOrigin = ms.select(post.getOrigin_member_id());
+			post.setName(postWriter.getName());
 			post.setWriter(postWriter.getName());
 			post.setOriginWriter(postOrigin.getName());
 			// 작성자 프로필 사진

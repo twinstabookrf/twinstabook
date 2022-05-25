@@ -49,6 +49,11 @@ public class MemberServiceImpl implements MemberService{
 		return md.selectAll();
 	}
 
+	@Override
+	public Member selectName(String name) {
+		return md.selectName(name);
+	}
+
 
 
 }

@@ -48,6 +48,15 @@
 				alert("파일을 첨부하거나 내용을 입력해 주세요 ! :)");
 				return false;
 			}
+			// 업로드 확장자 체크
+			var fileVal = $("#file").val(); 
+		    fileVal = fileVal.slice(fileVal.indexOf(".")+1).toLowerCase(); 
+		    if(fileVal != "jpg" && fileVal != "png" && fileVal != "jpeg" && fileVal != "gif" && fileVal != "mp4"){ 
+			alert("확장자가 jpg, png, jpeg, gif, mp4 파일만 가능합니다 :)"); 
+			 $("#file").val(""); // input file 파일명을 지우기
+			 $("#showFiles").text("");	 //showFiles 텍스트 지우기
+			return false;
+		    }
 		}
 		// 파일 업로드하면 밑에 파일명 보여주기
 		window.onload = function(){

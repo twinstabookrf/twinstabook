@@ -27,6 +27,7 @@ public class Post {
 	private String profile_pic;
 	private String originWriter;
 	private String firstLike;	
+	private String name;
 	private List<Reply> replyList;
 	private List<Media> mediaList;
 }
