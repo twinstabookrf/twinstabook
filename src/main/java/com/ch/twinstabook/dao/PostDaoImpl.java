@@ -58,4 +58,9 @@ public class PostDaoImpl implements PostDao{
 		return sst.selectOne("postns.postTotal", member_id);
 	}
 
+	@Override
+	public void updateRts(int postno) {
+		sst.update("postns.updateRts", postno);
+	}
+
 }

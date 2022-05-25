@@ -3,7 +3,7 @@ delete from MEMBER;
 create table member (
 member_id varchar2(32)   primary key,								-- 아이디
 pwd varchar2(100) not null,											-- 암호
-name varchar2(32) not null,											-- 이름(별명)
+name varchar2(32) not null unique,											-- 이름(별명)
 email varchar2(32) not null,										-- 이메일
 profile_pic varchar2(32) default 'pro.png',											-- 프로필사진
 reg_date date not null,												-- 가입일
@@ -31,17 +31,18 @@ create sequence seq_post;		-- 포스트 시퀀스
 
 create table post(
 postno number(9)  primary key,							-- 게시글번호
-origin_member_id varchar2(32) not null,				-- 원작자 아이디
+origin_name varchar2(32) not null,						-- 원작자 닉네임
 member_id varchar2(32) not null ,							-- 작성자 아이디
 --title varchar2(32) not null,									-- 제목
 content	varchar2(2048),											-- 내용
 crt_date date not null,											-- 작성일
 mdf_date date,														-- 수정일
--- views number(9)	not null,									-- 조회수
+-- views number(9)	not null,								-- 조회수
 likes number(9)	not null,										-- 좋아요
-rts	number(9)	not null,											-- rt횟수
+rts number(9)	not null,										-- rt횟수
+rtContent varchar2(2048),										-- rt후 본인글 내용 
 CONSTRAINT fk_member_id foreign key(member_id) references member(member_id),
-CONSTRAINT fk_origin_member_id foreign key(origin_member_id) references member(member_id)
+CONSTRAINT fk_origin_name foreign key(origin_name) references member(name)
 );
 select * from post;
 
@@ -112,6 +113,7 @@ drop table media;
 delete from media;
 drop sequence  seq_media;
 create sequence seq_media;	-- 미디어 시퀀스
+
 create table media(
 mediano number(9) primary key,							-- 임시키
 postno number(9) ,												-- 게시물번호

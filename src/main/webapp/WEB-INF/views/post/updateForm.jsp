@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Twinstabook - 트위터와 인스타그램과 페이스북으로부터</title>
 <link href="resources/css/postWriteForm.css" rel="stylesheet" type="text/css">
 <link href="resources/css/font.css" rel="stylesheet" type="text/css">
 </head>

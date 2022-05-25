@@ -22,5 +22,7 @@ public interface PostService {
 
 	int postTotal(String member_id);
 
+	void updateRts(int postno);
+
 }
 

@@ -21,6 +21,8 @@ public interface PostDao {
 	List<Post> postList(String member_id);
 
 	int postTotal(String member_id);
+
+	void updateRts(int postno);
 	
 }
 

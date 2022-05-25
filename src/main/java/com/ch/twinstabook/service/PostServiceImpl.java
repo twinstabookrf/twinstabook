@@ -54,6 +54,11 @@ public class PostServiceImpl implements PostService{
 		return pd.postTotal(member_id);
 	}
 
+	@Override
+	public void updateRts(int postno) {
+		pd.updateRts(postno);
+	}
+
 
 }
 

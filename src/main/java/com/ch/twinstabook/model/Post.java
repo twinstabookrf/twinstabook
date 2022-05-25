@@ -10,7 +10,7 @@ import lombok.Data;
 public class Post {
 	// DB
 	private int postno;
-	private String origin_member_id;
+	private String origin_name;
 	private String member_id;
 	private String content	;
 	private Date crt_date;
@@ -18,6 +18,7 @@ public class Post {
 	private int views;
 	private int likes;
 	private int rts;
+	private String rtContent;
 	
 	// 업로드용(input의 name과 fileName이 일치 해야함)
 	private MultipartFile file;

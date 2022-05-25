@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -39,17 +40,15 @@ public class PostController {
 
 	@RequestMapping("main")
 	public String main(Model model, HttpServletRequest request, HttpSession session) {
-		String member_id = (String)session.getAttribute("member_id");
-		
 		// fee에 보여줄 post 추출
 		List<Post> postList = ps.list(1, 10);
 		for(Post post : postList) {
 			// post에 작성자(원작자, 게시자) 이름 추가
 			Member postWriter = ms.select(post.getMember_id());
-			Member postOrigin = ms.select(post.getOrigin_member_id());
+			/* Member postOrigin = ms.select(post.getOrigin_name()); */
 			post.setName(postWriter.getName());
 			post.setWriter(postWriter.getName());
-			post.setOriginWriter(postOrigin.getName());
+			/* post.setOrigin_name(postOrigin.getName()); */
 			// 작성자 프로필 사진
 			post.setProfile_pic(postWriter.getProfile_pic());
 			// 최초 좋아요
@@ -67,10 +66,9 @@ public class PostController {
 			// post에 사진/동영상 리스트 추가
 			post.setMediaList(mds.list(post.getPostno()));
 		}
-
-		Member member = ms.select(member_id);
+		String member_id = (String)session.getAttribute("member_id");
 		
-		model.addAttribute("member",member); 
+		model.addAttribute("member_id",member_id);
 		model.addAttribute("postList",postList);
 		return "main";
 	}
@@ -195,5 +193,46 @@ public class PostController {
 		model.addAttribute("result", result);
 		
 		return "post/delete";
+	}
+	@RequestMapping("reTwinForm")
+	private String reTwinForm(Model model, int postno) {
+		model.addAttribute("postno", postno);
+		return "post/reTwinForm";
+	}
+	@RequestMapping("reTwin")
+	private String reTwin(int postno, String rtContent, Model model, HttpSession session) {
+		String sessionId = (String)session.getAttribute("member_id");
+		Post post = new Post();
+		
+		// 마지막 postno 추출
+		int maxpostno = ps.getPostno();
+		post.setPostno(maxpostno);
+		
+		ps.updateRts(postno);	// rt횟수 증가
+		Post post2 = ps.select(postno);	// 받아온 postno로 조회한 post
+		
+		
+		post.setOrigin_name(post2.getOrigin_name());
+		post.setMember_id(sessionId);
+		if (post2.getContent() != null) {
+			post.setContent(post2.getContent());
+		}
+		post.setRtContent(rtContent);
+		int result = 0;
+		result = ps.insertPost(post);	// 게시물 작성
+		model.addAttribute("result", result);
+		
+		List<Media> media2 = mds.list(postno);	// 받아온 postno로 조회한 mediaList
+		List<Media> media = new ArrayList<Media>();
+		
+		 for(int i=0; i<media2.size(); i++) {
+			 Media md = new Media();
+			 md.setFileName(media2.get(i).getFileName());
+			 md.setPostno(maxpostno);
+			 media.add(md);
+		 }
+		 mds.insertMedia(media);
+
+		return "post/reTwin";
 	}
 }

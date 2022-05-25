@@ -5,318 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Twinstabook - ${member.member_id }</title>
+<title>Twinstabook - ${postList.name }</title>
 <link href="resources/css/font.css" rel="stylesheet" type="text/css">
+<link href="resources/css/writerPage.css" rel="stylesheet" type="text/css">
 <script src="//cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-<script type="text/javascript">
-/* 게시글 삭제 함수 */
-function del(postno) {
-	var cf = confirm("게시물을 삭제 하시겠습니까 ?");
-	if (cf) location.href="delete.html?postno="+postno;
-	else alert("취소 되었습니다!");
-};
-/* 작성자 이름 누르면 writerPage로 가는 함수 */
-function writerPage(name) {
-	location.href="writerPage.html?name="+name;
-}
-/* 팔로잉하는 함수 */
-function following(member_id) {
-	var cf = confirm(member_id+"님을 "+"팔로우 하시겠습니까 ?");
-	if (cf) location.href="follow.html?member_id="+member_id;
-	else alert("취소 :)");
-}
-$( document ).ready( function() {
-    $( '.slider' ).bxSlider();
-  } );
-$(function() {
-	// 댓글창 초기 설정 event listener 추가하기
-	$('#reply_input').keydown(function(event) {// 키가 눌릴 때
-		if (event.keyCode == 13) {// enter면서
-			if (!event.shiftKey) { // shift가 안눌린상태면
-				event.preventDefault();// enter 입력 무시
-				$('#reply_submit').click();// submit
-			}
-			// enter면서 shift가 눌리면  개행
-		}
-
-		else if ($('#reply_input').val() != "") {
-			$('#reply_submit').attr("disabled", false);
-		}
-		// 댓글 입력창이 비어있으면 submit disable
-		else {
-			$('#reply_submit').attr("disabled", true);
-		}
-		adjustHeight();// 어쨌든 키가 눌릴 때 마다 크기 조절
-	});
-});
-/* textare 자동 크기조절 함수 */
-function adjustHeight() {
-	var textEle = $('#reply_input');
-	textEle[0].style.height = 'auto';
-	var textEleHeight = textEle.prop('scrollHeight');
-	textEle.css('height', textEleHeight);
-};
-</script>
-<style>
-	.head {
-		width: 40%;
-		margin: 0 auto;
-		padding-top: 50px;
-		padding-bottom: 10px;
-		margin-top: 50px;
-	}
-	
-	.headTable {
-		margin: auto;
-		width: 100%;
-	}
-	
-	.text_id {
-		font-size: 1.2em;
-		color: #4793d7;
-	}
-	
-	.following {
-		text-decoration: none;
-		color: black;
-	}
-	
-	.following:hover {
-		font-weight: bold;
-		color: black;
-	}
-	
-	.main_nav {
-		width: 40%;
-		margin: 0 auto;
-		padding-bottom: 10px;
-	}
-	
-	.mainNavLogo {
-		width: 40px;
-		height: 32px;
-	}
-	
-	.main_nav_icon:hover {
-		font-weight: bold;
-		font-size: 1.1em;
-		cursor: Default;
-		color: #4793d7;
-	}
-	
-	.proImg {
-		width: 150px;
-	    height: 150px; 
-	    border-radius: 70%;
-	    overflow: hidden;
-	}
-	
-	.profile{
-		width: 100%;
-	    height: 100%;
-	    object-fit: cover;
-	}
-	
-	/* 메인부분 */
-	.main {
-		width: 40%;
-		margin: 0 auto;
-		border: 1px solid #d3d3d3;
-		margin-bottom: 15px;
-	}
-	#dropdown03{
-		color: black;
-	}
-	body {
-		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-			Helvetica, Arial, sans-serif;
-	}
-
-	a {
-		color: black;
-		text-decoration: none;
-	}
-	
-	a:hover {
-		color: black;
-	}
-	
-	.align-items-center {
-		align-items: center !important
-	}
-	
-	.fixed-width {
-		width: 612px;
-	}
-	
-	.img-circle {
-		width: 42px;
-		height: 42px;
-		border-radius: 70%;
-		overflow: hidden;
-	}
-	
-	.img-circle-small {
-		width: 14px;
-		height: 14px;
-		margin-right: 5px;
-	}
-	
-	.img-circle img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-	
-	.menu-icon {
-		font-size: 25px;
-		margin-right: 15px;
-		-webkit-text-stroke: 2px
-	}
-	
-	.mId-text {
-		font-size: 16px;
-		font-weight: bold;
-		color: #4793d7;
-		cursor: pointer;
-	}
-	
-	.mId-text:hover {
-		color: #4793d7;
-	}
-	
-	#nameCrtDate {
-		width: 100%
-	}
-	
-	.id-text {
-		color: #4793d7;
-	}
-	
-	.id-text:hover {
-		color: #4793d7;
-	}
-	
-	.font-default-size {
-		font-size: 14px;
-	}
-	
-	.margin-top {
-		margin-top: 72px;
-	}
-	
-	.cursor {
-		cursor: pointer;
-	}
-	
-	.overflow {
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-	}
-	
-	.crt_date-text {
-		font-size: 0.8em;
-		color: #828282;
-	}
-	
-	.crt_date-text:hover {
-		color: #828282;
-	}
-	
-	.modDel{
-		float: right;
-	}
-	
-	.email-text {
-		color: #828282;
-	}
-	
-	.email-text:hover {
-		color: #828282;
-	}
-	
-	.reply-submit-btn {
-		border: 0;
-		background-color: white;
-		color: #0095f6;
-	}
-	
-	.reply-submit-btn:disabled {
-		color: #8095f6;
-	}
-	
-	.reply_input {
-		position: relative;
-		background: 0 0;
-		border: 0;
-		color: #262626;
-		color: rgba(var(- -i1d, 38, 38, 38), 1);
-		height: 20px;
-		outline: 0;
-		padding: 0;
-		resize: none;
-		overflow: hidden;
-		width: 100%;
-	}
-	
-	#reply_table #rpText{
-		width: 700px;"
-	}
-	
-	.post_writing {
-		width: 95%;
-		margin: 0 auto;
-		padding: 20px 0;
-	}
-	
-	.postContent {
-		font-size: 1.2em;
-	}
-	
-	.postContent2 {
-		font-size: 1.8em;
-	}
-	
-	.post-pics {
-		position: relative;
-		overflow: hidden;
-	}
-	
-	.fixed-square {
-		width: 612px;
-		height: 612px;
-	}
-	
-	.thumnail {
-		cursor: pointer;
-	}
-	
-	.noPost {
-		padding-top: 50px;
-		margin: 0 auto;
-		width: 40%;
-		text-align: center;
-	}
-	
-	.noPost i {
-		font-size: 200px;
-	}
-	
-	.noPost span {
-		font-size: 30px;
-		font-weight: bold;
-	}
-	
-	.topNavbar{
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		z-index: 100;
-	}
-</style>
 </head>
 <body>
 	<!-- topNavbar -->
@@ -364,12 +57,6 @@ function adjustHeight() {
 					<a href="#" class="m-2 img-circle"> <img alt="프사" src="${path}/resources/${post.profile_pic}"></a>
 					<div class="d-flex flex-column align-items-start" id="nameCrtDate">
 						<a class="mId-text" onclick="writerPage('${member.name}')">${member.name}</a>
-						<c:if test="${post.mdf_date eq null }">
-							<a href="#" class="crt_date-text font-default-size">작성일 : ${post.crt_date}</a>
-						</c:if>
-						<c:if test="${post.mdf_date ne null }">
-							<a href="#" class="crt_date-text font-default-size">수정일 : ${post.mdf_date}</a>
-						</c:if>
 					</div>
 					<c:if test="${member_id eq member.member_id }">
 						<div class="modDel">
@@ -390,7 +77,23 @@ function adjustHeight() {
 							</nav>
 						</div>
 					</c:if>
+					<!-- 본인의 게시글이 아니면 생기는 rt버튼 -->
+					<c:if test="${post.member_id ne member_id }">
+						<div class="reTwin">
+							<a onclick="reTwin('${post.postno}')" title="RT"><i class="bi bi-bootstrap-reboot" id="reTwinBtn"></i>&nbsp</a>
+						</div>
+					</c:if>
 				</div>
+				<!-- rt게시물 원작자 표시 -->
+				<c:if test="${post.name ne post.origin_name }">
+					<div class="rt1">
+						<span class="rtId">
+							<img src="${path}/resources/logo/logo-img-w.png" width="15px" height="15px">
+							<a onclick="writerPage('${post.origin_name}')">${post.origin_name }</a>
+						</span>
+						<span class="rtCo">님의 게시물을 ReTwin&nbsp</span>
+					</div>
+				</c:if>
 				<!-- 게시물 글내용 -->
 				<c:if test="${!empty post.content }">
 					<c:if test="${empty post.mediaList }">
@@ -427,6 +130,17 @@ function adjustHeight() {
 						</div> 
 						<!-- post-pics -->
 					</c:if>
+					<!-- rtContent가 있을 시 -->
+					<c:if test="${!empty post.rtContent }">
+					<div class="post_writing" align="left">
+						<table class="font-default-size content-table">
+							<tr>
+								<td style="color: #4793d7;">${member.name }&nbsp</td>
+								<td class="postContent">${post.rtContent }</td>
+							</tr>
+						</table>
+					</div>
+					</c:if>
 					<!-- post.mediaList -->
 					<div class="post_foot p-2">
 						<!-- 좋아요, 댓글, DM 메뉴 버튼 -->
@@ -449,25 +163,35 @@ function adjustHeight() {
 							<c:if test="${!empty post.replyList }">
 								<table class="font-default-size">
 									<c:forEach var="reply" items="${post.replyList}">
-										<colgroup>
+<!-- 										<colgroup>
 											<col width="50px">
 											<col width="530px">
 											<col width="20px">
-										</colgroup>
+										</colgroup> -->
 										<tr>
-											<td><a href="#" class="id-text">${reply.writer}</a></td>
-											<td>${reply.content}</td>
+											<td style="width: 5%"><a href="#" class="id-text">${reply.writer}&nbsp</a></td>
+											<td style="width: 100%">${reply.content}</td>
 											<!-- 댓글 좋아요 버튼 -->
-											<td><input type="checkbox" id="like1" class="likes" name="like1" hidden="hidden">
-												<label class="cursor" onclick="reply_submit()" for="like1"><i class="bi bi-heart"></i></label></td>
+											<td style="width: 5%"><input type="checkbox" id="like1" class="likes" name="like1" hidden="hidden">
+												<label class="cursor" id="replyLike" onclick="reply_submit()" for="like1"><i class="bi bi-heart"></i></label></td>
 										</tr>
 									</c:forEach>
 									<!-- repylList -->
 								</table>
 							</c:if>
+							<!-- 작성일/수정일 -->
+							<div class="crtMod">
+								<c:if test="${post.mdf_date eq null }">
+									<a href="#" class="crt_date-text font-default-size">작성일 : ${post.crt_date}</a>
+								</c:if>
+								<c:if test="${post.mdf_date ne null }">
+									<a href="#" class="crt_date-text font-default-size">수정일 : ${post.mdf_date}</a>
+								</c:if>
+								<span class="rts">RT횟수 : ${post.rts }</span>
+							</div>
+							<hr>
 							<!-- replyList -->
 							<!-- 댓글 입력창 -->
-							<hr>
 							<div class="post_reply_input d-flex align-items-center">
 								<form action="replyInsert.html" onsubmit="return rply_chk()" id="reply_form" 
 									name="reply_form" class="m-0 p-0 d-flex align-items-baseline">
@@ -497,5 +221,60 @@ function adjustHeight() {
 		</c:forEach>
 		<!-- postList -->
 	</c:if>
+	<script type="text/javascript">
+	/* 게시글 삭제 함수 */
+	function del(postno) {
+		var cf = confirm("게시물을 삭제 하시겠습니까 ?");
+		if (cf) location.href="delete.html?postno="+postno;
+		else alert("취소 되었습니다!");
+	};
+	/* 작성자 이름 누르면 writerPage로 가는 함수 */
+	function writerPage(name) {
+		location.href="writerPage.html?name="+name;
+	}
+	/* ReTwin 하는 함수 */
+	function reTwin(postno) {
+		var cf = confirm("ReTwin 하시겠습니까 ?");
+		if (cf) location.href="reTwinForm.html?postno="+postno;
+		else alert("취소 되었습니다!");
+	}
+	/* 팔로잉하는 함수 */
+	function following(member_id) {
+		var cf = confirm(member_id+"님을 "+"팔로우 하시겠습니까 ?");
+		if (cf) location.href="follow.html?member_id="+member_id;
+		else alert("취소 :)");
+	}
+	$( document ).ready( function() {
+	    $( '.slider' ).bxSlider();
+	  } );
+	$(function() {
+		// 댓글창 초기 설정 event listener 추가하기
+		$('#reply_input').keydown(function(event) {// 키가 눌릴 때
+			if (event.keyCode == 13) {// enter면서
+				if (!event.shiftKey) { // shift가 안눌린상태면
+					event.preventDefault();// enter 입력 무시
+					$('#reply_submit').click();// submit
+				}
+				// enter면서 shift가 눌리면  개행
+			}
+	
+			else if ($('#reply_input').val() != "") {
+				$('#reply_submit').attr("disabled", false);
+			}
+			// 댓글 입력창이 비어있으면 submit disable
+			else {
+				$('#reply_submit').attr("disabled", true);
+			}
+			adjustHeight();// 어쨌든 키가 눌릴 때 마다 크기 조절
+		});
+	});
+	/* textare 자동 크기조절 함수 */
+	function adjustHeight() {
+		var textEle = $('#reply_input');
+		textEle[0].style.height = 'auto';
+		var textEleHeight = textEle.prop('scrollHeight');
+		textEle.css('height', textEleHeight);
+	};
+	</script>
 </body>
 </html>

@@ -15,7 +15,7 @@
 	
 	<div class="container" align="center">
 		<form action="postWrite.html" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
-			<input type="hidden" name="origin_member_id" value="${member.member_id }">
+			<input type="hidden" name="origin_name" value="${member.name}">
 			<input type="hidden" name="member_id" value="${member.member_id }">
 				<table id="table" class="table table-hover">
 				<caption>게시물 만들기</caption>

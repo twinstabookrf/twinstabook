@@ -21,18 +21,29 @@
 	<select id="postTotal" parameterType="string" resultType="integer">
 		select count(*) from post where member_id=#{member_id}
 	</select>
-	<insert id="insertPost" parameterType="post"><!-- jixmxx를 각각의 컬럼명으로 바꿔야함 -->
-		insert into post values(#{postno}, #{origin_member_id}, #{member_id}, 
+	<!-- 게시물 작성 -->
+	<insert id="insertPost" parameterType="post">
+		insert into post values(#{postno}, #{origin_name}, #{member_id}, 
 		<if test="content != null">	<!-- #{content}있을 때 -->
 			#{content}
 		</if>									
 		<if test="content == null"><!-- #{content}없을 때 -->
 			null
 		</if>
-		, sysdate, null, 0, 0)
+		, sysdate, null, 0, 0, 
+		<if test="rtContent != null">	<!-- #{rtContent}있을 때 -->
+			#{rtContent})
+		</if>									
+		<if test="rtContent == null"><!-- #{rtContent}없을 때 -->
+			null)
+		</if>
 	</insert>
 	<update id="update" parameterType="post">
 		update post set content=#{content}, mdf_date=sysdate where postno=#{postno}
+	</update>
+	<!-- RT횟수 증가 -->
+	<update id="updateRts" parameterType="integer">
+		update post set rts = rts+1 where postno=#{postno}
 	</update>
 	<delete id="delete" parameterType="integer">
 		delete from post where postno=#{postno}

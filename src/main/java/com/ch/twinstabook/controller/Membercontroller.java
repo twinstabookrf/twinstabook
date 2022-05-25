@@ -200,6 +200,8 @@ public class Membercontroller {
 		int postTotal = ps.postTotal(member_id);			// 작성한 포스트 갯수
 		List<Post> post = ps.postList(member_id);		// 포스트 리스트
 		for(Post post2 : post) {
+			Member member2 = ms.select(post2.getMember_id());
+			post2.setName(member2.getName());
 			// 최초 좋아요
 			String firstLike = rs.firstLike(post2.getPostno());
 			post2.setFirstLike(firstLike);
@@ -232,6 +234,8 @@ public class Membercontroller {
 		Member member = ms.selectName(name);		// 맴버 조회
 		List<Post> post = ps.postList(member.getMember_id());		// 포스트 리스트
 		for(Post post2 : post) {
+			Member member2 = ms.select(post2.getMember_id());
+			post2.setName(member2.getName());
 			// 최초 좋아요
 			String firstLike = rs.firstLike(post2.getPostno());
 			post2.setFirstLike(firstLike);
