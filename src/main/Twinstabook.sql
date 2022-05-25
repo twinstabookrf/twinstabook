@@ -1,20 +1,17 @@
 drop table member;
 delete from MEMBER;
 create table member (
-member_id varchar2(32)   primary key,					-- 아이디
-pwd varchar2(100) not null,										-- 암호
-name varchar2(32) not null,										-- 이름(별명)
+member_id varchar2(32)   primary key,								-- 아이디
+pwd varchar2(100) not null,											-- 암호
+name varchar2(32) not null,											-- 이름(별명)
 email varchar2(32) not null,										-- 이메일
 profile_pic varchar2(32),											-- 프로필사진
 reg_date date not null,												-- 가입일
 id_drop char(2) default 'n',										-- 삭제여부
-ask number(5) not null,											-- 암호 찾기 질문
-answer varchar2(50) not null									-- 암호 찾기 답
+ask number(5) not null,												-- 암호 찾기 질문
+answer varchar2(50) not null										-- 암호 찾기 답
 );
 
--- alter table member ADD ask number(5) not null;    				 --이거 사용 !
--- alter table member ADD answer varchar2(50) not null;		     --이거 사용 !
--- alter table member modify(pwd varchar2(100));	 		   	     --이거 사용 !
 
 select * from member;
  
