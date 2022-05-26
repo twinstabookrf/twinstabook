@@ -38,8 +38,13 @@
 			null)
 		</if>
 	</insert>
-	<update id="update" parameterType="post">
+	<!-- 일반 게시물 업데이트 -->
+	<update id="update" parameterType="post">	
 		update post set content=#{content}, mdf_date=sysdate where postno=#{postno}
+	</update>
+	<!-- RT 게시물 업데이트 -->
+	<update id="rtUpdate" parameterType="post">	
+		update post set rtContent=#{rtContent}, mdf_date=sysdate where postno=#{postno}
 	</update>
 	<!-- RT횟수 증가 -->
 	<update id="updateRts" parameterType="integer">

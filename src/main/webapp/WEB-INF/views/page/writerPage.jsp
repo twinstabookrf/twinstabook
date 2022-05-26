@@ -26,7 +26,7 @@
 					<button class="btn btn-primary btn-sm" onclick="following('${member.member_id}')">팔로우</button>
 				</td>
 				<c:if test="${member.member_id eq member_id }">
-					<td colspan="2" style="text-align: center;">
+					<td colspan="2" style="text-align: center; float: right;">
 						<button class="btn btn-outline-dark" title="프로필 편집"><i class="bi bi-gear-fill"></i></button>&nbsp &nbsp
 						<button class="btn btn-outline-dark" onclick="location.href='postWriteForm.html'" title="글쓰기"><i class="bi bi-pencil-fill"></i></button>
 					</td>
@@ -92,7 +92,7 @@
 							<a onclick="writerPage('${post.origin_name}')">${post.origin_name }</a>
 						</span>
 						<span class="rtCo">님의 게시물을 ReTwin&nbsp</span>
-					</div>
+					</div><br>
 				</c:if>
 				<!-- 게시물 글내용 -->
 				<c:if test="${!empty post.content }">
@@ -135,7 +135,7 @@
 					<div class="post_writing" align="left">
 						<table class="font-default-size content-table">
 							<tr>
-								<td style="color: #4793d7;">${member.name }&nbsp</td>
+								<td style="color: #4793d7;"><i class="bi bi-twitter"></i> ${member.name }&nbsp</td>
 								<td class="postContent">${post.rtContent }</td>
 							</tr>
 						</table>

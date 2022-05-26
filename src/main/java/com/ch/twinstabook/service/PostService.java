@@ -24,5 +24,7 @@ public interface PostService {
 
 	void updateRts(int postno);
 
+	int rtUpdate(Post post);
+
 }
 

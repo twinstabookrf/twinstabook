@@ -23,6 +23,8 @@ public interface PostDao {
 	int postTotal(String member_id);
 
 	void updateRts(int postno);
+
+	int rtUpdate(Post post);
 	
 }
 

@@ -26,8 +26,8 @@
 					<button class="btn btn-primary btn-sm" onclick="following('${member.member_id}')">팔로우</button>
 				</td>
 				<c:if test="${member.member_id eq member_id }">
-					<td colspan="2" style="text-align: center;">
-						<button class="btn btn-outline-dark" title="프로필 편집"><i class="bi bi-gear-fill"></i></button>&nbsp &nbsp
+					<td colspan="2" style="text-align: center; float: right;">
+						<button class="btn btn-outline-dark" title="프로필 편집"><i class="bi bi-gear-fill"></i></button>&nbsp
 						<button class="btn btn-outline-dark" onclick="location.href='postWriteForm.html'" title="글쓰기"><i class="bi bi-pencil-fill"></i></button>
 					</td>
 				</c:if>
@@ -38,7 +38,7 @@
 					<a class="following" href="#">팔로우 ${follow }</a></td>
 			</tr>
 			<tr>
-				<td colspan="4">${greeting} ${greeting} ${greeting}  ${greeting} ${greeting} ${greeting}</td>
+				<td colspan="4">${greeting}${greeting}${greeting}${greeting}${greeting}</td>
 			</tr>
 		</table>
 		<hr>
@@ -59,23 +59,44 @@
 						<a class="mId-text" onclick="writerPage('${member.name}')">${member.name}</a>
 					</div>
 					<c:if test="${member_id eq member.member_id }">
-						<div class="modDel">
-							<nav class="navbar navbar-expand-sm" aria-label="Third navbar example"> <!-- 수정,삭제 드롭다운 -->
-			   					<div class="container-fluid">
-									<div class="collapse navbar-collapse" id="navbarsExample03">
-										<ul class="navbar-nav me-auto mb-2 mb-sm-0">
-											<li class="nav-item dropdown">
-												<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false" title="수정,삭제"><i class="bi bi-eraser-fill"></i></a>
-											<ul class="dropdown-menu" aria-labelledby="dropdown03">
-												<li><a class="dropdown-item" href="updateForm.html?member_id=${member.member_id }&postno=${post.postno}">수정</a></li>
-												<li><a class="dropdown-item" onclick="del(${post.postno})">삭제</a></li>
+						<c:if test="${post.name eq post.origin_name }">
+							<div class="modDel">
+								<nav class="navbar navbar-expand-sm" aria-label="Third navbar example"> <!-- 수정,삭제 드롭다운 -->
+				   					<div class="container-fluid">
+										<div class="collapse navbar-collapse" id="navbarsExample03">
+											<ul class="navbar-nav me-auto mb-2 mb-sm-0">
+												<li class="nav-item dropdown">
+													<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false" title="수정,삭제"><i class="bi bi-eraser-fill"></i></a>
+												<ul class="dropdown-menu" aria-labelledby="dropdown03">
+													<li><a class="dropdown-item" href="updateForm.html?member_id=${member.member_id }&postno=${post.postno}">수정</a></li>
+													<li><a class="dropdown-item" onclick="del(${post.postno})">삭제</a></li>
+												</ul>
+												</li>
 											</ul>
-											</li>
-										</ul>
+										</div>
 									</div>
-								</div>
-							</nav>
-						</div>
+								</nav>
+							</div>
+						</c:if>
+						<c:if test="${post.name ne post.origin_name }">
+							<div class="modDel">
+								<nav class="navbar navbar-expand-sm" aria-label="Third navbar example"> <!-- 수정,삭제 드롭다운 -->
+				   					<div class="container-fluid">
+										<div class="collapse navbar-collapse" id="navbarsExample03">
+											<ul class="navbar-nav me-auto mb-2 mb-sm-0">
+												<li class="nav-item dropdown">
+													<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false" title="수정,삭제"><i class="bi bi-eraser-fill"></i></a>
+												<ul class="dropdown-menu" aria-labelledby="dropdown03">
+													<li><a class="dropdown-item" href="rtUpdateForm.html?name=${post.name }&postno=${post.postno}">수정</a></li>
+													<li><a class="dropdown-item" onclick="del(${post.postno})">삭제</a></li>
+												</ul>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</nav>
+							</div>
+						</c:if>
 					</c:if>
 				</div>
 				<!-- rt게시물 원작자 표시 -->
@@ -86,7 +107,7 @@
 							<a onclick="writerPage('${post.origin_name}')">${post.origin_name }</a>
 						</span>
 						<span class="rtCo">님의 게시물을 ReTwin&nbsp</span>
-					</div>
+					</div><br>
 				</c:if>
 				<!-- 게시물 글내용 -->
 				<c:if test="${!empty post.content }">
@@ -129,7 +150,7 @@
 					<div class="post_writing" align="left">
 						<table class="font-default-size content-table">
 							<tr>
-								<td style="color: #4793d7;">${member.name }&nbsp</td>
+								<td style="color: #4793d7;"><i class="bi bi-twitter"></i> ${member.name }&nbsp</td>
 								<td class="postContent">${post.rtContent }</td>
 							</tr>
 						</table>

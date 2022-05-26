@@ -14,28 +14,18 @@
 	<%@include file="../public/topNavbar.jsp" %>
 	
 	<div class="container" align="center">
-		<form action="update.html" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
+		<form action="rtUpdate.html" method="post" enctype="multipart/form-data" name="frm">
 			<input type="hidden" name="postno" value="${post.postno }">
-			<input type="hidden" name="member_id" value="${member_id }">
+			<input type="hidden" name="name" value="${name }">
 				<table id="table" class="table table-hover">
-				<caption>게시물 수정</caption>
+				<caption>ReTwin 게시물 수정</caption>
 					<%-- <tr>
 						<td colspan="2">${member.profile_pic}${member.member_id}</td>
 					</tr> --%>
-						<tr>
-							<th>파일</th>
-							<td><input class="form-control" id="file" type="file" name="file" multiple="multiple">
-								 <div id="showFiles">
-								 	<c:forEach items="${media }" var="media">
-								 		${media.fileName }<br>
-								 	</c:forEach>
-								 </div>
-							</td>
-						</tr>
 					<tr>
 						<th>내용<br><br><sup>(<span id="nowByte">0</span>/2000bytes)</sup></th>
-						<td><textarea  class="form-control" id="content" rows="5" cols="55" name="content" maxlength="1000"
-							placeholder="내용을 입력하세요." onkeyup="fn_checkByte(this)">${post.content }</textarea></td>
+						<td><textarea  class="form-control" id="content" rows="5" cols="55" name="rtContent" maxlength="1000"
+							placeholder="내용을 입력하세요." onkeyup="fn_checkByte(this)">${post.rtContent }</textarea></td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center"><input class="btn btn-sm btn-outline-dark" type="submit" value="수정"></td>
@@ -44,25 +34,6 @@
 		</form>
 	</div>
 	<script type="text/javascript">
-		//파일or내용 중 하나는 꼭 첨부
-		function chk() {
-			if (frm.file.value == "" && frm.content.value == "") {
-				alert("파일을 첨부하거나 내용을 입력해 주세요 ! :)");
-				return false;
-			}
-		}
-		// 파일 업로드하면 밑에 파일명 보여주기
-		window.onload = function(){
-		    target = document.getElementById('file');
-		    target.addEventListener('change', function(){
-		        fileList = "";
-		        for(i = 0; i < target.files.length; i++){
-		            fileList += target.files[i].name + '<br>';
-		        }
-		        target2 = document.getElementById('showFiles');
-		        target2.innerHTML = fileList;
-		    });
-		}
 		//textarea 바이트 수 체크하는 함수
 		function fn_checkByte(obj){
 		    const maxByte = 2000; //최대 2000바이트

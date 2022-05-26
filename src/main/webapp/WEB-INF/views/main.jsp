@@ -403,7 +403,7 @@ function adjustHeight() {
 							<a onclick="writerPage('${post.origin_name}')">${post.origin_name }</a>
 						</span>
 						<span class="rtCo">님의 게시물을 ReTwin&nbsp</span>
-					</div>
+					</div><br>
 				</c:if>
 				<!-- 게시물 글내용 -->
 				<c:if test="${!empty post.content }">
@@ -446,7 +446,7 @@ function adjustHeight() {
 					<div class="post_writing" align="left">
 						<table class="font-default-size content-table">
 							<tr>
-								<td style="color: #4793d7;">${post.name }&nbsp</td>
+								<td style="color: #4793d7;"><i class="bi bi-twitter"></i> ${post.name }&nbsp</td>
 								<td class="postContent">${post.rtContent }</td>
 							</tr>
 						</table>

@@ -63,4 +63,9 @@ public class PostDaoImpl implements PostDao{
 		sst.update("postns.updateRts", postno);
 	}
 
+	@Override
+	public int rtUpdate(Post post) {
+		return sst.update("postns.rtUpdate", post);
+	}
+
 }

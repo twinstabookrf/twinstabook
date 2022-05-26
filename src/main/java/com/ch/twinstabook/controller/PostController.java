@@ -176,6 +176,28 @@ public class PostController {
 		model.addAttribute("result", result);		
 		return "post/update";
 	}
+	@RequestMapping("rtUpdateForm")
+	private String rtUpdateForm(Model model, int postno, String name) {
+		Post post = ps.select(postno);		// postno별 post조회
+		
+		model.addAttribute("name", name);
+		model.addAttribute("post", post);
+		return "post/rtUpdateForm";
+	}
+	
+	@RequestMapping("rtUpdate")
+	private String rtUpdate(Model model, Post post) {
+		String rtContent = post.getRtContent();
+ 		
+ 		int result = 0;
+
+ 		post.setRtContent(rtContent);
+ 		result = ps.rtUpdate(post);		// rtContent 업데이트
+ 		
+ 		model.addAttribute("result", result);
+		return "post/rtUpdate";
+	}
+	
 	@RequestMapping("delete")
 	private String delete(int postno, Model model, HttpSession session) {
 		String member_id = (String)session.getAttribute("member_id");
