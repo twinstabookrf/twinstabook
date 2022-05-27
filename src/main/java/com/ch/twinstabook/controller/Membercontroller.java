@@ -103,15 +103,14 @@ public class Membercontroller {
 		String fileName = member.getFile().getOriginalFilename();
 		if(fileName != null && !fileName.equals("")) {  
 			 member.setProfile_pic(fileName); 
-			String real = session.getServletContext().getRealPath("/resources  /upload");
+			String real = session.getServletContext().getRealPath("/resources/upload");
 			FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
 			fos.write(member.getFile().getBytes());
 			fos.close();
 		}
+		member.setProfile_pic(fileName);
 		String encPassword = passwordEncoder.encode(member.getPwd());
 		member.setPwd(encPassword);
-		result = ms.updateAll(member);
-		
 		model.addAttribute("result",result);
 		return "join/update1";
 	}

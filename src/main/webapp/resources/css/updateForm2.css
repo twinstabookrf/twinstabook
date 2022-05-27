@@ -5,7 +5,7 @@
     
 }
 form{
-	margin-top:-65px;
+	margin-top:-85px;
     
 }
  form.login{
@@ -18,7 +18,7 @@ form{
 
  main {
     height: 820px;
-    width: 450px;
+    width: 550px;
     padding: 100px 0;
     border: #EFEFEF solid 0px;
     margin: 100px auto;
@@ -45,4 +45,33 @@ form{
 
 .button{
 	font-weight:bolder;
+}
+
+.delete{
+	color: rgb(232, 230, 227);
+    background-color: rgb(165, 29, 42);
+    border-color: rgb(148, 26, 37);
+	margin-top: 10;
+}
+#one{
+	margin-right : 63;	
+}
+
+#two{
+	margin-right : 50;	
+}
+
+#three{
+	margin-right : 50;	
+}
+
+#four{
+	margin-right : 72;	
+}
+
+#five{
+	margin-right : 72;
+}
+#six{
+	margin-right : 85;
 }

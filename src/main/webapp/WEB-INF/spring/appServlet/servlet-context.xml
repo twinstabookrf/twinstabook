@@ -23,8 +23,8 @@
 	
 	<context:component-scan base-package="com.ch.twinstabook" />
 	<!-- 로그인체크-->
-	<!-- <beans:bean id="sc" class="com.ch.twinstabook.service.SessionChk"></beans:bean>
-	<interceptors>
+	 <beans:bean id="sc" class="com.ch.twinstabook.service.SessionChk"></beans:bean>
+	<!-- <interceptors>
 		<interceptor>
 			<mapping path="/main.html"/>
 			<mapping path="/view.html"/>
@@ -32,7 +32,8 @@
 			<mapping path="/updateForm.html"/>
 			<mapping path="/update.html"/>
 			<mapping path="/delete.html"/>
+			<mapping path="updateForm1.html"/>
 			<beans:ref bean="sc"/>
 		</interceptor>
-	</interceptors> -->
+	</interceptors>  -->
 </beans:beans>

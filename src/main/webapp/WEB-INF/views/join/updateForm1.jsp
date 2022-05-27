@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="resources/css/updateForm3.css" rel="stylesheet" type="text/css">
+<link href="resources/css/updateForm2.css" rel="stylesheet" type="text/css">
 <style>
 	.drag-over {background : yellow;}
 	.thumb{width: 200px; padding: 5px; float:left;}
@@ -128,7 +128,6 @@ function chk(){
 	<form action="update1.html" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
 		<div><img alt="썸네일" src="${path}/resources/logo/logo-img-w.png"></div>
 		<div class="logo">Twinstabook</div> 
-		<input type="hidden" name="member_id" value="${member.member_id }">
 			<div class="update-form">
 					<input type="text" id="id" name="member_id" readonly value="${member.member_id }" style="text-align:center; font-weight:bolder">
 			</div> 
@@ -153,7 +152,7 @@ function chk(){
 			<div class="update-form">
 				<div id="four">
 					<span>힌트 선택</span>&nbsp;&nbsp;<select name="ask" id="ask" >
-						<option value="" selected>비밀번호 힌트</option>
+						<option value="0" selected>비밀번호 힌트</option>
 						<option value="1">제1호 보물</option>
 						<option value="2">졸업한 초등학교</option>
 						<option value="3">자신의 첫 직장</option>						

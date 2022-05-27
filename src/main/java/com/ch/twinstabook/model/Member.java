@@ -16,5 +16,6 @@ public class Member {
 	private String id_drop;
 	private int ask;
 	private String answer;
+	private String greeting;
 	private MultipartFile file; 
 }

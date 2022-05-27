@@ -5,7 +5,7 @@
     
 }
 form{
-	margin-top:-85px;
+	margin-top:-65px;
     
 }
  form.login{
@@ -47,31 +47,26 @@ form{
 	font-weight:bolder;
 }
 
-.delete{
-	color: rgb(232, 230, 227);
-    background-color: rgb(165, 29, 42);
-    border-color: rgb(148, 26, 37);
-	margin-top: 10;
+#zero{
+	margin-right : 50;
 }
+
 #one{
-	margin-right : 74;	
+	margin-right : 65;	
 }
 
 #two{
-	margin-right : 60;	
+	margin-right : 50;	
 }
 
 #three{
-	margin-right : 60;	
+	margin-right : 50;	
 }
 
 #four{
-	margin-right : 82;	
+	margin-right : 75;	
 }
 
 #five{
-	margin-right : 82;
-}
-#six{
-	margin-right : 100;
+	margin-right : 70;
 }

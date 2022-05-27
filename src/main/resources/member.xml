@@ -44,14 +44,22 @@
 	
 	<!-- UpdateAll -->
 	<update id="updateAll" parameterType="member">
-		update member set pwd=#{pwd}, name=#{name}, email=#{email},
-		<if test="profile_pic != null">
-			#{profile_pic}, 
+		update member set
+		<if test="pwd != null and pwd != ''">
+			pwd=#{pwd},
 		</if>
-		<if test="profile_pic == null">
-			null, 
+		 name=#{name},
+		
+		<if test="profile_pic != null and profile_pic != ''">
+			profile_pic=#{profile_pic}, 
 		</if>
-		#{ask}, #{answer},#{greeting}
+		<if test="ask != null and ask != ''">
+			ask=#{ask},
+		</if>
+		<if test="answer != null and answer != ''">
+			answer=#{answer},
+		</if>
+		 email=#{email}
 		where member_id=#{member_id}
 	</update>
 	

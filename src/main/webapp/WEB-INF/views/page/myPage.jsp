@@ -27,7 +27,7 @@
 				</td>
 				<c:if test="${member.member_id eq member_id }">
 					<td colspan="2" style="text-align: center; float: right;">
-						<button class="btn btn-outline-dark" title="프로필 편집"><i class="bi bi-gear-fill"></i></button>&nbsp
+						<button class="btn btn-outline-dark" title="프로필 편집" onclick="location.href='updateForm1.html?member_id=${member.member_id	}'"><i class="bi bi-gear-fill"></i></button>&nbsp
 						<button class="btn btn-outline-dark" onclick="location.href='postWriteForm.html'" title="글쓰기"><i class="bi bi-pencil-fill"></i></button>
 					</td>
 				</c:if>
