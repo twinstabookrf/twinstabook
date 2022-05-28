@@ -80,8 +80,7 @@ a {
 	color: black;
 	text-decoration: none;
 }
-
-a:hover {
+ a:hover {
 	color: black;
 }
 
@@ -151,6 +150,14 @@ a:hover {
 
 .cursor {
 	cursor: pointer;
+}
+
+.twinCor{
+	color: #4793d7;
+}
+
+.twinCor:hover{
+	color: #4793d7;
 }
 
 .overflow {

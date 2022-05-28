@@ -213,6 +213,14 @@ function adjustHeight() {
 		cursor: pointer;
 	}
 	
+	.twinCor{
+		color: #4793d7;
+	}
+	
+	.twinCor:hover{
+		color: #4793d7;
+	}
+	
 	.overflow {
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -368,25 +376,48 @@ function adjustHeight() {
 					<div class="d-flex flex-column align-items-start" id="wiretet-name" >
 						<a class="mId-text" onclick="writerPage('${post.name}')">${post.name}</a>
 					</div>
-					<!-- 본인의 게시글이면 수정or삭제 -->
-					<c:if test="${post.member_id eq member_id }">
-						<div class="modDel">
-							<nav class="navbar navbar-expand-sm" aria-label="Third navbar example"> <!-- 수정,삭제 드롭다운 -->
-			   					<div class="container-fluid">
-									<div class="collapse navbar-collapse" id="navbarsExample03">
-										<ul class="navbar-nav me-auto mb-2 mb-sm-0">
-											<li class="nav-item dropdown">
-												<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false" title="수정,삭제"><i class="bi bi-eraser-fill"></i></a>
-											<ul class="dropdown-menu" aria-labelledby="dropdown03">
-												<li><a class="dropdown-item" href="updateForm.html?member_id=${member.member_id }&postno=${post.postno}">수정</a></li>
-												<li><a class="dropdown-item" onclick="del(${post.postno})">삭제</a></li>
+					<!-- 내가 쓴 글일 때 -->
+					<c:if test="${member_id eq post.member_id }">
+						<!-- 게시물을 쓴 사람과 rt원작글의 사람이 같으면 -->
+						<c:if test="${post.name eq post.origin_name }">
+							<div class="modDel">
+								<nav class="navbar navbar-expand-sm" aria-label="Third navbar example"> <!-- 수정,삭제 드롭다운 -->
+				   					<div class="container-fluid">
+										<div class="collapse navbar-collapse" id="navbarsExample03">
+											<ul class="navbar-nav me-auto mb-2 mb-sm-0">
+												<li class="nav-item dropdown">
+													<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false" title="수정,삭제"><i class="bi bi-eraser-fill"></i></a>
+												<ul class="dropdown-menu" aria-labelledby="dropdown03">
+													<li><a class="dropdown-item" href="updateForm.html?member_id=${member.member_id }&postno=${post.postno}">수정</a></li>
+													<li><a class="dropdown-item" onclick="del(${post.postno})">삭제</a></li>
+												</ul>
+												</li>
 											</ul>
-											</li>
-										</ul>
+										</div>
 									</div>
-								</div>
-							</nav>
-						</div>
+								</nav>
+							</div>
+						</c:if>
+						<!-- 게시물을 쓴 사람과 rt원작글의 사람이 다르면 -->
+						<c:if test="${post.name ne post.origin_name }">
+							<div class="modDel">
+								<nav class="navbar navbar-expand-sm" aria-label="Third navbar example"> <!-- 수정,삭제 드롭다운 -->
+				   					<div class="container-fluid">
+										<div class="collapse navbar-collapse" id="navbarsExample03">
+											<ul class="navbar-nav me-auto mb-2 mb-sm-0">
+												<li class="nav-item dropdown">
+													<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false" title="수정,삭제"><i class="bi bi-eraser-fill"></i></a>
+												<ul class="dropdown-menu" aria-labelledby="dropdown03">
+													<li><a class="dropdown-item" href="rtUpdateForm.html?name=${post.name }&postno=${post.postno}">수정</a></li>
+													<li><a class="dropdown-item" onclick="del(${post.postno})">삭제</a></li>
+												</ul>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</nav>
+							</div>
+						</c:if>
 					</c:if>
 					<!-- 본인의 게시글이 아니면 생기는 rt버튼 -->
 					<c:if test="${post.member_id ne member_id }">
@@ -442,15 +473,26 @@ function adjustHeight() {
 						<!-- post-pics -->
 					</c:if>
 					<!-- rtContent가 있을 시 -->
-					<c:if test="${!empty post.rtContent }">
-					<div class="post_writing" align="left">
-						<table class="font-default-size content-table">
-							<tr>
-								<td style="color: #4793d7;"><i class="bi bi-twitter"></i> ${post.name }&nbsp</td>
-								<td class="postContent">${post.rtContent }</td>
-							</tr>
-						</table>
-					</div>
+					<c:if test="${!empty post.reTwinList }">
+						<c:forEach var="reTwin" items="${post.reTwinList}">
+							<div class="post_writing" align="left">
+								<table class="font-default-size content-table">
+									<tr>
+										<c:if test="${reTwin.name eq post.name}">
+											<td>
+												<a class="twinCor cursor" onclick="writerPage('${reTwin.name}')"><i class="bi bi-twitter"></i> ${reTwin.name }</a>&nbsp
+											</td>
+										</c:if>
+										<c:if test="${reTwin.name ne post.name}">
+											<td>
+												<a class="cursor" onclick="writerPage('${reTwin.name}')"><i class="bi bi-twitter"></i> ${reTwin.name }</a>&nbsp
+											</td>
+										</c:if>
+										<td class="postContent">${reTwin.rtContent }</td>
+									</tr>
+								</table>
+							</div>
+						</c:forEach>
 					</c:if>
 					<!-- post.mediaList -->
 					<div class="post_foot p-2">

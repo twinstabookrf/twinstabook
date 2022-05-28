@@ -13,12 +13,14 @@
 <%@include file="../public/topNavbar.jsp" %>
 <div class="container" align="center">
 	<form action="reTwin.html" method="post">
-		<input type="hidden" name="postno" value="${postno }">
+		<input type="hidden" name="postno" value="${post.postno }">
+		<input type="hidden" name="origin_name" value="${post.origin_name }">
+		<input type="hidden" name="content" value="${post.content }">
 		<table id="table" class="table table-hover">
 			<caption>ReTwin 작성</caption>
 			<tr>
 				<th>내용<br><br><sup>(<span id="nowByte">0</span>/2000bytes)</sup></th>
-				<td><textarea  class="form-control" id="rtContent" rows="5" cols="55" name="rtContent" maxlength="1000"
+				<td><textarea  class="form-control" id="newRtContent" rows="5" cols="55" name="newRtContent" maxlength="1000"
 					placeholder="내용을 입력하세요." onkeyup="fn_checkByte(this)"></textarea></td>
 			</tr>
 			<tr>

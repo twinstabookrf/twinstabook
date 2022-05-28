@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -21,10 +20,12 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.ch.twinstabook.model.Media;
 import com.ch.twinstabook.model.Member;
 import com.ch.twinstabook.model.Post;
+import com.ch.twinstabook.model.ReTwin;
 import com.ch.twinstabook.model.Reply;
 import com.ch.twinstabook.service.MediaService;
 import com.ch.twinstabook.service.MemberService;
 import com.ch.twinstabook.service.PostService;
+import com.ch.twinstabook.service.ReTwinService;
 import com.ch.twinstabook.service.ReplyService;
 
 @Controller
@@ -37,6 +38,8 @@ public class PostController {
 	private MemberService ms;
 	@Autowired
 	private MediaService mds;
+	@Autowired
+	private ReTwinService rts;
 
 	@RequestMapping("main")
 	public String main(Model model, HttpServletRequest request, HttpSession session) {
@@ -65,8 +68,18 @@ public class PostController {
 			post.setReplyList(replyList);
 			// post에 사진/동영상 리스트 추가
 			post.setMediaList(mds.list(post.getPostno()));
+			
+			
+			List<ReTwin> reTwinList2 = rts.list(post.getPostno());
+			List<ReTwin> reTwinList = new ArrayList<ReTwin>();
+			for(ReTwin reTwin : reTwinList2) {
+				reTwinList.add(reTwin);
+			}
+			// post에 RT 리스트 추가
+			post.setReTwinList(reTwinList);
 		}
 		String member_id = (String)session.getAttribute("member_id");
+		
 		
 		model.addAttribute("member_id",member_id);
 		model.addAttribute("postList",postList);
@@ -177,39 +190,55 @@ public class PostController {
 		return "post/update";
 	}
 	@RequestMapping("rtUpdateForm")
-	private String rtUpdateForm(Model model, int postno, String name) {
+	private String rtUpdateForm(HttpSession session, Model model, int postno, String name) {
+		String member_id =(String)session.getAttribute("member_id");
+		Member member = ms.select(member_id);
 		Post post = ps.select(postno);		// postno별 post조회
 		
+		List<ReTwin> reTwin2 = rts.selectList(postno);
+		for (int i = 0; i < 1; i++) {		// 제일 reTwinno가 높은 은 글이 내글인가 확인
+			int reTwinno = reTwin2.get(0).getReTwinno();
+			ReTwin reTwin = rts.selectReTwinno(reTwinno);
+			if (!reTwin.getName().equals(member.getName())) {	// 제일 reTwinno가 높은 글이 내가 아닐 때
+				int result = 1;
+				model.addAttribute("result", result);
+			}
+		}
+		model.addAttribute("postno", postno);
 		model.addAttribute("name", name);
 		model.addAttribute("post", post);
 		return "post/rtUpdateForm";
 	}
 	
 	@RequestMapping("rtUpdate")
-	private String rtUpdate(Model model, Post post) {
-		String rtContent = post.getRtContent();
- 		
- 		int result = 0;
-
- 		post.setRtContent(rtContent);
- 		result = ps.rtUpdate(post);		// rtContent 업데이트
- 		
- 		model.addAttribute("result", result);
+	private String rtUpdate(HttpSession session, Model model, Post post) {
+		int result = 0;
+		List<ReTwin> reTwin2 = rts.selectList(post.getPostno());		// 받아온 postno별 rt리스트
+		for (int i = 0; i < 1; i++) {		// 제일 reTwinno값을 가져오기
+			int reTwinno2 = reTwin2.get(0).getReTwinno();
+			ReTwin reTwin = rts.selectReTwinno(reTwinno2);		// 내가 마지막으로 쓴 rt글
+			reTwin.setRtContent(post.getRtContent());				// 수정 할 rt글 넣기
+			result = rts.update(reTwin);
+			
+			model.addAttribute("result", result);
+		}
+		model.addAttribute("postno", post.getPostno());
 		return "post/rtUpdate";
 	}
 	
 	@RequestMapping("delete")
 	private String delete(int postno, Model model, HttpSession session) {
-		String member_id = (String)session.getAttribute("member_id");
 		
 		// postno별 모든 댓글 삭제
-		int result3 = rs.deleteAll(postno);
+		int result4 = rs.deleteAll(postno);
 		// postno별 미디어 삭제
-		int result2 = mds.delete(postno);
+		int result3 = mds.delete(postno);
+		// postno별 리트윈 삭제
+		int result2 = rts.delete(postno);
 		// postno별 게시물 삭제
 		int result = ps.delete(postno);
 		
-		model.addAttribute("member_id", member_id);
+		model.addAttribute("result4", result4);
 		model.addAttribute("result3", result3);
 		model.addAttribute("result2", result2);
 		model.addAttribute("result", result);
@@ -218,43 +247,71 @@ public class PostController {
 	}
 	@RequestMapping("reTwinForm")
 	private String reTwinForm(Model model, int postno) {
-		model.addAttribute("postno", postno);
+		Post post = ps.select(postno);
+		model.addAttribute("post", post);
 		return "post/reTwinForm";
 	}
 	@RequestMapping("reTwin")
-	private String reTwin(int postno, String rtContent, Model model, HttpSession session) {
+	private String reTwin(Post post, String newRtContent, Model model, HttpSession session) {
 		String sessionId = (String)session.getAttribute("member_id");
-		Post post = new Post();
+		Member member = ms.select(sessionId);
+		String sessionName = member.getName();
 		
-		// 마지막 postno 추출
+		Post post2 = new Post();
+		
+		// post 마지막 postno 추출
 		int maxpostno = ps.getPostno();
-		post.setPostno(maxpostno);
-		
-		ps.updateRts(postno);	// rt횟수 증가
-		Post post2 = ps.select(postno);	// 받아온 postno로 조회한 post
+		post2.setPostno(maxpostno);
 		
 		
-		post.setOrigin_name(post2.getOrigin_name());
-		post.setMember_id(sessionId);
-		if (post2.getContent() != null) {
-			post.setContent(post2.getContent());
+		ps.updateRts(post.getPostno());	// rt횟수 증가
+		Post post3 = ps.select(post.getPostno());	// 받아온 postno로 조회한 post
+		
+		
+		post2.setOrigin_name(post3.getOrigin_name());
+		post2.setMember_id(sessionId);
+		if (post3.getContent() != null) {
+			post2.setContent(post3.getContent());
 		}
-		post.setRtContent(rtContent);
 		int result = 0;
-		result = ps.insertPost(post);	// 게시물 작성
+		result = ps.insertPost(post2);	// 게시물 작성
 		model.addAttribute("result", result);
 		
-		List<Media> media2 = mds.list(postno);	// 받아온 postno로 조회한 mediaList
+		List<Media> media2 = mds.list(post.getPostno());	// 받아온 postno로 조회한 mediaList
 		List<Media> media = new ArrayList<Media>();
 		
-		 for(int i=0; i<media2.size(); i++) {
-			 Media md = new Media();
-			 md.setFileName(media2.get(i).getFileName());
-			 md.setPostno(maxpostno);
-			 media.add(md);
+		for(int i=0; i<media2.size(); i++) {
+			Media md = new Media();
+			md.setFileName(media2.get(i).getFileName());			 
+			md.setPostno(maxpostno);
+			media.add(md);
 		 }
-		 mds.insertMedia(media);
+		mds.insertMedia(media);
+		 
+		List<ReTwin> reTwin2 = rts.list(post.getPostno());		// 받아온 postno로 조회한 reTwinList
+		List<ReTwin> reTwin = new ArrayList<ReTwin>();			// 새로운 rt글 담는 리스트
+		List<ReTwin> reTwin3 = new ArrayList<ReTwin>();		// 기존 rt글 담는 리스트
 
-		return "post/reTwin";
+		if (reTwin2 != null || newRtContent != null) {
+			if (reTwin2 != null) {		// 기존 rt글이 있을 때
+				for(int i=0; i<reTwin2.size(); i++) {
+					ReTwin rt = new ReTwin();	
+					rt.setName(reTwin2.get(i).getName());
+					rt.setPostno(maxpostno);		// 새로생기는 포스트 번호 넣기
+					rt.setRtContent(reTwin2.get(i).getRtContent());
+					reTwin3.add(rt);
+				}
+				rts.insert(reTwin3);
+			}
+			if (newRtContent != null && newRtContent != "") {		// 새로운 rt글이 있을 때
+				ReTwin rt = new ReTwin();	
+				rt.setName(sessionName);
+				rt.setPostno(maxpostno);
+				rt.setRtContent(newRtContent);
+				reTwin.add(rt);
+			}
+			rts.insert(reTwin);
+		}
+		 return "post/reTwin";
 	}
 }

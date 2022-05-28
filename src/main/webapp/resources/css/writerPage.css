@@ -151,6 +151,14 @@ a:hover {
 	cursor: pointer;
 }
 
+.twinCor{
+	color: #4793d7;
+}
+
+.twinCor:hover{
+	color: #4793d7;
+}
+
 .overflow {
 	overflow: hidden;
 	text-overflow: ellipsis;

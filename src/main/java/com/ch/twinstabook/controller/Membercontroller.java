@@ -3,6 +3,7 @@ package com.ch.twinstabook.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -16,11 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.twinstabook.model.Member;
 import com.ch.twinstabook.model.Post;
+import com.ch.twinstabook.model.ReTwin;
 import com.ch.twinstabook.model.Reply;
 import com.ch.twinstabook.service.FollowService;
 import com.ch.twinstabook.service.MediaService;
 import com.ch.twinstabook.service.MemberService;
 import com.ch.twinstabook.service.PostService;
+import com.ch.twinstabook.service.ReTwinService;
 import com.ch.twinstabook.service.ReplyService;
 
 @Controller
@@ -35,6 +38,8 @@ public class Membercontroller {
 	private MediaService mds;
 	@Autowired
 	private FollowService fs;
+	@Autowired
+	private ReTwinService rts;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
@@ -215,8 +220,15 @@ public class Membercontroller {
 			post2.setReplyList(replyList);
 			// post에 사진/동영상 리스트 추가
 			post2.setMediaList(mds.list(post2.getPostno()));
+			
+			List<ReTwin> reTwinList2 = rts.list(post2.getPostno());
+			List<ReTwin> reTwinList = new ArrayList<ReTwin>();
+			for(ReTwin reTwin : reTwinList2) {
+				reTwinList.add(reTwin);
+			}
+			// post2에 RT 리스트 추가
+			post2.setReTwinList(reTwinList);
 		}
-		
 		model.addAttribute("postTotal", postTotal);
 		model.addAttribute("member", member);
 		model.addAttribute("post", post);
@@ -249,6 +261,14 @@ public class Membercontroller {
 			post2.setReplyList(replyList);
 			// post에 사진/동영상 리스트 추가
 			post2.setMediaList(mds.list(post2.getPostno()));
+			
+			List<ReTwin> reTwinList2 = rts.list(post2.getPostno());
+			List<ReTwin> reTwinList = new ArrayList<ReTwin>();
+			for(ReTwin reTwin : reTwinList2) {
+				reTwinList.add(reTwin);
+			}
+			// post2에 RT 리스트 추가
+			post2.setReTwinList(reTwinList);
 		}
 		model.addAttribute("postTotal", postTotal);
 		model.addAttribute("member", member);

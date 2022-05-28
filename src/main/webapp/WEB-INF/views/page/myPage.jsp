@@ -58,7 +58,9 @@
 					<div class="d-flex flex-column align-items-start" id="nameCrtDate">
 						<a class="mId-text" onclick="writerPage('${member.name}')">${member.name}</a>
 					</div>
+					<!-- 내가 쓴 글일 때 -->
 					<c:if test="${member_id eq member.member_id }">
+						<!-- 게시물을 쓴 사람과 rt원작글의 사람이 같으면 -->
 						<c:if test="${post.name eq post.origin_name }">
 							<div class="modDel">
 								<nav class="navbar navbar-expand-sm" aria-label="Third navbar example"> <!-- 수정,삭제 드롭다운 -->
@@ -78,6 +80,7 @@
 								</nav>
 							</div>
 						</c:if>
+						<!-- 게시물을 쓴 사람과 rt원작글의 사람이 다르면 -->
 						<c:if test="${post.name ne post.origin_name }">
 							<div class="modDel">
 								<nav class="navbar navbar-expand-sm" aria-label="Third navbar example"> <!-- 수정,삭제 드롭다운 -->
@@ -146,15 +149,26 @@
 						<!-- post-pics -->
 					</c:if>
 					<!-- rtContent가 있을 시 -->
-					<c:if test="${!empty post.rtContent }">
-					<div class="post_writing" align="left">
-						<table class="font-default-size content-table">
-							<tr>
-								<td style="color: #4793d7;"><i class="bi bi-twitter"></i> ${member.name }&nbsp</td>
-								<td class="postContent">${post.rtContent }</td>
-							</tr>
-						</table>
-					</div>
+					<c:if test="${!empty post.reTwinList }">
+						<c:forEach var="reTwin" items="${post.reTwinList}">
+							<div class="post_writing" align="left">
+								<table class="font-default-size content-table">
+									<tr>
+										<c:if test="${reTwin.name eq post.name}">
+											<td>
+												<a style="color: #4793d7" class="cursor" onclick="writerPage('${reTwin.name}')"><i class="bi bi-twitter"></i> ${reTwin.name }</a>&nbsp
+											</td>
+										</c:if>
+										<c:if test="${reTwin.name ne post.name}">
+											<td>
+												<a class="cursor" onclick="writerPage('${reTwin.name}')"><i class="bi bi-twitter"></i> ${reTwin.name }</a>&nbsp
+											</td>
+										</c:if>
+										<td class="postContent">${reTwin.rtContent }</td>
+									</tr>
+								</table>
+							</div>
+						</c:forEach>
 					</c:if>
 					<!-- post.mediaList -->
 					<div class="post_foot p-2">
