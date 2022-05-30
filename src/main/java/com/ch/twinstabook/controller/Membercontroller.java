@@ -109,6 +109,7 @@ public class Membercontroller {
 			fos.close();
 		}
 		member.setProfile_pic(fileName);
+		System.out.println("id="+member.getMember_id());
 		String encPassword = passwordEncoder.encode(member.getPwd());
 		member.setPwd(encPassword);
 		model.addAttribute("result",result);

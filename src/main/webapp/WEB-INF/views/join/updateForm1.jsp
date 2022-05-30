@@ -133,11 +133,11 @@ function chk(){
 			</div> 
 			<div class="update-form">
 				<div id="one">
-					<span>비밀번호</span>&nbsp;&nbsp;<input type="password" id="password" name="pwd" placeholder="비밀번호"  autofocus="autofocus">
+					<span>비밀번호</span>&nbsp;&nbsp;<input type="password" id="password" name="pwd" placeholder="비밀번호"  autofocus="autofocus" >
 				</div>
 			</div>
 			<div class="update-form">
-				<input type="password" id="password2" name="pwd2" placeholder="비밀번호 확인">
+				<input type="password" id="password2" name="pwd2" placeholder="비밀번호 확인" >
 			</div>
 			<div class="update-form">
 				<div id="two">

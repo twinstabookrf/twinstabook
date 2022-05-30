@@ -49,7 +49,6 @@
 			pwd=#{pwd},
 		</if>
 		 name=#{name},
-		
 		<if test="profile_pic != null and profile_pic != ''">
 			profile_pic=#{profile_pic}, 
 		</if>
