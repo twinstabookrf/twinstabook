@@ -8,6 +8,7 @@
 		<typeAlias alias="member" type="com.ch.twinstabook.model.Member" />
 		<typeAlias alias="media" type="com.ch.twinstabook.model.Media" />
 		<typeAlias alias="follow" type="com.ch.twinstabook.model.Follow" />
+		<typeAlias alias="reTwin" type="com.ch.twinstabook.model.ReTwin" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="post.xml" />
@@ -15,5 +16,6 @@
 		<mapper resource="member.xml" />
 		<mapper resource="media.xml" />
 		<mapper resource="follow.xml" />
+		<mapper resource="reTwin.xml" />
 	</mappers>
 </configuration>

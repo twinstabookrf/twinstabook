@@ -10,6 +10,12 @@
 <link href="resources/css/font.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<c:if test="${result == 1 }">
+	<script type="text/javascript">
+		alert("수정할 내용이 없습니다 :(");
+		history.back();
+	</script>
+</c:if>
 	<!-- topNavbar -->
 	<%@include file="../public/topNavbar.jsp" %>
 	

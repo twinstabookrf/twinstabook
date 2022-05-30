@@ -11,7 +11,7 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("게시물 삭제 성공! :)");
-		location.href="myPage.html?member_id='${member_id}'";
+		location.href = document.referrer;		// 뒤로가기 후 새로고침
 	</script>
 </c:if>
 <c:if test="${result == 0 }">

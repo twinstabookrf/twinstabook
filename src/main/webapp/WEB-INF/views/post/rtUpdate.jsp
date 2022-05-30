@@ -10,13 +10,13 @@
 <body>
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
-		alert("게시물 수정 성공 :)")
-		location.href="myPage.html?postno='${post.postno}'";
+		alert("ReTwin 수정 성공 :)")
+		history.go(-2);
 	</script>
 </c:if>
 <c:if test="${result == 0 }">
 	<script type="text/javascript">
-		alert("게시물 수정 실패 :(")
+		alert("ReTwin 수정 실패 :(")
 		history.back();
 	</script>
 </c:if>

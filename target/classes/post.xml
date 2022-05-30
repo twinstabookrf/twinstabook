@@ -30,13 +30,7 @@
 		<if test="content == null"><!-- #{content}없을 때 -->
 			null
 		</if>
-		, sysdate, null, 0, 0, 
-		<if test="rtContent != null">	<!-- #{rtContent}있을 때 -->
-			#{rtContent})
-		</if>									
-		<if test="rtContent == null"><!-- #{rtContent}없을 때 -->
-			null)
-		</if>
+		, sysdate, null, 0, 0)
 	</insert>
 	<!-- 일반 게시물 업데이트 -->
 	<update id="update" parameterType="post">	

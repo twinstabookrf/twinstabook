@@ -31,4 +31,5 @@ public class Post {
 	private String name;
 	private List<Reply> replyList;
 	private List<Media> mediaList;
+	private List<ReTwin> reTwinList;
 }
