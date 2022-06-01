@@ -200,10 +200,10 @@ public class Membercontroller {
 
 	@RequestMapping("myPage")
 	public String myPage(Model model, HttpSession session) {
-		String member_id = (String)session.getAttribute("member_id");
-		Member member = ms.select(member_id);		// 맴버 조회
-		int postTotal = ps.postTotal(member_id);			// 작성한 포스트 갯수
-		List<Post> post = ps.postList(member_id);		// 포스트 리스트
+		String  sessionId = (String)session.getAttribute("member_id");
+		Member member = ms.select(sessionId);		// 맴버 조회
+		int postTotal = ps.postTotal(sessionId);			// 작성한 포스트 갯수
+		List<Post> post = ps.postList(sessionId);		// 포스트 리스트
 		for(Post post2 : post) {
 			Member member2 = ms.select(post2.getMember_id());
 			post2.setName(member2.getName());
@@ -230,6 +230,8 @@ public class Membercontroller {
 			// post2에 RT 리스트 추가
 			post2.setReTwinList(reTwinList);
 		}
+
+		model.addAttribute("sessionId", sessionId);
 		model.addAttribute("postTotal", postTotal);
 		model.addAttribute("member", member);
 		model.addAttribute("post", post);

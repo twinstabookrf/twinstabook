@@ -19,7 +19,7 @@
 			<input type="hidden" name="member_id" value="${member.member_id }">
 				<table id="table" class="table table-hover">
 				<caption>게시물 만들기</caption>
-				<c:if test="${member.profile_pic != null }">
+				<c:if test="${member.profile_pic eq null }">
 					<tr>
 						<td colspan="2"><img src="resources/upload/${member.profile_pic}" width="40" height="32">${member.member_id}</td>
 					</tr>

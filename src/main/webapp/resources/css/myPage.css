@@ -215,18 +215,22 @@ a {
 	width: 700px;"
 }
 
-.post_writing {
+.content-box {
 	width: 95%;
 	margin: 0 auto;
 	padding: 20px 0;
 }
 
-.postContent {
-	font-size: 1.2em;
+.content {
+	
 }
 
-.postContent2 {
-	font-size: 1.8em;
+.fontSize16 {
+	font-size: 16px;
+}
+
+.fontSize20 {
+	font-size: 20px;
 }
 
 .post-pics {

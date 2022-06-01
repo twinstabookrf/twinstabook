@@ -23,7 +23,9 @@
 					</div></td>
 				<td class="text_id">
 					${member.name } &nbsp 
-					<button class="btn btn-primary btn-sm" onclick="following('${member.member_id}')">팔로우</button>
+					<c:if test="${member.member_id ne sessionId }">
+						<button class="btn btn-primary btn-sm" onclick="following('${member.member_id}')">팔로우</button>
+					</c:if>
 				</td>
 				<c:if test="${member.member_id eq member_id }">
 					<td colspan="2" style="text-align: center; float: right;">
@@ -121,19 +123,19 @@
 				<!-- 게시물 글내용 -->
 				<c:if test="${!empty post.content }">
 					<c:if test="${empty post.mediaList }">
-						<div class="post_writing" align="left">
+						<div class="content-box" align="left">
 							<table class="font-default-size content-table">
 								<tr>
-									<td class="postContent2">${post.content }</td>
+									<td class="fontSize20">${post.content }</td>
 								</tr>
 							</table>
 						</div>
 					</c:if>
 					<c:if test="${!empty post.mediaList }">
-						<div class="post_writing" align="left">
+						<div class="content-box" align="left">
 							<table class="font-default-size content-table">
 								<tr>
-									<td class="postContent">${post.content }</td>
+									<td class="fontSize16">${post.content }</td>
 								</tr>
 							</table>
 						</div>
@@ -157,7 +159,7 @@
 					<!-- rtContent가 있을 시 -->
 					<c:if test="${!empty post.reTwinList }">
 						<c:forEach var="reTwin" items="${post.reTwinList}">
-							<div class="post_writing" align="left">
+							<div class="content-box" align="left">
 								<table class="font-default-size content-table">
 									<tr>
 										<c:if test="${reTwin.name eq post.name}">
@@ -170,7 +172,7 @@
 												<a class="cursor" onclick="writerPage('${reTwin.name}')"><i class="bi bi-twitter"></i> ${reTwin.name }</a>&nbsp
 											</td>
 										</c:if>
-										<td class="postContent">${reTwin.rtContent }</td>
+										<td class="fontSize16">${reTwin.rtContent }</td>
 									</tr>
 								</table>
 							</div>
