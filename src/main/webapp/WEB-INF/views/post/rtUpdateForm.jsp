@@ -31,7 +31,7 @@
 					<tr>
 						<th>내용<br><br><sup>(<span id="nowByte">0</span>/2000bytes)</sup></th>
 						<td><textarea  class="form-control" id="content" rows="5" cols="55" name="rtContent" maxlength="1000"
-							placeholder="내용을 입력하세요." onkeyup="fn_checkByte(this)">${post.rtContent }</textarea></td>
+							placeholder="내용을 입력하세요." onkeyup="fn_checkByte(this)"></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center"><input class="btn btn-sm btn-outline-dark" type="submit" value="수정"></td>

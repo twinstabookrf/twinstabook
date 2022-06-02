@@ -5,7 +5,7 @@
 	<select id="list" parameterType="hashMap" resultType="post">
 		select * from
 		(select * from post
-		order by crt_date)
+		order by crt_date desc)
 		where rownum &gt;= 1
 		and rownum &lt;= 10
 	</select>

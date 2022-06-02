@@ -19,11 +19,11 @@
 			<input type="hidden" name="member_id" value="${member.member_id }">
 				<table id="table" class="table table-hover">
 				<caption>게시물 만들기</caption>
-				<c:if test="${member.profile_pic eq null }">
+				<%-- <c:if test="${member.profile_pic eq null }">
 					<tr>
 						<td colspan="2"><img src="resources/upload/${member.profile_pic}" width="40" height="32">${member.member_id}</td>
 					</tr>
-				</c:if>
+				</c:if> --%>
 					<tr>
 						<th>파일</th>
 						<td><input class="form-control" id="file" type="file" name="file" multiple="multiple">

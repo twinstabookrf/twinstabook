@@ -379,7 +379,7 @@ function adjustHeight() {
 					<!-- 내가 쓴 글일 때 -->
 					<c:if test="${member_id eq post.member_id }">
 						<!-- 게시물을 쓴 사람과 rt원작글의 사람이 같으면 -->
-						<c:if test="${post.name eq post.origin_name }">
+						<c:if test="${post.name eq post.origin_name && empty post.reTwinList}">
 							<div class="modDel">
 								<nav class="navbar navbar-expand-sm" aria-label="Third navbar example"> <!-- 수정,삭제 드롭다운 -->
 				   					<div class="container-fluid">
@@ -399,7 +399,27 @@ function adjustHeight() {
 							</div>
 						</c:if>
 						<!-- 게시물을 쓴 사람과 rt원작글의 사람이 다르면 -->
-						<c:if test="${post.name ne post.origin_name }">
+						<c:if test="${post.name ne post.origin_name && not empty post.reTwinList}">
+							<div class="modDel">
+								<nav class="navbar navbar-expand-sm" aria-label="Third navbar example"> <!-- 수정,삭제 드롭다운 -->
+				   					<div class="container-fluid">
+										<div class="collapse navbar-collapse" id="navbarsExample03">
+											<ul class="navbar-nav me-auto mb-2 mb-sm-0">
+												<li class="nav-item dropdown">
+													<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false" title="수정,삭제"><i class="bi bi-eraser-fill"></i></a>
+												<ul class="dropdown-menu" aria-labelledby="dropdown03">
+													<li><a class="dropdown-item" href="rtUpdateForm.html?name=${post.name }&postno=${post.postno}">수정</a></li>
+													<li><a class="dropdown-item" onclick="del(${post.postno})">삭제</a></li>
+												</ul>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</nav>
+							</div>
+						</c:if>
+						<!-- 다른사람이 본인의 글을 rt하고 그 글을 다시 본인이 rt했을 때 -->
+						<c:if test="${post.name eq post.origin_name && not empty post.reTwinList}">
 							<div class="modDel">
 								<nav class="navbar navbar-expand-sm" aria-label="Third navbar example"> <!-- 수정,삭제 드롭다운 -->
 				   					<div class="container-fluid">

@@ -236,8 +236,8 @@ public class Membercontroller {
 		model.addAttribute("member", member);
 		model.addAttribute("post", post);
 		
-		model.addAttribute("follower", "123");
-		model.addAttribute("follow", "54");
+		model.addAttribute("follower", "0");
+		model.addAttribute("follow", "0");
 		model.addAttribute("greeting", "안녕하세요");
 
 		return "page/myPage";
